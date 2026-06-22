@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "title": "Rudolf Krylov — Logiciel & Systèmes",
+    "description": "Étudiant ingénieur en informatique à l'EFREI Paris. Je construis des systèmes et j'apprends en les livrant."
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "journey": "Parcours",
+    "notes": "Notes",
+    "now": "En ce moment",
+    "cv": "CV",
+    "contact": "Contact"
+  },
+  "home": {
+    "status": "Ouvert à une alternance de développeur en 2027 — stage d'ici là",
+    "tagline": "Je construis des systèmes et j'apprends en les livrant.",
+    "intro": "Étudiant ingénieur en informatique à l'EFREI Paris. Je travaille surtout en Python et sur le web, avec des bases en C, SQL, Git et Linux — et je documente ma façon de penser au fil de la construction.",
+    "ctaProjects": "Voir les projets",
+    "ctaNotes": "Lire les notes",
+    "metricsTitle": "En direct de GitHub",
+    "flagshipTitle": "Travaux sélectionnés",
+    "flagshipNote": "Remis en contexte, avec ce que j'en ai appris et la trace git derrière."
+  },
+  "pages": {
+    "about": {
+      "kicker": "Profil",
+      "title": "Qui je suis",
+      "intro": "Étudiant ingénieur en informatique à l'EFREI Paris. Au-delà de la stack : comment je pense, comment j'apprends, et ce que je fais loin du clavier."
+    },
+    "projects": {
+      "kicker": "Travaux",
+      "title": "Projets",
+      "intro": "Remis en contexte — avec ce que j'ai construit, ce que j'en ai appris et la trace git derrière, dans une complexité croissante."
+    },
+    "skills": {
+      "kicker": "Compétences",
+      "title": "Compétences",
+      "intro": "Présentées en compétence puis sous-compétence puis preuve. Chacune est étiquetée autodidacte ou formation EFREI, et reliée au projet qui la démontre."
+    },
+    "journey": {
+      "kicker": "Chronologie",
+      "title": "Parcours",
+      "intro": "Comment les projets ont gagné en complexité — d'un premier jeu empaqueté à une infrastructure auto-réparante."
+    },
+    "notes": {
+      "kicker": "Jardin numérique",
+      "title": "Notes",
+      "intro": "Des notes choisies de mon vault d'ingénierie — un second cerveau de travail, publié en jardin numérique."
+    },
+    "now": {
+      "kicker": "En ce moment",
+      "title": "Ce que je fais en ce moment",
+      "intro": "Ce sur quoi je me concentre actuellement — apprendre, construire et lire."
+    },
+    "cv": {
+      "kicker": "CV",
+      "title": "CV",
+      "intro": "Un résumé d'une page, avec le PDF complet dans les deux langues."
+    },
+    "contact": {
+      "kicker": "Contact",
+      "title": "Me contacter",
+      "intro": "Les meilleurs moyens de me joindre."
+    }
+  },
+  "ui": {
+    "viewRepo": "Voir sur GitHub",
+    "noRepo": "Pas de dépôt public",
+    "evidence": "Démontré dans",
+    "builtWithAi": "Construit avec l'aide de l'IA",
+    "downloadCv": "Télécharger le CV (PDF)",
+    "cvBuilding": "Le PDF téléchargeable est généré depuis LaTeX en CI (prévu).",
+    "emailMe": "M'écrire",
+    "lastUpdated": "Dernière mise à jour",
+    "gardenEmpty": "Le jardin se plante — les notes #public choisies de mon vault d'ingénierie apparaîtront ici.",
+    "backToProjects": "Tous les projets",
+    "groupedByTheme": "Regroupés par thème"
+  },
+  "footer": {
+    "built": "Construit avec Next.js et TypeScript.",
+    "source": "Code source",
+    "rights": "Rudolf Krylov"
+  },
+  "theme": {
+    "toggle": "Changer de thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "locale": {
+    "label": "Langue",
+    "fr": "Français",
+    "en": "English"
+  }
+}

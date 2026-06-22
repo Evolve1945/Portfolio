@@ -1,26 +1,197 @@
 @import "tailwindcss";
 
+/* Switch the `dark:` variant from media-query to class strategy (next-themes). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ───────────────────────────────────────────────────────
+   Editorial base (warm paper / ink) + systems accents (signal + data mono).
+   Light is default; .dark overrides. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Softened light theme — warm paper, no pure-white surfaces, lower glare. */
+  --background: #f1efe8;
+  --surface: #f9f7f1;
+  --surface-2: #eae7dd;
+  --foreground: #272630;
+  --muted: #64626c;
+  --faint: #98969e;
+  --border: #e2dfd5;
+  --accent: #2f43e6;
+  --accent-fg: #ffffff;
+  --signal: #1f9d57;
+  --grid: rgba(20, 20, 26, 0.04);
+}
+
+.dark {
+  --background: #0a0a0c;
+  --surface: #131316;
+  --surface-2: #1b1b1f;
+  --foreground: #ececee;
+  --muted: #a0a0a8;
+  --faint: #6c6c74;
+  --border: #262629;
+  --accent: #7f8dff;
+  --accent-fg: #0a0a0c;
+  --signal: #34d27f;
+  --grid: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-signal: var(--signal);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: light dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Mono uppercase label used for "systems"-style kickers and data readouts. */
+.kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* Faint engineering grid, used behind hero / section accents. */
+.grid-bg {
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Softer dot field — calmer alternative to the line grid. */
+.dot-bg {
+  background-image: radial-gradient(var(--grid) 1.1px, transparent 1.1px);
+  background-size: 22px 22px;
+}
+
+/* Rendered garden notes (react-markdown output). */
+.note-content {
+  line-height: 1.7;
+}
+.note-content h2 {
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 0.75rem;
+}
+.note-content h3 {
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+.note-content p,
+.note-content li {
+  color: var(--muted);
+}
+.note-content p {
+  margin: 0.75rem 0;
+}
+.note-content ul,
+.note-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.25rem;
+}
+.note-content li {
+  margin: 0.35rem 0;
+}
+.note-content li::marker {
+  color: var(--faint);
+}
+.note-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.note-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.note-content code {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85em;
+  background: var(--surface-2);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.note-content pre {
+  background: var(--surface-2);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.note-content pre code {
+  background: none;
+  padding: 0;
+}
+.note-content blockquote {
+  border-left: 2px solid var(--border);
+  padding-left: 1rem;
+  color: var(--faint);
+  margin: 1rem 0;
+}
+.note-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+.note-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.note-content th,
+.note-content td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.note-content th {
+  background: var(--surface-2);
+  color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

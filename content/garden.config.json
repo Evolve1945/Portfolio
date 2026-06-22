@@ -1,0 +1,14 @@
+{
+  "_comment": "Curated digital garden. ONLY the notes listed here are published. Edit this list to control exactly what goes public. Paths are relative to vaultPath. Income-Plan, Security, sessions, Audits are intentionally excluded.",
+  "vaultPath": "C:\\Users\\rudol\\Documents\\Evolve",
+  "notes": [
+    "Claude-Ecosystem/Review/Architecture Decision Records.md",
+    "Claude-Ecosystem/Components/Circuit Breaker.md",
+    "Claude-Ecosystem/Components/Watchdog.md",
+    "Claude-Ecosystem/Components/DAG Pipeline Engine.md",
+    "Claude-Ecosystem/Guides/Model Selection Guide.md",
+    "Claude-Ecosystem/Guides/Orchestrator Comparison.md",
+    "Claude-Ecosystem/errors/B2-circuit-breaker-race.md",
+    "Components/RAG Pipeline.md"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "title": "Rudolf Krylov — Software & Systems",
+    "description": "Computer-engineering student at EFREI Paris. I build systems and learn by shipping them."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "journey": "Journey",
+    "notes": "Notes",
+    "now": "Now",
+    "cv": "CV",
+    "contact": "Contact"
+  },
+  "home": {
+    "status": "Open to a 2027 developer apprenticeship — internships sooner",
+    "tagline": "I build systems and learn by shipping them.",
+    "intro": "Computer-engineering student at EFREI Paris. I work mainly in Python and on the web, with working knowledge of C, SQL, Git and Linux — and I document how I think as I build.",
+    "ctaProjects": "View the work",
+    "ctaNotes": "Read the notes",
+    "metricsTitle": "Live from GitHub",
+    "flagshipTitle": "Selected work",
+    "flagshipNote": "Framed in context, with what I learned and the git trace behind it."
+  },
+  "pages": {
+    "about": {
+      "kicker": "Profile",
+      "title": "Who I am",
+      "intro": "Computer-engineering student at EFREI Paris. Beyond the stack: how I think, how I learn, and what I do away from the keyboard."
+    },
+    "projects": {
+      "kicker": "Work",
+      "title": "Projects",
+      "intro": "Framed in context — with what I built, what I learned, and the git trace behind each, growing in complexity over time."
+    },
+    "skills": {
+      "kicker": "Competencies",
+      "title": "Skills",
+      "intro": "Mapped as competency to sub-skill to proof. Each is tagged self-taught or EFREI curriculum, and linked to the work that proves it."
+    },
+    "journey": {
+      "kicker": "Timeline",
+      "title": "Journey",
+      "intro": "How the work has grown in complexity over time — from a first packaged game to self-healing infrastructure."
+    },
+    "notes": {
+      "kicker": "Digital garden",
+      "title": "Notes",
+      "intro": "Selected notes from my engineering vault — a working second brain, published as a digital garden."
+    },
+    "now": {
+      "kicker": "Now",
+      "title": "What I'm doing now",
+      "intro": "What I'm focused on right now — learning, building, and reading."
+    },
+    "cv": {
+      "kicker": "Résumé",
+      "title": "CV",
+      "intro": "A one-page summary, with the full PDF in both languages."
+    },
+    "contact": {
+      "kicker": "Contact",
+      "title": "Get in touch",
+      "intro": "The best ways to reach me."
+    }
+  },
+  "ui": {
+    "viewRepo": "View on GitHub",
+    "noRepo": "No public repository",
+    "evidence": "Proven in",
+    "builtWithAi": "Built with AI assistance",
+    "downloadCv": "Download CV (PDF)",
+    "cvBuilding": "The downloadable PDF is generated from LaTeX in CI (planned).",
+    "emailMe": "Email me",
+    "lastUpdated": "Last updated",
+    "gardenEmpty": "The garden is being planted — selected #public notes from my engineering vault will appear here.",
+    "backToProjects": "All projects",
+    "groupedByTheme": "Grouped by theme"
+  },
+  "footer": {
+    "built": "Built with Next.js and TypeScript.",
+    "source": "Source",
+    "rights": "Rudolf Krylov"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "label": "Language",
+    "fr": "Français",
+    "en": "English"
+  }
+}

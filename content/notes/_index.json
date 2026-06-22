@@ -1,0 +1,95 @@
+[
+  {
+    "slug": "architecture-decision-records",
+    "title": "Architecture Decision Records",
+    "summary": "---",
+    "group": "Review",
+    "tags": [],
+    "links": [],
+    "backlinks": []
+  },
+  {
+    "slug": "circuit-breaker",
+    "title": "Circuit Breaker",
+    "summary": "The Circuit Breaker is a failure protection mechanism built into the Orchestrator. When a specific agent fails 5 times in a row, the Circuit Breaker \"trips\" — it temporarily suspen…",
+    "group": "Components",
+    "tags": [
+      "reliability",
+      "orchestration",
+      "built"
+    ],
+    "links": [
+      "watchdog"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "watchdog",
+    "title": "Watchdog",
+    "summary": "The Watchdog is the self-healing monitor for the Claude Ecosystem. It runs as a background process and continuously checks that the Orchestrator, Dashboard, and all 11 agent server…",
+    "group": "Components",
+    "tags": [
+      "reliability",
+      "monitoring",
+      "built"
+    ],
+    "links": [],
+    "backlinks": [
+      "circuit-breaker"
+    ]
+  },
+  {
+    "slug": "dag-pipeline-engine",
+    "title": "DAG Pipeline Engine",
+    "summary": "---",
+    "group": "Components",
+    "tags": [],
+    "links": [],
+    "backlinks": []
+  },
+  {
+    "slug": "model-selection-guide",
+    "title": "Model Selection Guide",
+    "summary": "---",
+    "group": "Guides",
+    "tags": [],
+    "links": [],
+    "backlinks": []
+  },
+  {
+    "slug": "orchestrator-comparison",
+    "title": "Orchestrator Comparison",
+    "summary": "---",
+    "group": "Guides",
+    "tags": [],
+    "links": [],
+    "backlinks": []
+  },
+  {
+    "slug": "bug-fix-b2-circuit-breaker-race-condition",
+    "title": "Bug Fix B2 — Circuit Breaker Race Condition",
+    "summary": "---",
+    "group": "errors",
+    "tags": [],
+    "links": [],
+    "backlinks": []
+  },
+  {
+    "slug": "rag-pipeline",
+    "title": "RAG Pipeline",
+    "summary": "---",
+    "group": "Components",
+    "tags": [
+      "rag",
+      "memory",
+      "pipeline",
+      "built"
+    ],
+    "links": [
+      "rag-pipeline"
+    ],
+    "backlinks": [
+      "rag-pipeline"
+    ]
+  }
+]

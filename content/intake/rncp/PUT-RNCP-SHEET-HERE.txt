@@ -1,0 +1,10 @@
+Drop your EFREI RNCP sheet in THIS folder.
+
+Accepted: PDF, DOCX, image (PNG/JPG), or plain text — whatever you have.
+Then tell me, and I'll extract the validated competency blocks into the Skills tree
+(replacing the "RNCP block · to map" placeholders) and map your sub-skills to the
+projects that prove them.
+
+You can also just paste the text of the sheet directly in chat if that's easier.
+
+(You can delete this placeholder file once your sheet is here.)
