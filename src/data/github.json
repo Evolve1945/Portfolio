@@ -1,18 +1,19 @@
 {
-  "generatedAt": "2026-06-22T20:22:14.294Z",
+  "generatedAt": "2026-06-23T09:56:26.360Z",
   "user": "Evolve1945",
   "authenticated": false,
   "totals": {
-    "repos": 3,
-    "commits": 214,
-    "topLanguage": "HTML",
-    "lastActive": "2026-05-10T21:00:49Z"
+    "repos": 4,
+    "commits": 244,
+    "topLanguage": "Python",
+    "lastActive": "2026-06-22T22:36:18+02:00"
   },
   "repos": {
     "Chatbot": {
       "name": "Chatbot",
       "description": "Chatbot Python Project",
       "url": "https://github.com/Evolve1945/Chatbot",
+      "private": false,
       "stars": 0,
       "forks": 0,
       "pushedAt": "2023-12-21T12:56:33Z",
@@ -27,6 +28,7 @@
       "name": "Cyberpix",
       "description": null,
       "url": "https://github.com/Evolve1945/Cyberpix",
+      "private": false,
       "stars": 0,
       "forks": 0,
       "pushedAt": "2026-02-23T15:52:13Z",
@@ -36,13 +38,14 @@
         "TeX": 136850,
         "Python": 15287
       },
-      "topLanguage": "HTML",
+      "topLanguage": "Python",
       "commits": 22
     },
     "web-done": {
       "name": "web-done",
       "description": null,
       "url": "https://github.com/Evolve1945/web-done",
+      "private": false,
       "stars": 0,
       "forks": 0,
       "pushedAt": "2026-05-10T21:00:49Z",
@@ -54,9 +57,24 @@
       },
       "topLanguage": "JavaScript",
       "commits": 12
+    },
+    "Ecosystem": {
+      "name": "Ecosystem",
+      "description": null,
+      "url": "https://github.com/Evolve1945/Ecosystem",
+      "private": true,
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-06-22T22:36:18+02:00",
+      "topics": [],
+      "languages": {
+        "Python": 2302452,
+        "HTML": 710686,
+        "PowerShell": 29419
+      },
+      "topLanguage": "Python",
+      "commits": 30
     }
   },
-  "errors": [
-    "Ecosystem: 404 Not Found for /repos/Evolve1945/Ecosystem"
-  ]
+  "errors": []
 }

@@ -56,7 +56,7 @@ Built — Embedding, storage, and retrieval are operational. 9 ChromaDB collecti
 
 ## Related
 
-- [Claude-Ecosystem/Components/Intelligence/RAG Pipeline](/notes/rag-pipeline) — detailed component spec
-- Claude-Ecosystem/Integrations/ChromaDB — the vector database backing the RAG store
+- Claude-Ecosystem/Components/Intelligence/RAG Pipeline — detailed component spec
+- [Claude-Ecosystem/Integrations/ChromaDB](/notes/chromadb) — the vector database backing the RAG store
 - Claude-Ecosystem/Components/Intelligence/Memory Layer — how vault notes feed into RAG
 - Claude-Ecosystem/Components/Core/Orchestration — injects RAG context before every task dispatch

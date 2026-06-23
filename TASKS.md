@@ -5,16 +5,14 @@ After editing data/config, re-run the relevant command and refresh the dev serve
 
 ---
 
-## 1. GitHub repos (unlocks live data)
-- [ ] Make **`Ecosystem`** public (Settings → General → Danger Zone → Change visibility). History is clean — verified, no secrets. `web-done` is already public.
-- [ ] (Optional, if you keep any repo private) create a fine-grained **read-only PAT** and add it as repo secret `PORTFOLIO_GH_TOKEN`.
-- [ ] Then run: `npm run fetch:github` — pulls fresh repo data into `src/data/github.json`. Once Ecosystem (Python) is in, "primary language" stops showing HTML.
-- [ ] Confirm the repo list in **`scripts/fetch-github.mjs`** (`REPOS = [...]`) is the set you want counted.
+## 1. GitHub repos (live data)
+- DONE: `Ecosystem` stays **private** — its stats (commits, Python, last-active) are read from your **local clone**, never the public API. `web-done` / `Chatbot` / `Cyberpix` are public. Primary language now reads **Python**.
+- [ ] To refresh Ecosystem's numbers after you work on it, run `npm run fetch:github` **locally** (daily CI keeps the public repos fresh and preserves Ecosystem's last local snapshot).
+- [ ] Repos counted live in **`scripts/fetch-github.mjs`** (`PUBLIC_REPOS` / `LOCAL_REPOS`) — edit if you add projects.
 
 ## 2. Digital garden (which vault notes are public)
-- [ ] Review the publish list in **`content/garden.config.json`** → `notes[]`. Right now 8 notes are published. **Remove any you don't want**, or **add** a note by writing its vault-relative path (e.g. `Claude-Ecosystem/Components/Watchdog.md`).
-- [ ] Never add anything from `Income-Plan/`, `Security/`, `sessions/`, `Audits/` (kept private by design).
-- [ ] Then run: `npm run sync:notes` — regenerates `content/notes/` (strips emojis, resolves `[[links]]`, builds backlinks). Commit `content/notes/` (Vercel can't see your vault).
+- DONE: **18 curated** feature/guide/architecture notes published. Sensitive folders (`Income-Plan`, `Security`, `sessions`, `errors`, `Audits`) are excluded; a content scan also skips anything with credentials or personal/financial keywords.
+- [ ] **Before deploy, skim the list** in `content/notes/_index.json`. To change it, edit `includeFiles` in **`content/garden.config.json`** (remove a path, or add from the ~100 vault feature notes), then `npm run sync:notes` and commit `content/notes/`.
 
 ## 3. Skills / RNCP
 - [ ] Drop your **EFREI RNCP sheet** in `content/intake/rncp/` (PDF/DOCX/image/text) and tell me — I'll fill the competency blocks. OR
@@ -29,7 +27,7 @@ After editing data/config, re-run the relevant command and refresh the dev serve
 - [ ] Read **`src/app/[locale]/about/page.tsx`** — the bio, the 3 "how I work" principles, and the facts panel. Tell me any professional detail to add (I'm not pulling from the private Income-Plan).
 
 ## 6. Identity details
-- [ ] Confirm public email in **`src/data/site.ts`** (`rudolfkrylov.pro@gmail.com` vs `rudolfkrylov1604@gmail.com`).
+- DONE: public email = `rudolfkrylov.pro@gmail.com` (the pro one), in `src/data/site.ts`.
 - [ ] Photo (later): drop `rudolf.jpg` in **`public/`** and tell me — I'll wire it into the hero/About.
 
 ## 7. Design (optional tweaks)

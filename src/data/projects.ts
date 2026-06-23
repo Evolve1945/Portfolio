@@ -10,8 +10,10 @@ export interface Project {
   year: string;
   theme: Theme;
   complexity: Complexity;
-  /** GitHub repo name under the Evolve1945 account, when public. */
+  /** GitHub repo name under the Evolve1945 account. */
   repo?: string;
+  /** Repo is kept private — show git stats but no clickable public link. */
+  private?: boolean;
   /** External link if there is no public repo. */
   url?: string;
   tags: string[];
@@ -39,6 +41,7 @@ export const projects: Project[] = [
     theme: "ai",
     complexity: "advanced",
     repo: "Ecosystem",
+    private: true,
     tags: ["Python", "FastAPI", "RAG", "ChromaDB", "WebSocket"],
     featured: true,
     aiAssisted: true,

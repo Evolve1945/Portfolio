@@ -81,16 +81,18 @@ export default async function NotesPage({
             </g>
             {notes.map((n, i) => (
               <g key={n.slug}>
-                <circle cx={pos[i].x} cy={pos[i].y} r="5" fill="var(--accent)" />
-                <text
-                  x={pos[i].x}
-                  y={pos[i].y - 11}
-                  textAnchor="middle"
-                  fill="var(--faint)"
-                  style={{ fontFamily: "var(--font-mono)", fontSize: "10px" }}
-                >
-                  {n.title.length > 22 ? n.title.slice(0, 20) + "…" : n.title}
-                </text>
+                <circle cx={pos[i].x} cy={pos[i].y} r="4.5" fill="var(--accent)" />
+                {notes.length <= 14 ? (
+                  <text
+                    x={pos[i].x}
+                    y={pos[i].y - 10}
+                    textAnchor="middle"
+                    fill="var(--faint)"
+                    style={{ fontFamily: "var(--font-mono)", fontSize: "10px" }}
+                  >
+                    {n.title.length > 22 ? n.title.slice(0, 20) + "…" : n.title}
+                  </text>
+                ) : null}
               </g>
             ))}
           </svg>

@@ -11,6 +11,7 @@ const NAV = [
   { href: "/journey", key: "journey" },
   { href: "/notes", key: "notes" },
   { href: "/now", key: "now" },
+  { href: "/cv", key: "cv" },
 ] as const;
 
 export function SiteHeader() {
@@ -29,24 +30,28 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden flex-1 items-center gap-5 text-sm text-muted md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className="transition-colors hover:text-foreground"
-            >
-              {t(item.key)}
-            </Link>
-          ))}
+          {NAV.map((item) =>
+            item.key === "cv" ? (
+              <Link
+                key={item.key}
+                href={item.href}
+                className="rounded-md border border-border px-2.5 py-1 text-foreground transition-colors hover:border-accent hover:text-accent"
+              >
+                {t(item.key)}
+              </Link>
+            ) : (
+              <Link
+                key={item.key}
+                href={item.href}
+                className="transition-colors hover:text-foreground"
+              >
+                {t(item.key)}
+              </Link>
+            ),
+          )}
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
-          <Link
-            href="/cv"
-            className="hidden text-sm text-muted transition-colors hover:text-foreground sm:inline"
-          >
-            {t("cv")}
-          </Link>
           <LocaleSwitch />
           <ThemeToggle />
         </div>

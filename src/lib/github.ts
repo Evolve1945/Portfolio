@@ -4,6 +4,7 @@ export interface RepoStats {
   name: string;
   description: string | null;
   url: string;
+  private?: boolean;
   stars: number;
   forks: number;
   pushedAt: string | null;

@@ -30,6 +30,6 @@ The Planner uses the DAG Engine as its execution backend: when the Planner produ
 - Failure context from a failed step does not yet feed back to the Planner for replanning — it simply cancels downstream steps.
 
 ## Related
-- Components/Planner — produces the DAG plan that the Engine executes
+- [Components/Planner](/notes/planner) — produces the DAG plan that the Engine executes
 - Components/Orchestrator — submits individual steps to the agent queue
 - Components/Security/Approval Gates — the `gate: true` field in a step triggers an approval pause

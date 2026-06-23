@@ -1,14 +1,49 @@
 {
-  "_comment": "Curated digital garden. ONLY the notes listed here are published. Edit this list to control exactly what goes public. Paths are relative to vaultPath. Income-Plan, Security, sessions, Audits are intentionally excluded.",
+  "_comment": "Digital garden. `includeFiles` is a curated allowlist of vault-relative notes to publish (flagship features, guides, architecture). `include` (folders) is available for a broader sweep but left empty by default. Sensitive folders/files and personal/financial content are excluded/scanned out. Run `npm run sync:notes`, then commit content/notes/.",
   "vaultPath": "C:\\Users\\rudol\\Documents\\Evolve",
-  "notes": [
+  "include": [],
+  "includeFiles": [
     "Claude-Ecosystem/Review/Architecture Decision Records.md",
+    "Claude-Ecosystem/Guides/Model Selection Guide.md",
+    "Claude-Ecosystem/Guides/Orchestrator Comparison.md",
     "Claude-Ecosystem/Components/Circuit Breaker.md",
     "Claude-Ecosystem/Components/Watchdog.md",
     "Claude-Ecosystem/Components/DAG Pipeline Engine.md",
-    "Claude-Ecosystem/Guides/Model Selection Guide.md",
-    "Claude-Ecosystem/Guides/Orchestrator Comparison.md",
-    "Claude-Ecosystem/errors/B2-circuit-breaker-race.md",
+    "Claude-Ecosystem/Components/Tool Loop.md",
+    "Claude-Ecosystem/Components/Planner.md",
+    "Claude-Ecosystem/Components/Code Sandbox.md",
+    "Claude-Ecosystem/Components/Budget Guard.md",
+    "Claude-Ecosystem/Components/Core/MCP Server.md",
+    "Claude-Ecosystem/Components/Core/Self-Diagnose Engine.md",
+    "Claude-Ecosystem/Components/Core/Pipeline Manager.md",
+    "Claude-Ecosystem/Components/Skills/Skills Registry.md",
+    "Claude-Ecosystem/Components/Intelligence/Token Optimization.md",
+    "Claude-Ecosystem/Integrations/Anthropic API.md",
+    "Claude-Ecosystem/Integrations/ChromaDB.md",
     "Components/RAG Pipeline.md"
+  ],
+  "excludeDirs": [
+    "Security",
+    "sessions",
+    "errors",
+    "Audits",
+    "Income-Plan",
+    "Data Pipeline"
+  ],
+  "excludeFiles": ["README.md", "CLAUDE.md", "Key Rotation.md"],
+  "sensitiveKeywords": [
+    "income",
+    "salaire",
+    "salary",
+    "prêt étudiant",
+    "student loan",
+    "impôt",
+    "micro-entreprise",
+    "€50",
+    "bank balance",
+    "Profile & Goal",
+    "behavioral profile",
+    "financial independence",
+    "net per year"
   ]
 }

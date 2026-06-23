@@ -51,6 +51,7 @@ export default async function ProjectPage({
   const repoUrl = p.repo ? `${site.githubUrl}/${p.repo}` : p.url;
   const stats = getRepoStats(p.repo);
   const tl = traceLabels[l];
+  const isPrivate = !!p.private;
 
   const sections: { key: keyof typeof sectionLabel; paras: string[] }[] = [
     { key: "context", paras: p.context[l] },
@@ -90,7 +91,7 @@ export default async function ProjectPage({
       </h1>
       <p className="mt-3 text-lg leading-relaxed text-muted">{p.tagline[l]}</p>
 
-      {repoUrl ? (
+      {repoUrl && !isPrivate ? (
         <a
           href={repoUrl}
           target="_blank"
@@ -137,18 +138,31 @@ export default async function ProjectPage({
         <div className="mt-10 rounded-xl border border-border bg-surface p-5">
           <div className="flex items-center justify-between">
             <span className="kicker">Git trace</span>
-            <a
-              href={`${site.githubUrl}/${p.repo}`}
-              target="_blank"
-              rel="noreferrer"
-              className="kicker transition-colors hover:text-foreground"
-            >
-              live · daily
-            </a>
+            {isPrivate ? (
+              <span className="kicker text-faint">
+                {l === "fr" ? "dépôt privé" : "private"}
+              </span>
+            ) : (
+              <a
+                href={`${site.githubUrl}/${p.repo}`}
+                target="_blank"
+                rel="noreferrer"
+                className="kicker transition-colors hover:text-foreground"
+              >
+                live · daily
+              </a>
+            )}
           </div>
           <p className="mt-2 font-mono text-sm">
             {site.github}/{p.repo}
           </p>
+          {isPrivate ? (
+            <p className="mt-1 text-sm text-faint">
+              {l === "fr"
+                ? "Code gardé privé — statistiques issues du dépôt local."
+                : "Code kept private — stats read from the local repository."}
+            </p>
+          ) : null}
           {stats ? (
             <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
               <div>

@@ -20,7 +20,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "languages-software",
     title: { fr: "Langages & logiciel", en: "Languages & software" },
-    rncpBlock: null,
+    rncpBlock: "BC03 · Mise en œuvre",
     subskills: [
       { name: { fr: "Python", en: "Python" }, level: "confident", source: "both", evidence: ["ecosystem", "chatbot", "cyberpix"] },
       { name: { fr: "Programmation en C", en: "C programming" }, level: "practiced", source: "efrei" },
@@ -31,7 +31,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "web",
     title: { fr: "Web", en: "Web" },
-    rncpBlock: null,
+    rncpBlock: "BC03 · Mise en œuvre",
     subskills: [
       { name: { fr: "HTML sémantique & CSS", en: "Semantic HTML & CSS" }, level: "practiced", source: "both", evidence: ["web-ti402"] },
       { name: { fr: "Design responsive", en: "Responsive design" }, level: "practiced", source: "both", evidence: ["web-ti402"] },
@@ -42,7 +42,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "ai-data",
     title: { fr: "IA & données", en: "AI & data" },
-    rncpBlock: null,
+    rncpBlock: "BC02 · Conception & modélisation",
     subskills: [
       { name: { fr: "NLP & TF-IDF", en: "NLP & TF-IDF" }, level: "practiced", source: "self", evidence: ["chatbot"] },
       { name: { fr: "RAG & recherche vectorielle", en: "RAG & vector search" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
@@ -53,7 +53,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "systems-tooling",
     title: { fr: "Systèmes & outillage", en: "Systems & tooling" },
-    rncpBlock: null,
+    rncpBlock: "BC04 · Exploitation & amélioration",
     subskills: [
       { name: { fr: "Git & collaboration", en: "Git & collaboration" }, level: "confident", source: "both", evidence: ["chatbot", "ecosystem"] },
       { name: { fr: "Linux", en: "Linux" }, level: "practiced", source: "both" },
@@ -64,7 +64,7 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "communication",
     title: { fr: "Communication & langues", en: "Communication & languages" },
-    rncpBlock: null,
+    rncpBlock: "BC05 · Mode projet & communication",
     subskills: [
       { name: { fr: "Rédaction technique en anglais", en: "Technical writing in English" }, level: "practiced", source: "both" },
       { name: { fr: "Rhétorique & argumentation", en: "Rhetoric & argumentation" }, level: "practiced", source: "efrei" },
