@@ -7,6 +7,9 @@ import type { Locale } from "@/i18n/routing";
 import { projects, getProject } from "@/data/projects";
 import { complexityLabel, themeLabel, sectionLabel } from "@/data/taxonomy";
 import { getRepoStats } from "@/lib/github";
+import { readExcerpt } from "@/lib/excerpts";
+import { Markdown } from "@/components/markdown";
+import { ProjectMedia } from "@/components/project-media";
 import { site } from "@/data/site";
 
 export function generateStaticParams() {
@@ -91,6 +94,17 @@ export default async function ProjectPage({
       </h1>
       <p className="mt-3 text-lg leading-relaxed text-muted">{p.tagline[l]}</p>
 
+      {p.metrics?.length ? (
+        <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
+          {p.metrics.map((m, i) => (
+            <div key={i} className="bg-surface px-4 py-4">
+              <dt className="font-display text-2xl tracking-tight">{m.value}</dt>
+              <dd className="kicker mt-1">{m.label[l]}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
+
       {repoUrl && !isPrivate ? (
         <a
           href={repoUrl}
@@ -101,6 +115,12 @@ export default async function ProjectPage({
           {ui("viewRepo")}
           <ExternalLink className="h-3.5 w-3.5" aria-hidden />
         </a>
+      ) : null}
+
+      {p.media?.length ? (
+        <div className="mt-8">
+          <ProjectMedia media={p.media} locale={l} />
+        </div>
       ) : null}
 
       <div className="mt-10 space-y-8">
@@ -133,6 +153,31 @@ export default async function ProjectPage({
           ))}
         </div>
       </div>
+
+      {p.excerpts?.length ? (
+        <div className="mt-12">
+          <h2 className="kicker">
+            {l === "fr" ? "Code sélectionné" : "Selected code"}
+          </h2>
+          <p className="mt-1 text-sm text-faint">
+            {l === "fr"
+              ? "Extraits autonomes, sans secret, d'un système privé."
+              : "Standalone, secret-free excerpts from a private system."}
+          </p>
+          <div className="mt-4 space-y-6">
+            {p.excerpts.map((ex) => {
+              const code = readExcerpt(ex.file);
+              if (!code) return null;
+              return (
+                <div key={ex.file}>
+                  <p className="mb-2 font-mono text-xs text-muted">{ex.label[l]}</p>
+                  <Markdown>{"```" + ex.lang + "\n" + code + "\n```"}</Markdown>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
 
       {p.repo ? (
         <div className="mt-10 rounded-xl border border-border bg-surface p-5">

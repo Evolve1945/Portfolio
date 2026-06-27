@@ -5,10 +5,28 @@ import { GithubMark, LinkedinMark } from "./brand-icons";
 
 export function SiteFooter() {
   const t = useTranslations("footer");
+  const home = useTranslations("home");
+  const ui = useTranslations("ui");
   const year = 2026; // build-time constant; date APIs are unavailable in this sandbox
 
   return (
     <footer className="border-t border-border">
+      {/* Contact CTA — shown on every page */}
+      <div className="border-b border-border">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-5 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-md font-display text-xl leading-snug tracking-tight">
+            {home("status")}
+          </p>
+          <a
+            href={`mailto:${site.email}`}
+            className="inline-flex shrink-0 items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
+          >
+            <Mail className="h-4 w-4" aria-hidden />
+            {ui("emailMe")}
+          </a>
+        </div>
+      </div>
+
       <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-9 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-sm leading-relaxed">{t("built")}</p>
 

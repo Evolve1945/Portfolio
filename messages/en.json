@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Rudolf Krylov — Software & Systems",
-    "description": "Computer-engineering student at EFREI Paris. I build systems and learn by shipping them."
+    "title": "Rudolf Krylov — Software Developer & Computer-Engineering Student, EFREI Paris",
+    "description": "Rudolf Krylov — Python and web developer, computer-engineering student at EFREI Paris, seeking a 2027 developer apprenticeship (alternance) and internships. Projects in Python, React, web, and AI / RAG."
   },
   "nav": {
     "home": "Home",
@@ -40,6 +40,11 @@
       "title": "Skills",
       "intro": "Mapped as competency to sub-skill to proof. Each is tagged self-taught or EFREI curriculum, and linked to the work that proves it."
     },
+    "rncp": {
+      "kicker": "Certification",
+      "title": "RNCP competency map",
+      "intro": "The EFREI engineering title (RNCP 41030, level 7), 29 competencies — prioritised for where I focus now, and linked to the work that proves each one."
+    },
     "journey": {
       "kicker": "Timeline",
       "title": "Journey",
@@ -48,7 +53,7 @@
     "notes": {
       "kicker": "Digital garden",
       "title": "Notes",
-      "intro": "Selected notes from my engineering vault — a working second brain, published as a digital garden."
+      "intro": "Real notes on how I designed and built my projects, taken from my engineering knowledge base. Each note captures one idea, decision, or component — and links to the related ones."
     },
     "now": {
       "kicker": "Now",

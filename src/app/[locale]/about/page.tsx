@@ -41,16 +41,26 @@ const facts: Record<Locale, { k: string; v: string }[]> = {
     { k: "School", v: "EFREI — engineering cycle" },
     { k: "Languages", v: "French (native), Russian (C1), English (B2), German (B1)" },
     { k: "Off keyboard", v: "Karate — black belt (1st dan), gym" },
-    { k: "Reading", v: "Carnegie, Greene — communication & strategy" },
+    { k: "Reading", v: "Carnegie, Greene various Biographies of self-made figures — communication & strategy" },
   ],
   fr: [
     { k: "Basé à", v: "Paris" },
     { k: "École", v: "EFREI — cycle ingénieur" },
     { k: "Langues", v: "Français (natif), russe (C1), anglais (B2), allemand (B1)" },
     { k: "Hors clavier", v: "Karaté — ceinture noire (1er dan), salle de sport" },
-    { k: "Lectures", v: "Carnegie, Greene — communication & stratégie" },
+    { k: "Lectures", v: "Carnegie, Greene & Biographies de personnalités qui se sont construites par elles-mêmes — communication & stratégie" },
   ],
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.about" });
+  return { title: t("title"), description: t("intro") };
+}
 
 export default async function AboutPage({
   params,

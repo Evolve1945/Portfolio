@@ -27,7 +27,7 @@ const cv: Record<
     projectsTitle: "Selected projects",
     languages: "French (native), Russian (C1), English (B2), German (B1)",
     education: [
-      { h: "EFREI Paris", d: "Computer-engineering cycle" },
+      { h: "EFREI Paris", d: "Computer-engineering cycle — Promo 2029" },
       { h: "Lycée Victor Duruy", d: "Baccalauréat — Maths & NSI, with honours" },
     ],
     experience: [
@@ -43,7 +43,7 @@ const cv: Record<
     projectsTitle: "Projets sélectionnés",
     languages: "Français (natif), russe (C1), anglais (B2), allemand (B1)",
     education: [
-      { h: "EFREI Paris", d: "Cycle ingénieur informatique" },
+      { h: "EFREI Paris", d: "Cycle ingénieur informatique — Promo 2029" },
       { h: "Lycée Victor Duruy", d: "Baccalauréat — Maths & NSI, mention Bien" },
     ],
     experience: [
@@ -72,20 +72,31 @@ export default async function CvPage({
       <PageHeader kicker={t("kicker")} title={t("title")} intro={t("intro")} />
 
       <div className="mx-auto max-w-3xl px-5 py-12">
-        {/* Download — generated from LaTeX in CI (Phase 5). Disabled until built. */}
+        {/* CV PDFs exported from the Word source (Business project). */}
         <div className="flex flex-wrap items-center gap-3">
-          {["FR", "EN"].map((code) => (
-            <span
-              key={code}
-              aria-disabled
-              className="inline-flex cursor-not-allowed items-center gap-2 rounded-md border border-border px-4 py-2.5 text-sm text-faint opacity-70"
-            >
-              <Download className="h-4 w-4" aria-hidden />
-              {ui("downloadCv")} · {code}
-            </span>
-          ))}
+          {[
+            { code: "FR", file: "/Rudolf-Krylov-CV-FR.pdf" },
+            { code: "EN", file: "/Rudolf-Krylov-CV-EN.pdf" },
+          ].map((f) => {
+            const primary =
+              (l === "fr" && f.code === "FR") || (l === "en" && f.code === "EN");
+            return (
+              <a
+                key={f.code}
+                href={f.file}
+                download
+                className={
+                  primary
+                    ? "inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
+                    : "inline-flex items-center gap-2 rounded-md border border-border px-4 py-2.5 text-sm transition-colors hover:border-foreground/30"
+                }
+              >
+                <Download className="h-4 w-4" aria-hidden />
+                {ui("downloadCv")} · {f.code}
+              </a>
+            );
+          })}
         </div>
-        <p className="mt-2 text-xs text-faint">{ui("cvBuilding")}</p>
 
         <div className="mt-10 grid gap-10 sm:grid-cols-2">
           <div className="space-y-8">

@@ -28,6 +28,12 @@ export interface Project {
   /** For AI-assisted work: the parts Rudolf owns and can explain in an interview. */
   defend?: Bilingual;
   featured?: boolean;
+  /** Sanitised public code excerpts (files under content/excerpts/). */
+  excerpts?: { file: string; lang: string; label: Bilingual }[];
+  /** Visual media (screenshots, GIFs, videos) under public/projects/<slug>/. */
+  media?: { type: "image" | "video"; src: string; alt: Bilingual; poster?: string }[];
+  /** Headline at-a-glance facts, shown as a stat strip. */
+  metrics?: { value: string; label: Bilingual }[];
 }
 
 // NOTE: stakes / problems / limits / next-steps are drafted from the repos, the
@@ -45,47 +51,57 @@ export const projects: Project[] = [
     tags: ["Python", "FastAPI", "RAG", "ChromaDB", "WebSocket"],
     featured: true,
     aiAssisted: true,
+    excerpts: [
+      { file: "circuit-breaker.py", lang: "python", label: { fr: "Circuit breaker — 3 états, thread-safe", en: "Circuit breaker — 3-state, thread-safe" } },
+      { file: "model-router.py", lang: "python", label: { fr: "Routeur multi-modèles avec bascule", en: "Multi-model failover router" } },
+    ],
+    metrics: [
+      { value: "12", label: { fr: "types d'agents", en: "agent types" } },
+      { value: "3", label: { fr: "modèles, avec bascule", en: "models, with failover" } },
+      { value: "9", label: { fr: "collections mémoire (RAG)", en: "RAG memory collections" } },
+      { value: "12", label: { fr: "vues du tableau de bord", en: "dashboard views" } },
+    ],
     tagline: {
       fr: "Infrastructure d'agents IA auto-réparante : elle tourne, se rétablit et se souvient toute seule.",
       en: "Self-healing AI agent infrastructure that runs, recovers, and remembers on its own.",
     },
     context: {
       fr: [
-        "Je voulais une infrastructure IA toujours active — capable de se relancer seule et de garder une mémoire — plutôt qu'un script qu'on lance à la main.",
+        "Je voulais une infrastructure IA toujours active — capable d'agir indépendamment, se relancer seule et de garder une mémoire — plutôt qu'un script qu'on lance à la main.",
         "L'enjeu n'était pas de faire une démo, mais de traiter la fiabilité, le coût et la mémoire comme des contraintes de premier ordre, comme dans un vrai système en production.",
       ],
       en: [
-        "I wanted always-on AI infrastructure that could restart itself and keep a memory — not a script you launch by hand.",
+        "I wanted always-on AI infrastructure that could act independantly, restart itself and keep a memory — not a script you launch by hand.",
         "The point was never a demo: it was to treat reliability, cost and memory as first-class constraints, the way a real production system has to.",
       ],
     },
     built: {
       fr: [
-        "Un orchestrateur de 12 agents avec file de priorité, disjoncteurs et dead-letter queue, pour que les tâches échouent proprement et soient rejouées.",
+        "Un orchestrateur de 12 agents avec file de priorité, disjoncteurs et dead-letter queue, pour que les tâches échouent proprement et soient rejouées jusqu'à leur succès.",
         "Autour : une mémoire RAG (ChromaDB), un routeur multi-modèles qui bascule de Claude vers GPT-4o puis Gemini, un watchdog auto-réparant, un tableau de bord FastAPI/WebSocket et un bot Discord de contrôle.",
       ],
       en: [
-        "A 12-agent orchestrator with a priority queue, circuit breakers and a dead-letter queue, so tasks fail cleanly and get replayed.",
+        "A 12-agent orchestrator with a priority queue, circuit breakers and a dead-letter queue, so tasks fail cleanly and get replayed until reaching success.",
         "Around it: a RAG memory (ChromaDB), a multi-model router that fails over Claude to GPT-4o to Gemini, a self-healing watchdog, a FastAPI/WebSocket dashboard and a Discord control bot.",
       ],
     },
     challenges: {
       fr: [
         "Les limites de débit et les pannes des API m'ont poussé à construire la chaîne de bascule multi-modèles plutôt que de tout arrêter au premier 429.",
-        "Garder le système debout sans surveillance permanente a imposé le watchdog (reprises avec backoff, alertes) ; garder du contexte entre les tâches a imposé la couche RAG.",
+        "Garder le système debout sans surveillance permanente a imposé le watchdog (reprises avec backoff, alertes) et la rédaction de règles strictes ; garder du contexte entre les tâches a imposé la couche RAG et recherche dans le vault Obsidian avant de se lancer dans une tâche.",
       ],
       en: [
         "Rate limits and API outages pushed me to build the multi-model failover chain instead of stopping at the first 429.",
-        "Keeping it standing without me watching forced the watchdog (retries with backoff, alerts); keeping context across tasks forced the RAG layer.",
+        "Keeping it standing without me watching forced the watchdog (retries with backoff, alerts) and writing down strict rules ; keeping context across tasks forced the RAG layer along with a search inside the Obsidian vault befoore proceeding with a task.",
       ],
     },
     limits: {
       fr: [
-        "C'est construit avec l'aide de l'IA : je dirige l'architecture et j'en comprends le cœur, mais je n'ai pas écrit chaque ligne — et je le dis clairement.",
+        "C'est construit avec l'aide de l'IA (principalement Claude et leurs différents modèles) : je dirige l'architecture et j'en comprends le cœur, mais je n'ai pas écrit chaque ligne — et je le dis clairement.",
         "Aujourd'hui il tourne en local, pour un seul utilisateur ; plusieurs modules sont en v1 et privilégient l'étendue à la finition.",
       ],
       en: [
-        "It's built with AI assistance: I direct the architecture and understand its core, but I didn't write every line — and I say so plainly.",
+        "It's built with AI assistance (mainly with Claude and their different models): I direct the architecture and understand its core, but I didn't write every line — and I say so plainly.",
         "Today it runs locally, single-user; several modules are v1 and favour breadth over polish.",
       ],
     },
@@ -93,10 +109,14 @@ export const projects: Project[] = [
       fr: [
         "Les vrais enseignements sont les schémas des systèmes distribués sous panne : reprises, disjoncteurs, files, idempotence — et pourquoi ils existent.",
         "Faire tourner un système en continu coûte une attention qu'aucun tutoriel ne montre.",
+        "L'application des structures de données m'a permis de comprendre la liaison entre le backend et le front-end, découvrir de nouveaux concepts et que malgré les limites de l'IA, il est toujours possible de subvenir à ses faiblesses en s'attaquant proactivement aux problèmes.",
+        "J'ai su diviser les responsabilités entre les agents et les modules, ainsi que séparer un problème complexe en sous-problèmes plus simples, ce qui m'a permis d'agir plus facilement dans la conception et l'implémentation de l'infrastructure.",
       ],
       en: [
         "The real lessons are distributed-systems patterns under failure — retries, circuit breakers, queues, idempotency — and why they exist.",
         "Running something continuously costs an attention no tutorial shows you.",
+        "Applying data structures let me understand the link between backend and front-end, discover new concepts, and that despite AI's limits, it's always possible to work around its weaknesses by proactively tackling problems.",
+        "I was able to divide responsibilities between agents and modules, as well as break a complex problem into simpler sub-problems, which allowed me to act more easily in the design and implementation of the infrastructure.",
       ],
     },
     consolidate: {
@@ -123,18 +143,23 @@ export const projects: Project[] = [
     repo: "Chatbot",
     tags: ["Python", "NLP", "TF-IDF"],
     featured: true,
+    metrics: [
+      { value: "6", label: { fr: "présidents analysés", en: "presidents analysed" } },
+      { value: "180+", label: { fr: "commits", en: "commits" } },
+      { value: "2", label: { fr: "développeurs", en: "developers" } },
+    ],
     tagline: {
       fr: "Analyse TF-IDF des discours d'investiture des six derniers présidents français.",
       en: "TF-IDF analysis of the inauguration speeches of France's last six presidents.",
     },
     context: {
       fr: [
-        "Projet d'équipe : comparer un corpus de discours présidentiels et permettre d'y poser des questions en français.",
-        "L'enjeu était double — transformer du texte brut en quelque chose d'interrogeable, et le faire proprement à deux.",
+        "Projet d'équipe : ce projet m'a été confié comme premier projet de programmation à l'EFREI. Le but était de comparer un corpus de discours présidentiels et permettre d'y poser des questions en français.",
+        "L'enjeu était double — transformer du texte brut en quelque chose d'interrogeable, et le faire proprement à deux en découvrant les outils Git.",
       ],
       en: [
-        "A team project: compare a corpus of presidential speeches and let you ask it questions in French.",
-        "The challenge was twofold — turn raw text into something queryable, and do it cleanly as a pair.",
+        "A team project: this project was given to me as my first programming project at EFREI. The goal was to compare a corpus of presidential speeches and let you ask it questions in French.",
+        "The challenge was twofold — turn raw text into something queryable, and do it cleanly as a pair while discovering Git tools.",
       ],
     },
     built: {
@@ -151,27 +176,33 @@ export const projects: Project[] = [
       fr: [
         "Le prétraitement du français (accents, mots vides, normalisation) et rendre les réponses en texte libre pertinentes avec un simple sac de mots.",
         "Tenir un historique git propre à deux a été un apprentissage en soi.",
+        "L'élaboration du calcul TF-IDF afin d'obtenir des résultats pertinents et exploitables.",
       ],
       en: [
         "French text preprocessing (accents, stopwords, normalisation) and making free-text answers relevant with a plain bag-of-words.",
         "Keeping a clean shared git history across two people was a lesson in itself.",
+        "Working out the TF-IDF calculation to get relevant, usable results.",
       ],
     },
     limits: {
       fr: [
         "Le TF-IDF ne capte pas le sens : synonymes et paraphrases passent à travers, et les réponses restent bornées au corpus et à la pondération choisie.",
+        "La limite des délais de ce projet étant de 1 mois et demi, et le peu de connaissances en NLP, nous avons dû nous concentrer sur la mise en place d'une solution fonctionnelle plutôt que sur l'optimisation de la pertinence des réponses.",
       ],
       en: [
         "TF-IDF captures no meaning: synonyms and paraphrase slip through, and answers stay bounded to the corpus and the chosen weighting.",
+        "The project deadline was 1.5 months, and our NLP knowledge was limited, so we had to focus on getting a working solution rather than optimizing answer relevance.",
       ],
     },
     learned: {
       fr: [
         "La mécanique de la vectorisation de texte — et précisément là où elle casse.",
+        "L'interprétation des boucles pour trouver la source d'un problème et le débogage de code en binôme.",
         "Et la discipline d'une vraie collaboration git.",
       ],
       en: [
         "The mechanics of text vectorisation — and exactly where it breaks.",
+        "Interpreting loops to find the source of a problem, and pair debugging.",
         "And the discipline of real git collaboration.",
       ],
     },
@@ -254,6 +285,10 @@ export const projects: Project[] = [
     complexity: "applied",
     repo: "web-done",
     tags: ["HTML", "CSS", "JavaScript", "Responsive"],
+    media: [
+      { type: "image", src: "/projects/web-ti402/mockup.png", alt: { fr: "Maquette du site", en: "Site mockup" } },
+      { type: "image", src: "/projects/web-ti402/campus.png", alt: { fr: "Page campus du site", en: "Campus page" } },
+    ],
     tagline: {
       fr: "Site multi-pages responsive réalisé pour le module web TI402 de l'EFREI.",
       en: "A responsive multi-page site built for EFREI's TI402 web module.",
@@ -278,10 +313,10 @@ export const projects: Project[] = [
     },
     challenges: {
       fr: [
-        "Tenir une mise en page responsive sur plusieurs points de rupture sans framework, et structurer le JavaScript à mesure que le site grandissait.",
+        "Tenir une mise en page responsive, sans aucun appel de librairies externes, sur plusieurs points de rupture sans framework, et structurer le JavaScript à mesure que le site grandissait.",
       ],
       en: [
-        "Holding a responsive layout across breakpoints without a framework, and structuring the JavaScript as the site grew.",
+        "Holding a responsive layout, without calling any external library, across breakpoints without a framework, and structuring the JavaScript as the site grew.",
       ],
     },
     limits: {

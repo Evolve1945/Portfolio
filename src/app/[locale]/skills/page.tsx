@@ -31,6 +31,16 @@ const rncpPlaceholder: Record<Locale, string> = {
   fr: "Bloc RNCP · à mapper",
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.skills" });
+  return { title: t("title"), description: t("intro") };
+}
+
 export default async function SkillsPage({
   params,
 }: {
@@ -46,7 +56,18 @@ export default async function SkillsPage({
     <>
       <PageHeader kicker={t("kicker")} title={t("title")} intro={t("intro")} />
 
-      <div className="mx-auto grid max-w-6xl gap-5 px-5 py-12 md:grid-cols-2">
+      <div className="mx-auto max-w-6xl px-5 pt-8">
+        <Link
+          href="/rncp"
+          className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm transition-colors hover:border-accent hover:text-accent"
+        >
+          {l === "fr"
+            ? "Voir la cartographie complète des compétences RNCP"
+            : "See the full RNCP competency map"}
+        </Link>
+      </div>
+
+      <div className="mx-auto grid max-w-6xl gap-5 px-5 pb-12 pt-6 md:grid-cols-2">
         {skillCategories.map((cat) => (
           <section
             key={cat.id}

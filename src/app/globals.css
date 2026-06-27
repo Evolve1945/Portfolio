@@ -185,6 +185,39 @@ body {
   color: var(--foreground);
 }
 
+/* Syntax highlighting (rehype-highlight / hljs) — editorial palette. */
+.note-content .hljs {
+  color: var(--foreground);
+}
+.note-content .hljs-comment,
+.note-content .hljs-quote {
+  color: var(--faint);
+  font-style: italic;
+}
+.note-content .hljs-keyword,
+.note-content .hljs-built_in,
+.note-content .hljs-literal,
+.note-content .hljs-type {
+  color: var(--accent);
+}
+.note-content .hljs-string,
+.note-content .hljs-attr,
+.note-content .hljs-meta-string {
+  color: var(--signal);
+}
+.note-content .hljs-title,
+.note-content .hljs-title.function_,
+.note-content .hljs-title.class_,
+.note-content .hljs-section {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.note-content .hljs-number,
+.note-content .hljs-params,
+.note-content .hljs-meta {
+  color: var(--muted);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

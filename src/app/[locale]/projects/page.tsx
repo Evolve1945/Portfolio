@@ -7,6 +7,16 @@ import { themeLabel, type Theme } from "@/data/taxonomy";
 
 const themeOrder: Theme[] = ["ai", "web", "academic", "creative"];
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "pages.projects" });
+  return { title: t("title"), description: t("intro") };
+}
+
 export default async function ProjectsPage({
   params,
 }: {

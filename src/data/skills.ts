@@ -26,6 +26,8 @@ export const skillCategories: SkillCategory[] = [
       { name: { fr: "Programmation en C", en: "C programming" }, level: "practiced", source: "efrei" },
       { name: { fr: "JavaScript", en: "JavaScript" }, level: "practiced", source: "both", evidence: ["web-ti402"] },
       { name: { fr: "SQL & bases de données", en: "SQL & databases" }, level: "practiced", source: "efrei" },
+      { name: { fr: "Java", en: "Java" }, level: "practiced", source: "efrei" },
+      { name: { fr: "Structures de données & algorithmes", en: "Data structures & algorithms" }, level: "practiced", source: "efrei" },
     ],
   },
   {
@@ -37,6 +39,7 @@ export const skillCategories: SkillCategory[] = [
       { name: { fr: "Design responsive", en: "Responsive design" }, level: "practiced", source: "both", evidence: ["web-ti402"] },
       { name: { fr: "React / Next.js", en: "React / Next.js" }, level: "learning", source: "self", evidence: ["ecosystem"] },
       { name: { fr: "API REST (FastAPI)", en: "REST APIs (FastAPI)" }, level: "learning", source: "self", evidence: ["ecosystem"] },
+      { name: { fr: "Tailwind CSS", en: "Tailwind CSS" }, level: "practiced", source: "self" },
     ],
   },
   {
@@ -48,6 +51,8 @@ export const skillCategories: SkillCategory[] = [
       { name: { fr: "RAG & recherche vectorielle", en: "RAG & vector search" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
       { name: { fr: "Orchestration d'agents LLM", en: "LLM agent orchestration" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
       { name: { fr: "Routage multi-modèles & bascule", en: "Multi-model routing & failover" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
+      { name: { fr: "Conception de prompts & d'agents", en: "Prompt & agent design" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
+      { name: { fr: "Optimisation des coûts LLM", en: "LLM cost optimisation" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
     ],
   },
   {
@@ -59,6 +64,10 @@ export const skillCategories: SkillCategory[] = [
       { name: { fr: "Linux", en: "Linux" }, level: "practiced", source: "both" },
       { name: { fr: "Patterns de résilience (disjoncteurs, files, reprises)", en: "Resilience patterns (circuit breakers, queues, retries)" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
       { name: { fr: "Empaquetage & distribution d'app", en: "App packaging & distribution" }, level: "practiced", source: "self", evidence: ["cyberpix"] },
+      { name: { fr: "Concurrence & threads", en: "Concurrency & threading" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
+      { name: { fr: "FastAPI & WebSocket", en: "FastAPI & WebSocket" }, level: "learning", source: "self", evidence: ["ecosystem"] },
+      { name: { fr: "SQLite", en: "SQLite" }, level: "practiced", source: "both", evidence: ["ecosystem"] },
+      { name: { fr: "CI/CD (GitHub Actions)", en: "CI/CD (GitHub Actions)" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
     ],
   },
   {

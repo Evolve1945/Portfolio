@@ -62,7 +62,9 @@ export default async function NotesPage({
       <div className="mx-auto max-w-6xl px-5 py-12">
         <div className="mb-10 rounded-xl border border-border bg-surface p-4">
           <div className="mb-2 flex items-center justify-between">
-            <span className="kicker">Map</span>
+            <span className="kicker">
+              {l === "fr" ? "Comment les notes se relient" : "How the notes connect"}
+            </span>
             <span className="kicker text-faint">
               {notes.length} {notesLabel}
             </span>
@@ -96,6 +98,11 @@ export default async function NotesPage({
               </g>
             ))}
           </svg>
+          <p className="mt-3 text-center text-xs leading-relaxed text-faint">
+            {l === "fr"
+              ? "Chaque point est une note · les lignes relient les notes liées · ouvrez une note ci-dessous pour la lire"
+              : "Each dot is a note · lines link related notes · open any note below to read it"}
+          </p>
         </div>
 
         <div className="space-y-10">

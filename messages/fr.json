@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Rudolf Krylov — Logiciel & Systèmes",
-    "description": "Étudiant ingénieur en informatique à l'EFREI Paris. Je construis des systèmes et j'apprends en les livrant."
+    "title": "Rudolf Krylov — Développeur & Étudiant ingénieur informatique, EFREI Paris",
+    "description": "Rudolf Krylov — développeur Python & web, étudiant ingénieur à l'EFREI Paris, en recherche d'alternance développeur 2027 et de stage. Projets en Python, React, web et IA / RAG."
   },
   "nav": {
     "home": "Accueil",
@@ -40,6 +40,11 @@
       "title": "Compétences",
       "intro": "Présentées en compétence puis sous-compétence puis preuve. Chacune est étiquetée autodidacte ou formation EFREI, et reliée au projet qui la démontre."
     },
+    "rncp": {
+      "kicker": "Certification",
+      "title": "Cartographie des compétences RNCP",
+      "intro": "Le titre ingénieur EFREI (RNCP 41030, niveau 7), 29 compétences — priorisées selon ce sur quoi je me concentre, et reliées au projet qui démontre chacune."
+    },
     "journey": {
       "kicker": "Chronologie",
       "title": "Parcours",
@@ -48,7 +53,7 @@
     "notes": {
       "kicker": "Jardin numérique",
       "title": "Notes",
-      "intro": "Des notes choisies de mon vault d'ingénierie — un second cerveau de travail, publié en jardin numérique."
+      "intro": "De vraies notes sur la façon dont j'ai conçu et construit mes projets, tirées de ma base de connaissances d'ingénierie. Chaque note capture une idée, une décision ou un composant — et renvoie vers les notes liées."
     },
     "now": {
       "kicker": "En ce moment",
