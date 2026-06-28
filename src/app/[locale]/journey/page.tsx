@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/page-header";
+import { Reveal } from "@/components/motion/reveal";
 import { projects } from "@/data/projects";
 import { complexityLabel, type Complexity } from "@/data/taxonomy";
 
@@ -36,7 +37,7 @@ export default async function JourneyPage({
     <>
       <PageHeader kicker={t("kicker")} title={t("title")} intro={t("intro")} />
 
-      <div className="mx-auto max-w-3xl px-5 py-12">
+      <Reveal className="mx-auto max-w-3xl px-5 py-12">
         <ol className="relative border-l border-border">
           {items.map((p) => (
             <li key={p.slug} className="relative pb-9 pl-6 last:pb-0">
@@ -66,7 +67,7 @@ export default async function JourneyPage({
             </li>
           ))}
         </ol>
-      </div>
+      </Reveal>
     </>
   );
 }

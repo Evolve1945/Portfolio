@@ -1,9 +1,11 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { NodeField } from "@/components/systems/node-field";
+import { SystemCanvas } from "@/components/systems/system-canvas";
 import { SiteBackground } from "@/components/systems/site-background";
 import { ProjectCard } from "@/components/project-card";
+import { Reveal } from "@/components/motion/reveal";
+import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { featuredProjects } from "@/data/projects";
 import { getGithub } from "@/lib/github";
 import { site } from "@/data/site";
@@ -76,13 +78,13 @@ export default async function HomePage({
             </div>
           </div>
 
-          {/* System-map panel — the "systems accent" identity. */}
-          <div className="hidden rounded-xl border border-border bg-surface p-4 md:block">
+          {/* Live system-map banner (canvas) — the "systems accent" identity. */}
+          <div className="rounded-xl border border-border bg-surface p-4">
             <div className="mb-3 flex items-center justify-between">
               <span className="kicker">System map</span>
               <span className="kicker text-signal">live</span>
             </div>
-            <NodeField className="h-56 w-full" />
+            <SystemCanvas className="h-56 w-full" />
             <p className="mt-2 font-mono text-[0.7rem] leading-relaxed text-faint">
               {site.github} / ecosystem
             </p>
@@ -133,11 +135,13 @@ export default async function HomePage({
           </Link>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((p) => (
-            <ProjectCard key={p.slug} project={p} locale={l} />
+            <StaggerItem key={p.slug} className="h-full">
+              <ProjectCard project={p} locale={l} />
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
     </div>
   );

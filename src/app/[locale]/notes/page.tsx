@@ -3,6 +3,7 @@ import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/page-header";
 import { NodeField } from "@/components/systems/node-field";
+import { NotesGraph } from "@/components/notes-graph";
 import { getNotes } from "@/lib/notes";
 
 export default async function NotesPage({
@@ -35,26 +36,6 @@ export default async function NotesPage({
 
   const groups = [...new Set(notes.map((n) => n.group))];
 
-  // Link graph — nodes on a circle, edges between published notes.
-  const idx = new Map(notes.map((n, i) => [n.slug, i]));
-  const N = notes.length;
-  const cx = 300;
-  const cy = 180;
-  const r = 132;
-  const pos = notes.map((_, i) => {
-    const a = (2 * Math.PI * i) / N - Math.PI / 2;
-    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
-  });
-  const edges: [number, number][] = [];
-  notes.forEach((n, i) =>
-    n.links.forEach((s) => {
-      const j = idx.get(s);
-      if (j !== undefined) edges.push([i, j]);
-    }),
-  );
-
-  const notesLabel = l === "fr" ? "notes" : "notes";
-
   return (
     <>
       <PageHeader kicker={t("kicker")} title={t("title")} intro={t("intro")} />
@@ -65,43 +46,13 @@ export default async function NotesPage({
             <span className="kicker">
               {l === "fr" ? "Comment les notes se relient" : "How the notes connect"}
             </span>
-            <span className="kicker text-faint">
-              {notes.length} {notesLabel}
-            </span>
+            <span className="kicker text-faint">{notes.length} notes</span>
           </div>
-          <svg viewBox="0 0 600 360" className="w-full" role="img" aria-label="Notes map">
-            <g stroke="var(--border)" strokeWidth="1">
-              {edges.map(([a, b], i) => (
-                <line
-                  key={i}
-                  x1={pos[a].x}
-                  y1={pos[a].y}
-                  x2={pos[b].x}
-                  y2={pos[b].y}
-                />
-              ))}
-            </g>
-            {notes.map((n, i) => (
-              <g key={n.slug}>
-                <circle cx={pos[i].x} cy={pos[i].y} r="4.5" fill="var(--accent)" />
-                {notes.length <= 14 ? (
-                  <text
-                    x={pos[i].x}
-                    y={pos[i].y - 10}
-                    textAnchor="middle"
-                    fill="var(--faint)"
-                    style={{ fontFamily: "var(--font-mono)", fontSize: "10px" }}
-                  >
-                    {n.title.length > 22 ? n.title.slice(0, 20) + "…" : n.title}
-                  </text>
-                ) : null}
-              </g>
-            ))}
-          </svg>
+          <NotesGraph notes={notes} />
           <p className="mt-3 text-center text-xs leading-relaxed text-faint">
             {l === "fr"
-              ? "Chaque point est une note · les lignes relient les notes liées · ouvrez une note ci-dessous pour la lire"
-              : "Each dot is a note · lines link related notes · open any note below to read it"}
+              ? "Survolez un point pour voir ses liens · cliquez pour ouvrir la note"
+              : "Hover a node to see its links · click to open the note"}
           </p>
         </div>
 
@@ -111,22 +62,22 @@ export default async function NotesPage({
               <h2 className="kicker mb-4">{g}</h2>
               <div className="grid gap-4 sm:grid-cols-2">
                 {notes
-                  .filter((n) => n.group === g)
-                  .map((n) => (
+                  .filter((note) => note.group === g)
+                  .map((note) => (
                     <Link
-                      key={n.slug}
-                      href={`/notes/${n.slug}`}
+                      key={note.slug}
+                      href={`/notes/${note.slug}`}
                       className="group rounded-xl border border-border bg-surface p-5 transition-colors hover:border-foreground/30"
                     >
                       <h3 className="font-display text-lg tracking-tight">
-                        {n.title}
+                        {note.title}
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted">
-                        {n.summary}
+                        {note.summary}
                       </p>
-                      {n.backlinks.length > 0 ? (
+                      {note.backlinks.length > 0 ? (
                         <p className="kicker mt-3">
-                          {n.backlinks.length}{" "}
+                          {note.backlinks.length}{" "}
                           {l === "fr" ? "rétroliens" : "backlinks"}
                         </p>
                       ) : null}

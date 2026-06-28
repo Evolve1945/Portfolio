@@ -13,6 +13,6 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/rudolf-krylov",
   // Portfolio repo URL — update once the repo is pushed.
   repoUrl: "https://github.com/Evolve1945",
-  // Public site URL — update when the domain / Vercel URL is final.
-  url: "https://rudolfkrylov.dev",
+  // Public site URL — change to your custom domain when you have one.
+  url: "https://portfolio-evolve1945s-projects.vercel.app",
 } as const;

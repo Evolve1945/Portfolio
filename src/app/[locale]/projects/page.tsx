@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { PageHeader } from "@/components/page-header";
 import { ProjectCard } from "@/components/project-card";
+import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { projects } from "@/data/projects";
 import { themeLabel, type Theme } from "@/data/taxonomy";
 
@@ -38,11 +39,13 @@ export default async function ProjectsPage({
           return (
             <section key={theme}>
               <h2 className="kicker mb-4">{themeLabel[theme][l]}</h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((p) => (
-                  <ProjectCard key={p.slug} project={p} locale={l} />
+                  <StaggerItem key={p.slug} className="h-full">
+                    <ProjectCard project={p} locale={l} />
+                  </StaggerItem>
                 ))}
-              </div>
+              </Stagger>
             </section>
           );
         })}

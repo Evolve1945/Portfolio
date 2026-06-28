@@ -1,4 +1,5 @@
 import { SiteBackground } from "@/components/systems/site-background";
+import { Reveal } from "@/components/motion/reveal";
 
 export function PageHeader({
   kicker,
@@ -12,7 +13,7 @@ export function PageHeader({
   return (
     <section className="relative overflow-hidden border-b border-border">
       <SiteBackground />
-      <div className="relative mx-auto max-w-6xl px-5 py-14">
+      <Reveal className="relative mx-auto max-w-6xl px-5 py-14">
         <span className="kicker">{kicker}</span>
         <h1 className="mt-3 font-display text-4xl tracking-tight sm:text-5xl">
           {title}
@@ -22,7 +23,7 @@ export function PageHeader({
             {intro}
           </p>
         ) : null}
-      </div>
+      </Reveal>
     </section>
   );
 }

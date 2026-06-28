@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/page-header";
+import { Reveal } from "@/components/motion/reveal";
 import { skillCategories } from "@/data/skills";
 import { getProject } from "@/data/projects";
 import { levelLabel, sourceLabel, type SkillLevel } from "@/data/taxonomy";
@@ -67,7 +68,7 @@ export default async function SkillsPage({
         </Link>
       </div>
 
-      <div className="mx-auto grid max-w-6xl gap-5 px-5 pb-12 pt-6 md:grid-cols-2">
+      <Reveal className="mx-auto grid max-w-6xl gap-5 px-5 pb-12 pt-6 md:grid-cols-2">
         {skillCategories.map((cat) => (
           <section
             key={cat.id}
@@ -121,7 +122,7 @@ export default async function SkillsPage({
             </ul>
           </section>
         ))}
-      </div>
+      </Reveal>
     </>
   );
 }

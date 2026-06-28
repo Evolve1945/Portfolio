@@ -14,7 +14,7 @@ export function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group flex flex-col rounded-xl border border-border bg-surface p-5 transition-colors hover:border-foreground/30"
+      className="group flex h-full flex-col rounded-xl border border-border bg-surface p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-foreground/30"
     >
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-display text-xl tracking-tight">{project.name}</h3>
