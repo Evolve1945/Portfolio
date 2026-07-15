@@ -26,7 +26,7 @@ export const rncpMeta = {
 
 export const priorityLabel: Record<RncpPriority, Bilingual> = {
   prioritize: { fr: "Prioriser", en: "Prioritize" },
-  build: { fr: "Construire ensuite", en: "Build next" },
+  build: { fr: "À développer plus tard", en: "Build next" },
   neglect: { fr: "Plus tard", en: "Later" },
 };
 

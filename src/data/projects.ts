@@ -196,14 +196,14 @@ export const projects: Project[] = [
     },
     learned: {
       fr: [
-        "La mécanique de la vectorisation de texte — et précisément là où elle casse.",
-        "L'interprétation des boucles pour trouver la source d'un problème et le débogage de code en binôme.",
-        "Et la discipline d'une vraie collaboration git.",
+        "La mécanique de la vectorisation de texte, et surtout ses limites : ce que TF-IDF capte bien, ce qu'il rate, et pourquoi une réponse peut sembler juste sans vraiment l'être.",
+        "L'interprétation des boucles pour remonter à la source d'un problème, puis le débogage en binôme avec un historique git propre pour garder une progression lisible.",
+        "Et la discipline d'une vraie collaboration git : branches, revues, arbitrages, et le réflexe de documenter ce qu'on change pour pouvoir l'expliquer ensuite.",
       ],
       en: [
-        "The mechanics of text vectorisation — and exactly where it breaks.",
-        "Interpreting loops to find the source of a problem, and pair debugging.",
-        "And the discipline of real git collaboration.",
+        "The mechanics of text vectorisation, and especially its limits: what TF-IDF captures well, what it misses, and why an answer can look right without truly being right.",
+        "Interpreting loops to trace a problem back to its source, then pair debugging with a clean git history so the work stays readable.",
+        "And the discipline of real git collaboration: branches, reviews, trade-offs, and the habit of documenting changes so they can be explained later.",
       ],
     },
     consolidate: {
@@ -230,10 +230,10 @@ export const projects: Project[] = [
     },
     context: {
       fr: [
-        "Un défi que je me suis donné : m'apprendre seul les boucles de jeu et l'empaquetage d'application en livrant un vrai petit jeu.",
+        "Un projet que nous avons entamé en terminal avec un camarade à moi : j'ai su apprendre à maitriser les boucles de jeu et l'empaquetage d'application en livrant un vrai petit jeu.",
       ],
       en: [
-        "A challenge I set myself: teach myself game loops and app packaging by shipping a real small game.",
+        "A project we started in 12th grade with a friend of mine: teaching myself game loops and app packaging by shipping a real small game.",
       ],
     },
     built: {
@@ -254,18 +254,20 @@ export const projects: Project[] = [
     },
     limits: {
       fr: [
-        "Petite envergure — mécaniques simples, peu de contenu — et pas d'architecture formelle : le projet a grandi de façon organique.",
+        "Petite envergure — mécaniques simples, peu de contenu — et pas d'architecture formelle : le projet a grandi de façon organique avec notre imagination. La capacité graphique devient assez saturée avec l'ajout de nouvelles entités animées. Le projet rest interminé mais j'envisage de le finir pour de bon une fois que j'aurai consolidé mes connaissances en programmation de jeux et rédaction de scénario.",
       ],
       en: [
-        "Small in scope — simple mechanics, limited content — and no formal architecture: it grew organically.",
+        "Small in scope — simple mechanics, limited content — and no formal architecture: it grew organically. The graphics capacity becomes quite saturated with the addition of new animated entities. The project remains unfinished but I plan to finish it properly once I've consolidated my game programming and story-writing skills.",
       ],
     },
     learned: {
       fr: [
-        "Comment une boucle de jeu et le rendu s'emboîtent réellement, et que livrer un artefact exécutable est une compétence à part entière.",
+        "Comment une boucle de jeu et le rendu s'emboîtent réellement, puis comment synchroniser l'animation à partir de sprites PNG sans casser la logique de mouvement ou de collision.",
+        "Que livrer un artefact exécutable est une compétence à part entière : empaqueter proprement les dépendances, tester le résultat final et garder une distribution utilisable.",
       ],
       en: [
-        "How a game loop and rendering actually fit together, and that shipping a runnable artifact is a skill of its own.",
+        "How a game loop and rendering actually fit together, then how to sync animation from PNG sprites without breaking movement or collision logic.",
+        "That shipping a runnable artifact is a skill of its own: packaging dependencies cleanly, testing the final result, and keeping the build usable.",
       ],
     },
     consolidate: {
@@ -296,11 +298,11 @@ export const projects: Project[] = [
     context: {
       fr: [
         "Module web de l'EFREI : concevoir, construire et présenter un site structuré — de la maquette à la critique de design.",
-        "L'enjeu était de passer d'une maquette à un front-end défendable, choix de design à l'appui.",
+        "L'enjeu était de passer d'une maquette à un front-end défendable, choix de design à l'appui. Ce projet a été réalisé en binôme, avec un camarade de classe.",
       ],
       en: [
         "An EFREI web module: design, build and present a structured site — from mockup to design critique.",
-        "The point was to go from a mockup to a defensible front-end, design decisions and all.",
+        "The point was to go from a mockup to a defensible front-end, design decisions and all. This project was done in a pair with a classmate.",
       ],
     },
     built: {
@@ -321,18 +323,20 @@ export const projects: Project[] = [
     },
     limits: {
       fr: [
-        "Statique, sans back-end, en stack vanilla imposée par le module.",
+        "Statique, sans back-end, en stack vanilla imposée par le module. L'absence d'animation et d'accessibilité a été un choix de priorité pour livrer un site fonctionnel dans les délais et les contraintes du module imposées.",
       ],
       en: [
-        "Static, no back-end, vanilla stack as the module required.",
+        "Static, no back-end, vanilla stack as the module required. The lack of animation and accessibility was a choice of priority to deliver a functional site within the module's deadlines and constraints.",
       ],
     },
     learned: {
       fr: [
-        "Les fondamentaux du HTML sémantique et du CSS responsive, et comment présenter puis défendre des décisions de design.",
+        "Les fondamentaux du HTML sémantique et du CSS responsive, et comment faire évoluer une page proprement sans perdre la structure ni la lisibilité.",
+        "Comment présenter puis défendre des décisions de design avec des contraintes réelles de module, de temps et de rendu final.",
       ],
       en: [
-        "Semantic HTML and responsive CSS fundamentals, and how to present then defend design decisions.",
+        "Semantic HTML and responsive CSS fundamentals, and how to evolve a page cleanly without losing structure or readability.",
+        "How to present and defend design decisions under real module, time, and delivery constraints.",
       ],
     },
     consolidate: {

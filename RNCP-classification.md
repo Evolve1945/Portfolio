@@ -2,7 +2,7 @@
 
 > Titre ingénieur EFREI Paris, niveau 7. 5 blocs, 29 compétences (extraites de France Compétences).
 > Classées pour **ta situation** : 2e→3e année, recherche d'alternance dev, profil Python / web / IA.
-> 3 niveaux : **Prioriser** (à mettre en avant maintenant) · **Construire ensuite** · **Négliger pour l'instant**.
+> 3 niveaux : **Prioriser** (à mettre en avant maintenant) · **À développer plus tard** · **Négliger pour l'instant**.
 
 ---
 
@@ -24,7 +24,7 @@ Tes forces, ce que les alternances recrutent, et ce que tes projets prouvent dé
 | BC05.2 | Communiquer à l'écrit et à l'oral | Portfolio bilingue, présentation Web TI402 |
 | BC05.5 | Collaborer en équipe internationale | Chatbot (180 commits à deux), échange, langues (RU C1) |
 
-## Niveau 2 — CONSTRUIRE ENSUITE
+## Niveau 2 — À DÉVELOPPER PLUS TARD
 Tu as des bases ; à consolider pour la 4e année et l'alternance.
 
 | Bloc | Compétence | Note |

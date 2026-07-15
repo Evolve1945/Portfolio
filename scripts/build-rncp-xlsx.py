@@ -5,34 +5,34 @@ from openpyxl.worksheet.datavalidation import DataValidation
 # (bloc, code, competence, priorite, projet/preuve)
 rows = [
     ("BC01 — Analyser les besoins", "BC01.1", "Reformuler la demande d'un client pour clarifier et formaliser le besoin", "Negliger pour l'instant", ""),
-    ("BC01 — Analyser les besoins", "BC01.2", "Exprimer et traduire les besoins en exigences fonctionnelles et non fonctionnelles", "Construire ensuite", ""),
+    ("BC01 — Analyser les besoins", "BC01.2", "Exprimer et traduire les besoins en exigences fonctionnelles et non fonctionnelles", "A developper plus tard", ""),
     ("BC01 — Analyser les besoins", "BC01.3", "Estimer les ressources necessaires (RH, competences, technologies, budget, delais)", "Negliger pour l'instant", ""),
     ("BC01 — Analyser les besoins", "BC01.4", "Estimer l'impact environnemental et societal potentiel d'une solution", "Negliger pour l'instant", ""),
     ("BC01 — Analyser les besoins", "BC01.5", "Elaborer et rediger un cahier des charges", "Negliger pour l'instant", ""),
     ("BC02 — Concevoir et modeliser", "BC02.1", "Evaluer et selectionner les solutions existantes (contraintes techniques, eco, humaines)", "Prioriser", "ADR, Model Selection Guide"),
-    ("BC02 — Concevoir et modeliser", "BC02.2", "Integrer l'experience utilisateur (UX) dans toutes les dimensions du projet", "Construire ensuite", "Web TI402"),
+    ("BC02 — Concevoir et modeliser", "BC02.2", "Integrer l'experience utilisateur (UX) dans toutes les dimensions du projet", "A developper plus tard", "Web TI402"),
     ("BC02 — Concevoir et modeliser", "BC02.3", "Adopter les bonnes pratiques de securite et/ou de fiabilite dans la conception", "Prioriser", "Circuit Breaker, Watchdog"),
     ("BC02 — Concevoir et modeliser", "BC02.4", "Demontrer la faisabilite technique d'un dispositif", "Prioriser", "Ecosystem (POC)"),
     ("BC02 — Concevoir et modeliser", "BC02.5", "Anticiper l'evolutivite d'une solution et son interoperabilite des la conception", "Prioriser", "Architecture Ecosystem"),
     ("BC02 — Concevoir et modeliser", "BC02.6", "Elaborer des maquettes ou des POC", "Prioriser", "Ecosystem, maquette Web"),
     ("BC03 — Mettre en oeuvre", "BC03.1", "Implementer les composants d'une architecture ou d'un systeme", "Prioriser", "Ecosystem, Chatbot, Web TI402"),
     ("BC03 — Mettre en oeuvre", "BC03.2", "Integrer les composants (compatibilite, integrite, interoperabilite, securite)", "Prioriser", "Ecosystem"),
-    ("BC03 — Mettre en oeuvre", "BC03.3", "Tester et valider un dispositif logiciel, systeme ou embarque", "Construire ensuite", ""),
+    ("BC03 — Mettre en oeuvre", "BC03.3", "Tester et valider un dispositif logiciel, systeme ou embarque", "A developper plus tard", ""),
     ("BC03 — Mettre en oeuvre", "BC03.4", "Optimiser les performances (couts, qualite, impact env/social)", "Prioriser", "Budget Guard, Token Optimization"),
     ("BC03 — Mettre en oeuvre", "BC03.5", "Produire la documentation technique", "Prioriser", "Vault / jardin numerique"),
-    ("BC03 — Mettre en oeuvre", "BC03.6", "Mettre a disposition une solution (config, install, automatisation, sauvegarde/secours)", "Construire ensuite", "Watchdog, deploiement"),
-    ("BC04 — Gerer l'exploitation", "BC04.1", "Analyser les indicateurs de performance, reperer les anomalies", "Construire ensuite", "Dashboard Ecosystem"),
-    ("BC04 — Gerer l'exploitation", "BC04.2", "Superviser l'utilisation pour le maintien en conditions operationnelles", "Construire ensuite", "Watchdog"),
-    ("BC04 — Gerer l'exploitation", "BC04.3", "Proposer des ameliorations (fonctionnalites, performances)", "Construire ensuite", "Roadmap Ecosystem"),
-    ("BC04 — Gerer l'exploitation", "BC04.4", "Mettre en oeuvre les ameliorations et mettre a jour la documentation", "Construire ensuite", ""),
+    ("BC03 — Mettre en oeuvre", "BC03.6", "Mettre a disposition une solution (config, install, automatisation, sauvegarde/secours)", "A developper plus tard", "Watchdog, deploiement"),
+    ("BC04 — Gerer l'exploitation", "BC04.1", "Analyser les indicateurs de performance, reperer les anomalies", "A developper plus tard", "Dashboard Ecosystem"),
+    ("BC04 — Gerer l'exploitation", "BC04.2", "Superviser l'utilisation pour le maintien en conditions operationnelles", "A developper plus tard", "Watchdog"),
+    ("BC04 — Gerer l'exploitation", "BC04.3", "Proposer des ameliorations (fonctionnalites, performances)", "A developper plus tard", "Roadmap Ecosystem"),
+    ("BC04 — Gerer l'exploitation", "BC04.4", "Mettre en oeuvre les ameliorations et mettre a jour la documentation", "A developper plus tard", ""),
     ("BC05 — OEuvrer en mode projet", "BC05.1", "Mener et partager une recherche documentaire et une veille technique", "Prioriser", ""),
     ("BC05 — OEuvrer en mode projet", "BC05.2", "Communiquer efficacement a l'ecrit et a l'oral", "Prioriser", "Portfolio bilingue, presentation Web"),
-    ("BC05 — OEuvrer en mode projet", "BC05.3", "Respecter la methodologie de gestion de projet / delivery", "Construire ensuite", ""),
-    ("BC05 — OEuvrer en mode projet", "BC05.4", "Realiser un suivi de l'avancement des travaux / des ressources", "Construire ensuite", "Planning, Trello"),
+    ("BC05 — OEuvrer en mode projet", "BC05.3", "Respecter la methodologie de gestion de projet / delivery", "A developper plus tard", ""),
+    ("BC05 — OEuvrer en mode projet", "BC05.4", "Realiser un suivi de l'avancement des travaux / des ressources", "A developper plus tard", "Planning, Trello"),
     ("BC05 — OEuvrer en mode projet", "BC05.5", "Collaborer en equipe pluridisciplinaire et internationale", "Prioriser", "Chatbot (180 commits), echange, langues"),
     ("BC05 — OEuvrer en mode projet", "BC05.6", "Prendre des decisions operationnelles et en comprendre les impacts", "Negliger pour l'instant", ""),
     ("BC05 — OEuvrer en mode projet", "BC05.7", "Sensibiliser aux enjeux de la TEDS (transition ecologique)", "Negliger pour l'instant", ""),
-    ("BC05 — OEuvrer en mode projet", "BC05.8", "Produire la documentation pour la formation des utilisateurs", "Construire ensuite", ""),
+    ("BC05 — OEuvrer en mode projet", "BC05.8", "Produire la documentation pour la formation des utilisateurs", "A developper plus tard", ""),
 ]
 
 wb = Workbook()
@@ -50,7 +50,7 @@ ws.row_dimensions[1].height = 30
 
 prio = {
     "Prioriser": ("C6EFCE", "006100"),
-    "Construire ensuite": ("FFEB9C", "9C6500"),
+    "A developper plus tard": ("FFEB9C", "9C6500"),
     "Negliger pour l'instant": ("EDEDED", "6B7280"),
 }
 thin = Side(style="thin", color="D9D9D9")
