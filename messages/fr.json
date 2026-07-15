@@ -53,7 +53,7 @@
     "notes": {
       "kicker": "Jardin numérique",
       "title": "Notes",
-      "intro": "De vraies notes sur la façon dont j'ai conçu et construit mes projets, tirées de ma base de connaissances d'ingénierie. Chaque note capture une idée, une décision ou un composant — et renvoie vers les notes liées."
+      "intro": "Des notes choisies de mon carnet d'ingénierie. J'ai ajouté cette section au portfolio pour montrer comment je conçois mes projets, les choix que je fais et les éléments que je construis durant les sessions. Chaque note présente une idée utile, une décision ou un composant, puis renvoie vers les notes liées. Ces notes permettent aussi d'orienter le travail des IA génératives, en donnant un contexte et des contraintes pour la génération de code avant de procéder à ma requête."
     },
     "now": {
       "kicker": "En ce moment",

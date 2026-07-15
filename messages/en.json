@@ -53,7 +53,7 @@
     "notes": {
       "kicker": "Digital garden",
       "title": "Notes",
-      "intro": "Real notes on how I designed and built my projects, taken from my engineering knowledge base. Each note captures one idea, decision, or component — and links to the related ones."
+      "intro": "Selected notes from my engineering notebook. I added this section to show how I think through building projects, the choices I make, and the parts I design. Each note focuses on one useful idea, decision, or component and links to the related notes. These notes also help guide the work of generative AIs, by providing context and constraints for code generation before proceeding with my request."
     },
     "now": {
       "kicker": "Now",
