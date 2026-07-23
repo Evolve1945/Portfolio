@@ -23,6 +23,6 @@ Each crash and recovery is logged to the Obsidian vault as an error note (with t
 
 ## Related
 - Features/Implemented/Always-On Service — the Windows service layer that keeps the Watchdog running after reboots
-- Components/Agent Mesh — the agent servers the Watchdog monitors
-- Integrations/Telegram — crash/recovery alerts are sent here
-- Components/Orchestrator — one of the services the Watchdog monitors
+- [Components/Agent Mesh](/notes/agent-mesh) — the agent servers the Watchdog monitors
+- [Integrations/Telegram](/notes/telegram-integration) — crash/recovery alerts are sent here
+- [Components/Orchestrator](/notes/orchestrator) — one of the services the Watchdog monitors

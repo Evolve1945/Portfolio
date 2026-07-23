@@ -16,6 +16,9 @@ When spending reaches 80% of any cap, the Budget Guard fires a Telegram alert so
 ## Current Status
  Built — Daily, monthly, and pipeline caps are enforced. Per-task token caps are active. Telegram alerts at 80% and 100% of each cap are wired in.
 
+### Per-agent daily spend ceiling (P12, added 2026-07-13)
+The Budget Guard's caps are global; `precall_guard` caps ONE task's projected cost. Neither catches **accumulation** — a retry loop or two-agent ping-pong is many small in-budget calls that add up ($6.5k/$47k documented incidents). `orchestrator/router/ceiling.py` adds a **per-agent per-day** ceiling (default $1.00, override `SPEND_CEILING_<AGENT>_USD`) tracked in `ceiling.db` and enforced at the router call site in `mesh/agent_server.py`. Dark behind `SPEND_CEILING_ENABLED`; breach is a hard task failure. See [Safety Floor](/notes/safety-cost-floor).
+
 ## Key Files
 - `orchestrator/budget/guard.py` — Main Budget Guard class: `record()`, `check_budget()`, per-task caps
 - `orchestrator/router/adapters.py` — Per-model pricing table used for cost calculation
@@ -25,7 +28,8 @@ When spending reaches 80% of any cap, the Budget Guard fires a Telegram alert so
 - Budget cap values are currently configured in code; they should be read from environment variables so they can be changed without a code edit.
 
 ## Related
-- Components/Orchestrator — calls the Budget Guard before every task dispatch
+- [Components/Orchestrator](/notes/orchestrator) — calls the Budget Guard before every task dispatch
 - Security/Agent Contracts — per-agent token budgets enforced alongside global caps
 - Features/Implemented/Telegram Notifications — cost warning and block alerts
 - [Integrations/Anthropic API](/notes/anthropic-api) — the primary source of API costs
+- [Safety Floor](/notes/safety-cost-floor) — the per-agent daily spend ceiling (P12) complements these caps

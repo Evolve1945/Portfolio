@@ -31,5 +31,5 @@ The Planner uses the DAG Engine as its execution backend: when the Planner produ
 
 ## Related
 - [Components/Planner](/notes/planner) — produces the DAG plan that the Engine executes
-- Components/Orchestrator — submits individual steps to the agent queue
+- [Components/Orchestrator](/notes/orchestrator) — submits individual steps to the agent queue
 - Components/Security/Approval Gates — the `gate: true` field in a step triggers an approval pause

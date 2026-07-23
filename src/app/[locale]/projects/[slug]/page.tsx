@@ -23,7 +23,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const p = getProject(slug);
-  return { title: p ? `${p.name} — ${site.name}` : site.name };
+  // The root layout's title template already appends the site name.
+  return { title: p ? p.name : site.name };
 }
 
 const traceNote: Record<Locale, string> = {
@@ -115,6 +116,23 @@ export default async function ProjectPage({
           {ui("viewRepo")}
           <ExternalLink className="h-3.5 w-3.5" aria-hidden />
         </a>
+      ) : null}
+
+      {p.value?.[l]?.length ? (
+        <section className="mt-8 rounded-xl border border-accent/30 bg-surface p-5">
+          <h2 className="kicker text-accent">{sectionLabel.value[l]}</h2>
+          <ul className="mt-3 space-y-2.5">
+            {p.value[l].map((point, i) => (
+              <li key={i} className="flex gap-2.5 leading-relaxed">
+                <span
+                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                  aria-hidden
+                />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       ) : null}
 
       {p.media?.length ? (

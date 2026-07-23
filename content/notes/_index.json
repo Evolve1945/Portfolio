@@ -1,5 +1,100 @@
 [
   {
+    "slug": "accessibility-audit-claude-ecosystem-dashboard",
+    "title": "Accessibility Audit — Claude Ecosystem Dashboard",
+    "summary": "Standard: WCAG 2.1 AA",
+    "group": "Components",
+    "tags": [
+      "component",
+      "interface"
+    ],
+    "links": [],
+    "backlinks": []
+  },
+  {
+    "slug": "agent-command-center-fleet-view",
+    "title": "Agent Command Center — Fleet View",
+    "summary": "Watching the system meant tailing task logs. The fleet view replaces that with a",
+    "group": "Components",
+    "tags": [
+      "dashboard",
+      "surface",
+      "fleet",
+      "orchestration",
+      "built"
+    ],
+    "links": [
+      "interop-quality",
+      "durable-execution-eval-ratchet",
+      "agentic-os-modules"
+    ],
+    "backlinks": [
+      "agentic-os-modules",
+      "dashboard-v2",
+      "goal-surface-one-goal-loop"
+    ]
+  },
+  {
+    "slug": "agent-mesh",
+    "title": "Agent Mesh",
+    "summary": "The Agent Mesh is a network of 18 specialised AI agents, each running as its own independent server on a dedicated port (ports 8770 through 8787). Each agent has a specific role an…",
+    "group": "Components",
+    "tags": [
+      "agents",
+      "orchestration",
+      "network",
+      "built"
+    ],
+    "links": [
+      "orchestrator",
+      "tool-loop",
+      "circuit-breaker"
+    ],
+    "backlinks": [
+      "circuit-breaker",
+      "code-sandbox",
+      "orchestrator",
+      "planner",
+      "tool-loop",
+      "watchdog"
+    ]
+  },
+  {
+    "slug": "agentic-os-modules",
+    "title": "Agentic OS Modules",
+    "summary": "Wired to live flow so far (flag-gated, suite green):",
+    "group": "Components",
+    "tags": [
+      "architecture",
+      "orchestration",
+      "agents",
+      "security",
+      "memory",
+      "monitoring",
+      "roadmap",
+      "built"
+    ],
+    "links": [
+      "skill-system-library-forge-injection",
+      "safety-cost-floor",
+      "durable-execution-eval-ratchet",
+      "cost-memory-block",
+      "interop-quality",
+      "agent-command-center-fleet-view",
+      "goal-surface-one-goal-loop",
+      "dashboard-v2"
+    ],
+    "backlinks": [
+      "agent-command-center-fleet-view",
+      "cost-memory-block",
+      "durable-execution-eval-ratchet",
+      "goal-surface-one-goal-loop",
+      "interop-quality",
+      "safety-cost-floor",
+      "skill-system-library-forge-injection"
+    ]
+  },
+  {
     "slug": "budget-guard",
     "title": "Budget Guard",
     "summary": "The Budget Guard is the ecosystem's cost controller. It tracks every API call the system makes in real time, adds up the cost, and enforces hard spending limits. When the daily cap…",
@@ -7,13 +102,37 @@
     "tags": [
       "cost",
       "monitoring",
+      "security",
       "built"
     ],
     "links": [
+      "safety-cost-floor",
+      "orchestrator",
       "anthropic-api"
     ],
     "backlinks": [
+      "orchestrator",
+      "safety-cost-floor",
       "anthropic-api"
+    ]
+  },
+  {
+    "slug": "capability-graph",
+    "title": "Capability Graph",
+    "summary": "Built 2026-05-15 (Task 39). File: orchestrator/capabilities/graph.py (CapabilityGraph.snapshot). Endpoint: GET /capabilities. Returns live system capability map with agent categori…",
+    "group": "Components",
+    "tags": [
+      "orchestration",
+      "skills",
+      "built"
+    ],
+    "links": [
+      "orchestration",
+      "skills-registry",
+      "dashboard"
+    ],
+    "backlinks": [
+      "skills-registry"
     ]
   },
   {
@@ -27,9 +146,14 @@
       "built"
     ],
     "links": [
+      "orchestrator",
+      "agent-mesh",
       "watchdog"
     ],
-    "backlinks": []
+    "backlinks": [
+      "agent-mesh",
+      "orchestrator"
+    ]
   },
   {
     "slug": "code-sandbox",
@@ -42,10 +166,38 @@
       "built"
     ],
     "links": [
-      "tool-loop"
+      "tool-loop",
+      "agent-mesh"
     ],
     "backlinks": [
       "tool-loop"
+    ]
+  },
+  {
+    "slug": "cost-memory-block",
+    "title": "Cost + Memory Block",
+    "summary": "The safety floor made autonomy safe, durable execution made it survivable. This",
+    "group": "Components",
+    "tags": [
+      "router",
+      "cost",
+      "memory",
+      "facts",
+      "autonomy",
+      "built"
+    ],
+    "links": [
+      "safety-cost-floor",
+      "durable-execution-eval-ratchet",
+      "multi-model-router",
+      "memory-layer",
+      "agentic-os-modules"
+    ],
+    "backlinks": [
+      "agentic-os-modules",
+      "interop-quality",
+      "multi-model-router",
+      "memory-layer"
     ]
   },
   {
@@ -55,10 +207,276 @@
     "group": "Components",
     "tags": [],
     "links": [
-      "planner"
+      "planner",
+      "orchestrator"
     ],
     "backlinks": [
+      "durable-execution-eval-ratchet",
       "planner"
+    ]
+  },
+  {
+    "slug": "dashboard",
+    "title": "Dashboard",
+    "summary": "Status: BUILT. Running on http://localhost:8766. See Dashboard Architecture(/notes/dashboard-architecture) for the full technical spec and sessions/session-2026-04-26-tasks-12-13 f…",
+    "group": "Components",
+    "tags": [
+      "dashboard",
+      "layer",
+      "monitoring",
+      "agents",
+      "built"
+    ],
+    "links": [
+      "dashboard-architecture",
+      "orchestration",
+      "mcp-layer",
+      "skills-registry",
+      "pipeline-manager"
+    ],
+    "backlinks": [
+      "dashboard-v2",
+      "observability",
+      "orchestration",
+      "pipeline-manager",
+      "reliability-patterns",
+      "dashboard-design-system-factory-dark-cursor-light",
+      "discord-bot",
+      "capability-graph",
+      "mcp-layer",
+      "skills-registry",
+      "github-integration"
+    ]
+  },
+  {
+    "slug": "dashboard-architecture",
+    "title": "Dashboard Architecture",
+    "summary": "All core components implemented and running. See sessions/session-2026-04-26-tasks-12-13 for the full build log.",
+    "group": "Components",
+    "tags": [
+      "dashboard",
+      "architecture",
+      "built"
+    ],
+    "links": [
+      "orchestration",
+      "skills-registry",
+      "observability",
+      "pipeline-manager"
+    ],
+    "backlinks": [
+      "dashboard-v2",
+      "http-agent-mesh",
+      "evaluation-loop",
+      "rag-pipeline",
+      "dashboard-design-system-factory-dark-cursor-light",
+      "dashboard"
+    ]
+  },
+  {
+    "slug": "dashboard-design-system-factory-dark-cursor-light",
+    "title": "Dashboard Design System — Factory (dark) / Cursor (light)",
+    "summary": "Source specs (Evo, from the Claude design canvas, 2026-07-19): the raw DESIGN.md / theme.css /",
+    "group": "Components",
+    "tags": [
+      "component",
+      "interface",
+      "design-system"
+    ],
+    "links": [
+      "dashboard-v2",
+      "dashboard-architecture",
+      "dashboard",
+      "design-critique-claude-ecosystem-dashboard"
+    ],
+    "backlinks": [
+      "dashboard-v2"
+    ]
+  },
+  {
+    "slug": "dashboard-v2",
+    "title": "Dashboard V2",
+    "summary": "The plain-language, public-ready face of the dashboard — but no longer a cut-down one. After a gap",
+    "group": "Components",
+    "tags": [
+      "dashboard",
+      "surface",
+      "interface",
+      "built"
+    ],
+    "links": [
+      "dashboard-design-system-factory-dark-cursor-light",
+      "dashboard",
+      "dashboard-architecture",
+      "agent-command-center-fleet-view",
+      "goal-surface-one-goal-loop",
+      "safety-cost-floor"
+    ],
+    "backlinks": [
+      "agentic-os-modules",
+      "dashboard-design-system-factory-dark-cursor-light"
+    ]
+  },
+  {
+    "slug": "design-critique-claude-ecosystem-dashboard",
+    "title": "Design Critique — Claude Ecosystem Dashboard",
+    "summary": "Date: 2026-05-24",
+    "group": "Components",
+    "tags": [
+      "component",
+      "interface"
+    ],
+    "links": [],
+    "backlinks": [
+      "dashboard-design-system-factory-dark-cursor-light"
+    ]
+  },
+  {
+    "slug": "discord-bot",
+    "title": "Discord Bot",
+    "summary": "tags: notifications, layer, built",
+    "group": "Components",
+    "tags": [],
+    "links": [
+      "dashboard",
+      "orchestration",
+      "notification-system"
+    ],
+    "backlinks": [
+      "notification-system"
+    ]
+  },
+  {
+    "slug": "durable-execution-eval-ratchet",
+    "title": "Durable Execution + Eval Ratchet",
+    "summary": "The safety floor made turning autonomy up safe; this block makes it survivable",
+    "group": "Components",
+    "tags": [
+      "orchestration",
+      "pipeline",
+      "reliability",
+      "autonomy",
+      "built"
+    ],
+    "links": [
+      "safety-cost-floor",
+      "dag-pipeline-engine",
+      "skill-system-library-forge-injection",
+      "agentic-os-modules"
+    ],
+    "backlinks": [
+      "agent-command-center-fleet-view",
+      "agentic-os-modules",
+      "cost-memory-block",
+      "goal-surface-one-goal-loop",
+      "interop-quality"
+    ]
+  },
+  {
+    "slug": "evaluation-loop",
+    "title": "Evaluation Loop",
+    "summary": "The ecosystem currently tracks:",
+    "group": "Components",
+    "tags": [
+      "quality",
+      "task-89",
+      "built"
+    ],
+    "links": [
+      "orchestration",
+      "rag-pipeline",
+      "dashboard-architecture"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "goal-surface-one-goal-loop",
+    "title": "Goal Surface — One Goal Loop",
+    "summary": "Gemini-Agent's single surface: the user states a goal and never picks a mode.",
+    "group": "Components",
+    "tags": [
+      "surface",
+      "omnibox",
+      "planner",
+      "autonomy",
+      "built"
+    ],
+    "links": [
+      "agent-command-center-fleet-view",
+      "agentic-os-modules",
+      "safety-cost-floor",
+      "durable-execution-eval-ratchet",
+      "skill-system-library-forge-injection",
+      "memory-layer"
+    ],
+    "backlinks": [
+      "agentic-os-modules",
+      "dashboard-v2"
+    ]
+  },
+  {
+    "slug": "http-agent-mesh",
+    "title": "HTTP Agent Mesh",
+    "summary": "",
+    "group": "Components",
+    "tags": [
+      "orchestration",
+      "agents",
+      "network",
+      "component",
+      "built"
+    ],
+    "links": [
+      "orchestration",
+      "dashboard-architecture"
+    ],
+    "backlinks": [
+      "schema-models",
+      "startup-scripts"
+    ]
+  },
+  {
+    "slug": "interop-quality",
+    "title": "Interop + Quality",
+    "summary": "The eval ratchet (Durable Execution(/notes/durable-execution-eval-ratchet)) grades a run's final output. But a run can",
+    "group": "Components",
+    "tags": [
+      "evaluator",
+      "tracing",
+      "skills",
+      "quality",
+      "interop",
+      "built"
+    ],
+    "links": [
+      "safety-cost-floor",
+      "durable-execution-eval-ratchet",
+      "cost-memory-block",
+      "observability",
+      "skill-system-library-forge-injection",
+      "agentic-os-modules"
+    ],
+    "backlinks": [
+      "agent-command-center-fleet-view",
+      "agentic-os-modules"
+    ]
+  },
+  {
+    "slug": "mcp-layer",
+    "title": "MCP Layer",
+    "summary": "tags: layer, mcp, built",
+    "group": "Components",
+    "tags": [],
+    "links": [
+      "orchestration",
+      "memory-layer",
+      "dashboard",
+      "rag-pipeline"
+    ],
+    "backlinks": [
+      "orchestration",
+      "dashboard",
+      "skills-registry"
     ]
   },
   {
@@ -67,8 +485,169 @@
     "summary": "tags: mcp, memory, built",
     "group": "Components",
     "tags": [],
-    "links": [],
+    "links": [
+      "vault-sync-utility",
+      "session-to-vault"
+    ],
     "backlinks": []
+  },
+  {
+    "slug": "memory-layer",
+    "title": "Memory Layer",
+    "summary": "The Memory Layer writes structured, human-readable notes to the Obsidian vault after every task. Where the RAG Pipeline stores memories as numerical fingerprints for machine search…",
+    "group": "Components",
+    "tags": [
+      "layer",
+      "memory",
+      "rag",
+      "built"
+    ],
+    "links": [
+      "rag-pipeline",
+      "token-optimization",
+      "orchestration",
+      "obsidian-vault",
+      "cost-memory-block"
+    ],
+    "backlinks": [
+      "cost-memory-block",
+      "goal-surface-one-goal-loop",
+      "orchestration",
+      "rag-pipeline",
+      "research-layer",
+      "token-optimization",
+      "mcp-layer",
+      "obsidian-vault",
+      "qwen-local-llama-cpp"
+    ]
+  },
+  {
+    "slug": "multi-model-router",
+    "title": "Multi-Model Router",
+    "summary": "tags: orchestration, cost, models, built",
+    "group": "Components",
+    "tags": [
+      "built"
+    ],
+    "links": [
+      "orchestration",
+      "cost-memory-block"
+    ],
+    "backlinks": [
+      "cost-memory-block",
+      "model-selection-guide",
+      "anthropic-api",
+      "google-gemini-integration",
+      "openai-api",
+      "qwen-local-llama-cpp"
+    ]
+  },
+  {
+    "slug": "notification-system",
+    "title": "Notification System",
+    "summary": "tags: notifications, reliability, built",
+    "group": "Components",
+    "tags": [],
+    "links": [
+      "discord-bot",
+      "architecture-decision-records"
+    ],
+    "backlinks": [
+      "rag-pipeline",
+      "discord-bot",
+      "voice-interface"
+    ]
+  },
+  {
+    "slug": "observability",
+    "title": "Observability",
+    "summary": "Every event emitted as structured JSON to a rotating log file:",
+    "group": "Components",
+    "tags": [
+      "monitoring",
+      "layer",
+      "built"
+    ],
+    "links": [
+      "dashboard",
+      "reliability-patterns"
+    ],
+    "backlinks": [
+      "interop-quality",
+      "pipeline-manager",
+      "reliability-patterns",
+      "self-diagnose-engine",
+      "dashboard-architecture"
+    ]
+  },
+  {
+    "slug": "orchestration",
+    "title": "Orchestration",
+    "summary": "",
+    "group": "Components",
+    "tags": [
+      "orchestration",
+      "layer",
+      "agents",
+      "pipeline",
+      "built"
+    ],
+    "links": [
+      "dashboard",
+      "rag-pipeline",
+      "token-optimization",
+      "memory-layer",
+      "mcp-layer"
+    ],
+    "backlinks": [
+      "http-agent-mesh",
+      "multi-model-router",
+      "schema-models",
+      "task-dependency-dag",
+      "task-scheduler",
+      "test-suite",
+      "evaluation-loop",
+      "memory-layer",
+      "rag-pipeline",
+      "research-layer",
+      "token-optimization",
+      "dashboard-architecture",
+      "dashboard",
+      "discord-bot",
+      "voice-interface",
+      "capability-graph",
+      "mcp-layer",
+      "skills-registry"
+    ]
+  },
+  {
+    "slug": "orchestrator",
+    "title": "Orchestrator",
+    "summary": "The Orchestrator is the central engine of the Claude Ecosystem. It sits at the heart of every operation: receiving task requests, deciding which AI agent should handle them, dispat…",
+    "group": "Components",
+    "tags": [
+      "orchestration",
+      "layer",
+      "agents",
+      "pipeline",
+      "built"
+    ],
+    "links": [
+      "agent-mesh",
+      "budget-guard",
+      "circuit-breaker",
+      "planner",
+      "tool-loop"
+    ],
+    "backlinks": [
+      "agent-mesh",
+      "budget-guard",
+      "circuit-breaker",
+      "dag-pipeline-engine",
+      "planner",
+      "watchdog",
+      "perplexity-ai-sonar-pro"
+    ]
   },
   {
     "slug": "pipeline-manager",
@@ -80,8 +659,17 @@
       "orchestration",
       "built"
     ],
-    "links": [],
-    "backlinks": []
+    "links": [
+      "dashboard",
+      "observability",
+      "reliability-patterns"
+    ],
+    "backlinks": [
+      "reliability-patterns",
+      "dashboard-architecture",
+      "dashboard",
+      "skill-library"
+    ]
   },
   {
     "slug": "planner",
@@ -96,17 +684,20 @@
     ],
     "links": [
       "dag-pipeline-engine",
+      "orchestrator",
+      "agent-mesh",
       "anthropic-api"
     ],
     "backlinks": [
       "dag-pipeline-engine",
+      "orchestrator",
       "tool-loop"
     ]
   },
   {
     "slug": "rag-pipeline",
     "title": "RAG Pipeline",
-    "summary": "The RAG Pipeline is the ecosystem's memory retrieval engine. It converts text into numerical vector representations (embeddings), stores them in ChromaDB, and retrieves the most re…",
+    "summary": "rag/store.py:44 uses chromadb.PersistentClient(path=chromadir) — data is always persisted to disk. chromadir is created with mkdir(parents=True, existok=True) before the client ini…",
     "group": "Components",
     "tags": [
       "rag",
@@ -115,12 +706,96 @@
       "built"
     ],
     "links": [
-      "chromadb"
+      "memory-layer",
+      "orchestration",
+      "dashboard-architecture",
+      "notification-system"
     ],
     "backlinks": [
+      "orchestration",
+      "evaluation-loop",
+      "memory-layer",
       "token-optimization",
-      "chromadb"
+      "mcp-layer",
+      "chromadb",
+      "obsidian-vault",
+      "openai-api"
     ]
+  },
+  {
+    "slug": "reliability-patterns",
+    "title": "Reliability Patterns",
+    "summary": "Prevents cascading failures when an agent or external service is degraded.",
+    "group": "Components",
+    "tags": [
+      "orchestration",
+      "reliability",
+      "built"
+    ],
+    "links": [
+      "dashboard",
+      "pipeline-manager",
+      "observability"
+    ],
+    "backlinks": [
+      "observability",
+      "pipeline-manager"
+    ]
+  },
+  {
+    "slug": "research-layer",
+    "title": "Research Layer",
+    "summary": "tags: layer, research, built",
+    "group": "Components",
+    "tags": [],
+    "links": [
+      "memory-layer",
+      "token-optimization",
+      "orchestration"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "safety-cost-floor",
+    "title": "Safety / Cost Floor",
+    "summary": "Turning the autonomy dial up, or letting the Skill Forge(/notes/skill-system-library-forge-injection) activate",
+    "group": "Components",
+    "tags": [
+      "security",
+      "autonomy",
+      "cost",
+      "built"
+    ],
+    "links": [
+      "skill-system-library-forge-injection",
+      "budget-guard",
+      "tool-loop",
+      "agentic-os-modules"
+    ],
+    "backlinks": [
+      "agentic-os-modules",
+      "budget-guard",
+      "cost-memory-block",
+      "dashboard-v2",
+      "durable-execution-eval-ratchet",
+      "goal-surface-one-goal-loop",
+      "interop-quality",
+      "tool-loop"
+    ]
+  },
+  {
+    "slug": "schema-models",
+    "title": "Schema Models",
+    "summary": "tags: architecture, code-quality, built",
+    "group": "Components",
+    "tags": [],
+    "links": [
+      "orchestration",
+      "task-dependency-dag",
+      "http-agent-mesh",
+      "architecture-decision-records"
+    ],
+    "backlinks": []
   },
   {
     "slug": "self-diagnose-engine",
@@ -128,8 +803,67 @@
     "summary": "tags: reliability, monitoring, built",
     "group": "Components",
     "tags": [],
-    "links": [],
+    "links": [
+      "observability",
+      "telegram-integration"
+    ],
     "backlinks": []
+  },
+  {
+    "slug": "session-to-vault",
+    "title": "Session to Vault",
+    "summary": "After each working session, sessiontovault.py reads the session's conversation transcript, extracts what files were changed, what tasks were completed, and what the user asked for …",
+    "group": "Components",
+    "tags": [
+      "session",
+      "memory",
+      "built"
+    ],
+    "links": [
+      "vault-sync-utility"
+    ],
+    "backlinks": [
+      "mcp-server-obsidian",
+      "vault-sync-utility"
+    ]
+  },
+  {
+    "slug": "skill-library",
+    "title": "Skill Library",
+    "summary": "Built 2026-05-15 (Task 40). File: orchestrator/skills/library.py (SkillLibrary). Endpoints: GET/POST /skills, GET /skills/search, GET/PATCH/DELETE /skills/{id}, POST /skills/{id}/u…",
+    "group": "Components",
+    "tags": [
+      "skills",
+      "quality",
+      "built"
+    ],
+    "links": [
+      "skills-registry",
+      "pipeline-manager"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "skill-system-library-forge-injection",
+    "title": "Skill System (library + forge + injection)",
+    "summary": "(see skills/TAXONOMY.md). Format: skills/SPEC.md — SKILL.md container (open",
+    "group": "Components",
+    "tags": [
+      "component",
+      "built",
+      "skills",
+      "autonomy"
+    ],
+    "links": [
+      "agentic-os-modules"
+    ],
+    "backlinks": [
+      "agentic-os-modules",
+      "durable-execution-eval-ratchet",
+      "goal-surface-one-goal-loop",
+      "interop-quality",
+      "safety-cost-floor"
+    ]
   },
   {
     "slug": "skills-registry",
@@ -141,7 +875,75 @@
       "layer",
       "built"
     ],
-    "links": [],
+    "links": [
+      "dashboard",
+      "orchestration",
+      "capability-graph",
+      "mcp-layer"
+    ],
+    "backlinks": [
+      "dashboard-architecture",
+      "dashboard",
+      "capability-graph",
+      "skill-library"
+    ]
+  },
+  {
+    "slug": "startup-scripts",
+    "title": "Startup Scripts",
+    "summary": "\"C:\\Windows\\System32\\llama.cpp\\build\\bin\\Release\\llama-server.exe\" -m \"D:\\models\\qwen3.6-27b-mtp\\Qwen3.6-27B-Q3KS.gguf\" -ngl 99 -c 8192 -fa on --parallel 1 --port 11435 --host 127.…",
+    "group": "Components",
+    "tags": [
+      "reliability",
+      "built"
+    ],
+    "links": [
+      "http-agent-mesh"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "task-dependency-dag",
+    "title": "Task Dependency DAG",
+    "summary": "tags: pipeline, orchestration, built",
+    "group": "Components",
+    "tags": [
+      "built"
+    ],
+    "links": [
+      "orchestration"
+    ],
+    "backlinks": [
+      "schema-models"
+    ]
+  },
+  {
+    "slug": "task-scheduler",
+    "title": "Task Scheduler",
+    "summary": "tags: orchestration, built",
+    "group": "Components",
+    "tags": [],
+    "links": [
+      "orchestration",
+      "telegram-integration",
+      "architecture-decision-records"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "test-suite",
+    "title": "Test Suite",
+    "summary": "283 tests total. All 11 test modules pass as of the last verified run.",
+    "group": "Components",
+    "tags": [
+      "code-quality",
+      "reliability",
+      "built"
+    ],
+    "links": [
+      "orchestration",
+      "architecture-decision-records"
+    ],
     "backlinks": []
   },
   {
@@ -151,9 +953,14 @@
     "group": "Components",
     "tags": [],
     "links": [
-      "rag-pipeline"
+      "rag-pipeline",
+      "memory-layer",
+      "orchestration"
     ],
     "backlinks": [
+      "orchestration",
+      "memory-layer",
+      "research-layer",
       "model-selection-guide"
     ]
   },
@@ -166,14 +973,58 @@
       "orchestration",
       "agents",
       "pipeline",
+      "security",
       "built"
     ],
     "links": [
+      "safety-cost-floor",
       "code-sandbox",
+      "agent-mesh",
       "planner"
     ],
     "backlinks": [
-      "code-sandbox"
+      "agent-mesh",
+      "code-sandbox",
+      "orchestrator",
+      "safety-cost-floor"
+    ]
+  },
+  {
+    "slug": "vault-sync-utility",
+    "title": "Vault Sync Utility",
+    "summary": "The vault contains .md files with a status: field (planned / partial / built). Without automation, these fields drift — a component gets built but its vault entry still says \"plann…",
+    "group": "Components",
+    "tags": [
+      "memory",
+      "built"
+    ],
+    "links": [
+      "session-to-vault"
+    ],
+    "backlinks": [
+      "mcp-server-obsidian",
+      "session-to-vault"
+    ]
+  },
+  {
+    "slug": "voice-interface",
+    "title": "Voice Interface",
+    "summary": "Status: built 2026-05-25 (session 47). Files: orchestrator/notifier/voice.py (VoiceHandler), orchestrator/notifier/telegramcommands.py (onvoice, handlevoice, /task command), orches…",
+    "group": "Components",
+    "tags": [
+      "notifications",
+      "voice",
+      "telegram",
+      "whisper",
+      "built"
+    ],
+    "links": [
+      "orchestration",
+      "notification-system"
+    ],
+    "backlinks": [
+      "openai-api",
+      "telegram-integration"
     ]
   },
   {
@@ -186,10 +1037,25 @@
       "monitoring",
       "built"
     ],
-    "links": [],
+    "links": [
+      "agent-mesh",
+      "telegram-integration",
+      "orchestrator"
+    ],
     "backlinks": [
       "circuit-breaker"
     ]
+  },
+  {
+    "slug": "inspiration-sources",
+    "title": "Inspiration Sources",
+    "summary": "tags: reference, research",
+    "group": "Guides",
+    "tags": [],
+    "links": [
+      "orchestrator-comparison"
+    ],
+    "backlinks": []
   },
   {
     "slug": "model-selection-guide",
@@ -198,6 +1064,7 @@
     "group": "Guides",
     "tags": [],
     "links": [
+      "multi-model-router",
       "token-optimization"
     ],
     "backlinks": []
@@ -209,7 +1076,9 @@
     "group": "Guides",
     "tags": [],
     "links": [],
-    "backlinks": []
+    "backlinks": [
+      "inspiration-sources"
+    ]
   },
   {
     "slug": "anthropic-api",
@@ -218,11 +1087,15 @@
     "group": "Integrations",
     "tags": [],
     "links": [
+      "multi-model-router",
+      "openai-api",
       "budget-guard"
     ],
     "backlinks": [
+      "budget-guard",
       "planner",
-      "budget-guard"
+      "github-integration",
+      "google-gemini-integration"
     ]
   },
   {
@@ -232,10 +1105,142 @@
     "group": "Integrations",
     "tags": [],
     "links": [
+      "rag-pipeline",
+      "openai-api"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "discord-integration",
+    "title": "Discord Integration",
+    "summary": "The Discord integration allows the ecosystem to send notifications, approval requests, and cost alerts to a Discord channel via a webhook URL. It was the original notification chan…",
+    "group": "Integrations",
+    "tags": [
+      "notifications",
+      "partial"
+    ],
+    "links": [
+      "telegram-integration"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "github-integration",
+    "title": "GitHub Integration",
+    "summary": "GitHub serves two roles in the ecosystem:",
+    "group": "Integrations",
+    "tags": [
+      "integration",
+      "auth",
+      "built"
+    ],
+    "links": [
+      "dashboard",
+      "anthropic-api"
+    ],
+    "backlinks": []
+  },
+  {
+    "slug": "google-gemini-integration",
+    "title": "Google Gemini Integration",
+    "summary": "tags: models, cost, built",
+    "group": "Integrations",
+    "tags": [],
+    "links": [
+      "multi-model-router",
+      "anthropic-api",
+      "openai-api"
+    ],
+    "backlinks": [
+      "openai-api"
+    ]
+  },
+  {
+    "slug": "obsidian-vault",
+    "title": "Obsidian Vault",
+    "summary": "tags: memory, built",
+    "group": "Integrations",
+    "tags": [],
+    "links": [
+      "memory-layer",
       "rag-pipeline"
     ],
     "backlinks": [
-      "rag-pipeline"
+      "memory-layer"
+    ]
+  },
+  {
+    "slug": "openai-api",
+    "title": "OpenAI API",
+    "summary": "tags: models, rag, built",
+    "group": "Integrations",
+    "tags": [],
+    "links": [
+      "multi-model-router",
+      "rag-pipeline",
+      "voice-interface",
+      "google-gemini-integration"
+    ],
+    "backlinks": [
+      "anthropic-api",
+      "chromadb",
+      "google-gemini-integration"
+    ]
+  },
+  {
+    "slug": "perplexity-ai-sonar-pro",
+    "title": "Perplexity AI (sonar-pro)",
+    "summary": "Perplexity's sonar-pro model accessed via its OpenAI-compatible API endpoint.",
+    "group": "Integrations",
+    "tags": [
+      "models",
+      "integration",
+      "built"
+    ],
+    "links": [
+      "qwen-local-llama-cpp",
+      "orchestrator"
+    ],
+    "backlinks": [
+      "qwen-local-llama-cpp"
+    ]
+  },
+  {
+    "slug": "qwen-local-llama-cpp",
+    "title": "Qwen — Local llama.cpp",
+    "summary": "A locally-running Qwen model served by llama.cpp on port 11435, providing a free,",
+    "group": "Integrations",
+    "tags": [
+      "integration",
+      "local-llm",
+      "built"
+    ],
+    "links": [
+      "perplexity-ai-sonar-pro",
+      "multi-model-router",
+      "memory-layer"
+    ],
+    "backlinks": [
+      "perplexity-ai-sonar-pro"
+    ]
+  },
+  {
+    "slug": "telegram-integration",
+    "title": "Telegram Integration",
+    "summary": "Telegram is the primary mobile interface for the Claude Ecosystem. The integration consists of two parts: a notification sender (the system sends you alerts, briefings, and approva…",
+    "group": "Integrations",
+    "tags": [
+      "notifications",
+      "built"
+    ],
+    "links": [
+      "voice-interface"
+    ],
+    "backlinks": [
+      "watchdog",
+      "self-diagnose-engine",
+      "task-scheduler",
+      "discord-integration"
     ]
   },
   {
@@ -245,6 +1250,11 @@
     "group": "Review",
     "tags": [],
     "links": [],
-    "backlinks": []
+    "backlinks": [
+      "notification-system",
+      "schema-models",
+      "task-scheduler",
+      "test-suite"
+    ]
   }
 ]

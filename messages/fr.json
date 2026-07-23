@@ -53,7 +53,13 @@
     "notes": {
       "kicker": "Jardin numérique",
       "title": "Notes",
-      "intro": "Des notes choisies de mon carnet d'ingénierie. J'ai ajouté cette section au portfolio pour montrer comment je conçois mes projets, les choix que je fais et les éléments que je construis durant les sessions. Chaque note présente une idée utile, une décision ou un composant, puis renvoie vers les notes liées. Ces notes permettent aussi d'orienter le travail des IA génératives, en donnant un contexte et des contraintes pour la génération de code avant de procéder à ma requête."
+      "intro": "Des notes choisies de mon carnet d'ingénierie — comment je conçois mes projets, les choix que je fais et les éléments que je construis.",
+      "guideWhatTitle": "Ce que c'est",
+      "guideWhat": "Un jardin numérique : les notes que je tiens en construisant l'Ecosystem. Pas un blog — des notes courtes et reliées, chacune sur une seule idée, décision ou composant.",
+      "guideUseTitle": "À quoi ça sert",
+      "guideUse": "Ça montre comment je pense et je conçois — les choix, les compromis et les briques derrière les projets. Ces mêmes notes donnent aussi à mes agents IA le contexte et les contraintes dont ils ont besoin avant de générer du code.",
+      "guideHowTitle": "Comment le lire",
+      "guideHow": "Chaque note tient sur une idée et renvoie vers les notes liées. La carte ci-dessous trace ces liens — survolez un point pour voir ses connexions, cliquez pour ouvrir la note."
     },
     "now": {
       "kicker": "En ce moment",

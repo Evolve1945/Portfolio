@@ -1,26 +1,13 @@
 {
-  "_comment": "Digital garden. `includeFiles` is a curated allowlist of vault-relative notes to publish (flagship features, guides, architecture). `include` (folders) is available for a broader sweep but left empty by default. Sensitive folders/files and personal/financial content are excluded/scanned out. Run `npm run sync:notes`, then commit content/notes/.",
+  "_comment": "Digital garden. `include` folder-globs the safe feature areas (Components / Guides / Integrations) so new notes there publish automatically — that is the self-updating garden. `includeFiles` adds individual picks (e.g. one architecture review). Sensitive areas (Security, Audits, Future/Vision drafts, sessions, errors, personal/financial) are excluded and every note is content-scanned + length-filtered. Run `npm run sync:notes`, then commit content/notes/.",
   "vaultPath": "C:\\Users\\rudol\\Documents\\Evolve",
-  "include": [],
+  "include": [
+    "Claude-Ecosystem/Components",
+    "Claude-Ecosystem/Guides",
+    "Claude-Ecosystem/Integrations"
+  ],
   "includeFiles": [
-    "Claude-Ecosystem/Review/Architecture Decision Records.md",
-    "Claude-Ecosystem/Guides/Model Selection Guide.md",
-    "Claude-Ecosystem/Guides/Orchestrator Comparison.md",
-    "Claude-Ecosystem/Components/Circuit Breaker.md",
-    "Claude-Ecosystem/Components/Watchdog.md",
-    "Claude-Ecosystem/Components/DAG Pipeline Engine.md",
-    "Claude-Ecosystem/Components/Tool Loop.md",
-    "Claude-Ecosystem/Components/Planner.md",
-    "Claude-Ecosystem/Components/Code Sandbox.md",
-    "Claude-Ecosystem/Components/Budget Guard.md",
-    "Claude-Ecosystem/Components/Core/MCP Server.md",
-    "Claude-Ecosystem/Components/Core/Self-Diagnose Engine.md",
-    "Claude-Ecosystem/Components/Core/Pipeline Manager.md",
-    "Claude-Ecosystem/Components/Skills/Skills Registry.md",
-    "Claude-Ecosystem/Components/Intelligence/Token Optimization.md",
-    "Claude-Ecosystem/Integrations/Anthropic API.md",
-    "Claude-Ecosystem/Integrations/ChromaDB.md",
-    "Components/RAG Pipeline.md"
+    "Claude-Ecosystem/Review/Architecture Decision Records.md"
   ],
   "excludeDirs": [
     "Security",
@@ -28,9 +15,21 @@
     "errors",
     "Audits",
     "Income-Plan",
-    "Data Pipeline"
+    "Data Pipeline",
+    "Future",
+    "Vision",
+    "design-system-source"
   ],
-  "excludeFiles": ["README.md", "CLAUDE.md", "Key Rotation.md"],
+  "excludeFiles": [
+    "README.md",
+    "CLAUDE.md",
+    "Key Rotation.md",
+    "Environment Configuration.md",
+    "Dashboard Security Review.md",
+    "Dashboard Authentication.md",
+    "Credential Manager.md",
+    "Secret Isolation.md"
+  ],
   "sensitiveKeywords": [
     "income",
     "salaire",

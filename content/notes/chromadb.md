@@ -32,5 +32,5 @@ Queries work by converting the search text to a vector using the same embedding 
 
 ## Related
 - [Components/Intelligence/RAG Pipeline](/notes/rag-pipeline) — the pipeline that feeds data into and reads data from ChromaDB
-- Integrations/OpenAI API — provides the embedding model (primary)
+- [Integrations/OpenAI API](/notes/openai-api) — provides the embedding model (primary)
 - Security/Trust Boundary Classifier — the trust level field on every ChromaDB chunk

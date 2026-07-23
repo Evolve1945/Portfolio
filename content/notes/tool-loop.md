@@ -14,9 +14,17 @@ The Tool Loop is enabled for the coder and tester agents (the agents most likely
 ## Current Status
  Built — 4 tools active (`execute_code`, `read_file`, `write_file`, `list_files`). Max 10 iterations. Path traversal guard in place. Code execution routes through the Docker Sandbox. Wired into the Orchestrator task execution pipeline.
 
+### Gates in `_dispatch_inner` (in order, all dark + fail-open)
+Each tool call passes through, before its handler runs:
+1. **Contract gate** — tool outside the agent's allowlist is refused.
+2. **Capability-syscall gate** (rec #7, `SYSCALL_ENFORCE_ENABLED`) — contract-backed capability check + audit.
+3. **Loop detector** (P13, `LOOP_DETECT_ENABLED`) — identical `(tool, args)` past `LOOP_DETECT_THRESHOLD` (default 4) halts the branch and opens an approvals item. Fresh per run. See [Safety Floor](/notes/safety-cost-floor).
+4. **Classifier gate** (P42, `CLASSIFIER_GATE_ENABLED`) — cheap local allow/flag Sonnet judge vs block rules, seeing only the task instruction + literal command (injection-resistant). See [Safety Floor](/notes/safety-cost-floor).
+
 ## Key Files
-- `orchestrator/tool_loop.py` — `ToolLoop` class, tool definitions, iteration logic, path guard
+- `orchestrator/tool_loop.py` — `ToolLoop` class, tool definitions, iteration logic, path guard, `LoopDetector` (P13), `_classifier_gate` (P42)
 - `orchestrator/sandbox/sandbox.py` — Code Sandbox called by `execute_code` tool
+- `orchestrator/classifier_gate.py` — two-stage safety gate (P42)
 
 ## Open Questions / Known Gaps
 - The 4 current tools are a starting set. Future additions might include `search_web`, `query_memory`, and `call_agent` (to let agents delegate subtasks).
@@ -24,6 +32,7 @@ The Tool Loop is enabled for the coder and tester agents (the agents most likely
 
 ## Related
 - [Components/Code Sandbox](/notes/code-sandbox) — provides isolated code execution for the `execute_code` tool
-- Components/Agent Mesh — coder and tester agents run the Tool Loop
+- [Components/Agent Mesh](/notes/agent-mesh) — coder and tester agents run the Tool Loop
 - [Components/Planner](/notes/planner) — plans the steps before the Tool Loop executes them
 - Security/Agent Contracts — tool allowlists per agent define which tools are available
+- [Safety Floor](/notes/safety-cost-floor) — the loop detector (P13) and classifier gate (P42) live in this loop

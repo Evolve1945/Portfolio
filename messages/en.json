@@ -53,7 +53,13 @@
     "notes": {
       "kicker": "Digital garden",
       "title": "Notes",
-      "intro": "Selected notes from my engineering notebook. I added this section to show how I think through building projects, the choices I make, and the parts I design. Each note focuses on one useful idea, decision, or component and links to the related notes. These notes also help guide the work of generative AIs, by providing context and constraints for code generation before proceeding with my request."
+      "intro": "Selected notes from my engineering notebook — how I think through building, the choices I make, and the parts I design.",
+      "guideWhatTitle": "What this is",
+      "guideWhat": "A digital garden: notes I keep while building the Ecosystem. Not a blog — short, linked notes, each on a single idea, decision, or component.",
+      "guideUseTitle": "What it's for",
+      "guideUse": "It shows how I think and design — the choices, trade-offs, and building blocks behind the projects. The same notes also feed my AI agents the context and constraints they need before generating code.",
+      "guideHowTitle": "How to read it",
+      "guideHow": "Each note stays on one idea and links to the related ones. The map below draws those links — hover a node to see its connections, click to open the note."
     },
     "now": {
       "kicker": "Now",

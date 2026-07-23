@@ -18,6 +18,8 @@ export interface Project {
   url?: string;
   tags: string[];
   tagline: Bilingual;
+  /** Plain-language "what it's for" — concrete advantages / daily-life benefits, shown as a highlighted panel near the top. */
+  value?: Para;
   context: Para; // cadre global + enjeux
   built: Para; // what I built
   challenges: Para; // problems encountered
@@ -65,24 +67,44 @@ export const projects: Project[] = [
       fr: "Infrastructure d'agents IA auto-réparante : elle tourne, se rétablit et se souvient toute seule.",
       en: "Self-healing AI agent infrastructure that runs, recovers, and remembers on its own.",
     },
+    value: {
+      fr: [
+        "Décharge les parties répétitives et longues d'un projet — mise en place, refactorisations, rédaction de docs, exécution des tests — sur une équipe d'agents, pour que je passe mon temps sur l'architecture et les problèmes difficiles.",
+        "Continue à tourner sans surveillance : il rejoue les tâches échouées, bascule d'un modèle à l'autre en cas de panne ou de limite de débit, et se relance seul au lieu de mourir en silence.",
+        "Se souvient d'une session à l'autre : décisions, code et notes vivent dans une mémoire consultable, donc je ne réexplique pas le contexte à chaque fois que je reprends.",
+        "Transforme un objectif flou en tâches ordonnées et suivies, avec une trace claire de ce qui a été fait — au lieu d'un tas de scripts à moitié finis.",
+        "Concrètement, c'est une petite équipe de dév toujours disponible pour un étudiant seul : elle me laisse lancer des projets plus ambitieux que je ne pourrais porter à la main.",
+      ],
+      en: [
+        "Offloads the repetitive, long-running parts of a build — scaffolding, refactors, writing docs, running tests — onto a team of agents, so my hours go to architecture and the hard problems.",
+        "Keeps working when I'm not watching: it retries failed tasks, fails over between models when one is down or rate-limited, and restarts itself instead of dying silently.",
+        "Remembers across sessions: decisions, code and notes live in a searchable memory, so I don't re-explain the context every time I pick the work back up.",
+        "Turns a vague goal into ordered, tracked tasks with a clear record of what was done — instead of a pile of half-finished scripts.",
+        "In practice it's a small, always-available dev team for a solo student: it lets me take on more ambitious projects than I could carry by hand.",
+      ],
+    },
     context: {
       fr: [
         "Je voulais une infrastructure IA toujours active — capable d'agir indépendamment, se relancer seule et de garder une mémoire — plutôt qu'un script qu'on lance à la main.",
         "L'enjeu n'était pas de faire une démo, mais de traiter la fiabilité, le coût et la mémoire comme des contraintes de premier ordre, comme dans un vrai système en production.",
+        "L'idée était de simplifier l'organisation dans un projet et de rendre les développements plus rapides et plus fiables, en laissant l'IA gérer les tâches répétitives, simples et longues, et en me concentrant sur la conception de l'architecture et les tâches les plus lourdes. Cet ecosystème d'agents IA sert de petite équipe de développement pouvant assister un développeur humain au quotidien.",
+        "Je voulais à travers ce projet réduire les limites de l'IA, en la personnalisant à mes besoins et mon usage avec des outils nécessaires, ce qui me simplifie par la suite d'entamer de nouveaux projets plus ambitieux et plus complexes.",
       ],
       en: [
-        "I wanted always-on AI infrastructure that could act independantly, restart itself and keep a memory — not a script you launch by hand.",
+        "I wanted always-on AI infrastructure that could act independently, restart itself and keep a memory — not a script you launch by hand.",
         "The point was never a demo: it was to treat reliability, cost and memory as first-class constraints, the way a real production system has to.",
+        "The idea was to simplify organization in a project and make development faster and more reliable with AI, letting AI handle repetitive, simple, long-running tasks while I focus on architecture design and the heaviest tasks. This ecosystem of AI agents serves as a small development team that can assist a human developer day-to-day.",
+        "I wanted through this project to reduce the limits of AI, by customizing it to my needs and usage by adding the required tools, which then simplifies for me to start new projects that are more ambitious and complex.",
       ],
     },
     built: {
       fr: [
         "Un orchestrateur de 12 agents avec file de priorité, disjoncteurs et dead-letter queue, pour que les tâches échouent proprement et soient rejouées jusqu'à leur succès.",
-        "Autour : une mémoire RAG (ChromaDB), un routeur multi-modèles qui bascule de Claude vers GPT-4o puis Gemini, un watchdog auto-réparant, un tableau de bord FastAPI/WebSocket et un bot Discord de contrôle.",
+        "Autour : une mémoire RAG (ChromaDB), un routeur multi-modèles qui bascule de Claude vers GPT-4o puis Gemini, un watchdog auto-réparant, un tableau de bord FastAPI/WebSocket, un bot Discord de contrôle, et des pipelines liés à un vault Obsidian suivant une hiérarchie stricte, dont le parcours est optimisé avec Graphify.",
       ],
       en: [
         "A 12-agent orchestrator with a priority queue, circuit breakers and a dead-letter queue, so tasks fail cleanly and get replayed until reaching success.",
-        "Around it: a RAG memory (ChromaDB), a multi-model router that fails over Claude to GPT-4o to Gemini, a self-healing watchdog, a FastAPI/WebSocket dashboard and a Discord control bot.",
+        "Around it: a RAG memory (ChromaDB), a multi-model router that fails over from Claude to GPT-4o to Gemini, a self-healing watchdog, a FastAPI/WebSocket dashboard, a Discord control bot, and pipelines tied to an Obsidian vault following a strict hierarchy, whose traversal is optimized with Graphify.",
       ],
     },
     challenges: {
@@ -92,7 +114,7 @@ export const projects: Project[] = [
       ],
       en: [
         "Rate limits and API outages pushed me to build the multi-model failover chain instead of stopping at the first 429.",
-        "Keeping it standing without me watching forced the watchdog (retries with backoff, alerts) and writing down strict rules ; keeping context across tasks forced the RAG layer along with a search inside the Obsidian vault befoore proceeding with a task.",
+        "Keeping it standing without me watching forced the watchdog (retries with backoff, alerts) and writing down strict rules; keeping context across tasks forced the RAG layer, along with a search inside the Obsidian vault before proceeding with a task.",
       ],
     },
     limits: {
@@ -254,7 +276,7 @@ export const projects: Project[] = [
     },
     limits: {
       fr: [
-        "Petite envergure — mécaniques simples, peu de contenu — et pas d'architecture formelle : le projet a grandi de façon organique avec notre imagination. La capacité graphique devient assez saturée avec l'ajout de nouvelles entités animées. Le projet rest interminé mais j'envisage de le finir pour de bon une fois que j'aurai consolidé mes connaissances en programmation de jeux et rédaction de scénario.",
+        "Petite envergure — mécaniques simples, peu de contenu — et pas d'architecture formelle : le projet a grandi de façon organique avec notre imagination. La capacité graphique devient assez saturée avec l'ajout de nouvelles entités animées. Le projet reste inachevé, mais j'envisage de le finir pour de bon une fois que j'aurai consolidé mes connaissances en programmation de jeux et en écriture de scénario.",
       ],
       en: [
         "Small in scope — simple mechanics, limited content — and no formal architecture: it grew organically. The graphics capacity becomes quite saturated with the addition of new animated entities. The project remains unfinished but I plan to finish it properly once I've consolidated my game programming and story-writing skills.",

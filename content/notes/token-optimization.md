@@ -152,6 +152,6 @@ Prevents injecting the same fact 3 different ways.
 ## Related Nodes
 
 - [RAG Pipeline](/notes/rag-pipeline) — retrieval strategy
-- Memory Layer — where compressed memories live
-- Orchestration — enforces token budgets per agent
+- [Memory Layer](/notes/memory-layer) — where compressed memories live
+- [Orchestration](/notes/orchestration) — enforces token budgets per agent
 - Prompt Library — cached and optimised prompts

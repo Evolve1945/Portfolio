@@ -27,6 +27,28 @@ const sensitive = (config.sensitiveKeywords || []).map((s) => s.toLowerCase());
 const slugify = (s) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
+// Strip local machine/user paths so the garden never leaks a username or the
+// on-disk layout. Escaped (JSON/code `C:\\Users\\name\\`) is handled before the
+// raw form; POSIX home paths collapse too. The rest of the path (project names)
+// is kept for readability.
+// Drop internal task-tracking codes from note titles so the public garden reads
+// cleanly (e.g. "Dashboard V2 (P91)" -> "Dashboard V2", "Schema Models (Task 103)"
+// -> "Schema Models"). Descriptive parentheticals like "(Obsidian)" are kept.
+function cleanTitle(t) {
+  return t
+    .replace(/\s*\((?:P\d+|Task\s*\d+)(?:\s*[·,•]\s*[A-Za-z]*\d+)*\)/gi, "")
+    .replace(/\s*\+\s*Karpathy rules/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function sanitizePaths(s) {
+  return s
+    .replace(/[A-Za-z]:\\{2}Users\\{2}[^\\"\s]+\\{2}/g, "~\\\\")
+    .replace(/[A-Za-z]:\\Users\\[^\\/"\s]+\\/g, "~\\")
+    .replace(/\/(?:home|Users)\/[^/"\s]+\//g, "~/");
+}
+
 function stripFrontmatter(raw) {
   if (!raw.startsWith("---")) return { body: raw, tags: [] };
   const end = raw.indexOf("\n---", 3);
@@ -78,7 +100,7 @@ for (const c of candidates) {
   if (body.replace(EMOJI, "").trim().length < 600) { skipped.push(`${c.rel} — too short (stub)`); continue; }
   const fileName = basename(c.rel).replace(/\.md$/i, "");
   const h1 = body.match(/^#\s+(.+)$/m);
-  const title = (h1 ? h1[1] : fileName).replace(EMOJI, "").trim();
+  const title = cleanTitle((h1 ? h1[1] : fileName).replace(EMOJI, "").trim());
   const group = segs[0] === "Claude-Ecosystem" ? segs[1] : segs[0];
   resolved.push({ rel: c.rel, fileName, title, group, tags, body });
 }
@@ -110,6 +132,7 @@ function processBody(n) {
     if (slug && slug !== n.slug) { links.add(slug); return `[${label}](/notes/${slug})`; }
     return label;
   });
+  body = sanitizePaths(body);
   body = body.replace(/[ \t]{2,}/g, " ").replace(/\n{3,}/g, "\n\n").trim();
   const firstPara =
     body.split("\n").map((l) => l.trim())

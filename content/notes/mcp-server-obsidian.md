@@ -33,7 +33,7 @@ Without this server, Claude can only work with files that the user manually copi
 
 ## Key File
 
-`C:\Users\rudol\Documents\Claude\Projects\Ecosystem\mcp\obsidian_mcp_server.py`
+`~\Documents\Claude\Projects\Ecosystem\mcp\obsidian_mcp_server.py`
 
 Built using the `mcp.server.fastmcp` framework (Anthropic's MCP Python SDK).
 
@@ -49,7 +49,7 @@ Typical registration in `~/.claude/mcp.json` or Claude's settings UI:
 {
  "obsidian": {
  "command": "python",
- "args": ["C:\\Users\\rudol\\Documents\\Claude\\Projects\\Ecosystem\\mcp\\obsidian_mcp_server.py"]
+ "args": ["~\\Documents\\Claude\\Projects\\Ecosystem\\mcp\\obsidian_mcp_server.py"]
  }
 }
 ```
@@ -63,7 +63,7 @@ Once registered, all seven tools appear automatically in Claude's tool list each
 The vault root path is hardcoded on line 12 of `obsidian_mcp_server.py`:
 
 ```python
-VAULT = Path(r"C:\Users\rudol\Documents\Evolve\Claude-Ecosystem")
+VAULT = Path(r"~\Documents\Evolve\Claude-Ecosystem")
 ```
 
 This path is not read from the `.env` file or from any environment variable. If the vault is moved or if the system runs on a different machine, this line must be edited manually before the server will work.
@@ -92,6 +92,6 @@ Tracked as part of **Task 130** — the broader hardcoding remediation effort.
 ## Related Nodes
 
 - _AGENT_RULES — rules governing how agents use these write tools
-- Vault Sync Utility — companion tool that keeps status fields accurate
-- Session to Vault — higher-level session note tool built on top of the transcript
+- [Vault Sync Utility](/notes/vault-sync-utility) — companion tool that keeps status fields accurate
+- [Session to Vault](/notes/session-to-vault) — higher-level session note tool built on top of the transcript
 - Environment Configuration — .env file; vault path should eventually be read from here

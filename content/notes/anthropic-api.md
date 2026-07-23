@@ -36,6 +36,6 @@ The Evaluation Loop uses Haiku specifically because it is cheap enough (~$0.0002
 - Model names are hardcoded in several files; a centralised constants module is needed (identified in the hardcoding audit).
 
 ## Related
-- Components/Core/Multi-Model Router — routes between Haiku/Sonnet/Opus and the fallback providers
-- Integrations/OpenAI API — first fallback when Claude is unavailable
+- [Components/Core/Multi-Model Router](/notes/multi-model-router) — routes between Haiku/Sonnet/Opus and the fallback providers
+- [Integrations/OpenAI API](/notes/openai-api) — first fallback when Claude is unavailable
 - [Components/Budget Guard](/notes/budget-guard) — tracks Anthropic API spending against daily and monthly caps

@@ -23,6 +23,6 @@ The plan is then handed to the DAG Pipeline Engine, which executes the steps in 
 
 ## Related
 - [Components/DAG Pipeline Engine](/notes/dag-pipeline-engine) — executes the plan produced by the Planner
-- Components/Orchestrator — calls the Planner for complex tasks
-- Components/Agent Mesh — the agents that execute each planned step
+- [Components/Orchestrator](/notes/orchestrator) — calls the Planner for complex tasks
+- [Components/Agent Mesh](/notes/agent-mesh) — the agents that execute each planned step
 - [Integrations/Anthropic API](/notes/anthropic-api) — Opus model used for planning, Sonnet as fallback

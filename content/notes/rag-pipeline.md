@@ -1,62 +1,159 @@
-> Retrieval-Augmented Generation pipeline that gives every agent access to the ecosystem's long-term memory. Before any agent runs a task, the RAG pipeline retrieves the top semantically similar past results and injects them as context — so the system learns from its own history.
+## Verified — Task 118 (2026-05-03)
+
+`rag/store.py:44` uses `chromadb.PersistentClient(path=chroma_dir)` — data is always persisted to disk. `chroma_dir` is created with `mkdir(parents=True, exist_ok=True)` before the client initialises. `STORE_PATH` defaults to `<root>/rag_store`, overridable via `RAG_STORE_PATH` env var. The in-memory risk from §4.3 of the Weaknesses review is not present.
+
+> Semantic vector memory for the Claude Ecosystem — every task, correction, error, Obsidian note, and code file is embedded and searchable. Agents query their past before acting.
+
+**Status: BUILT.** Files in `rag/`. Requires `OPENAI_API_KEY` to activate.
 
 ---
 
-## What It Is
+## What It Does
 
-The RAG Pipeline is the ecosystem's memory retrieval engine. It converts text into numerical vector representations (embeddings), stores them in ChromaDB, and retrieves the most relevant past records whenever a new task needs context. Every task the system completes becomes a memory that future tasks can draw on.
-
----
-
-## Why It Matters
-
-Without RAG, every agent starts with a blank slate. With RAG, a researcher agent that summarised a topic last week can surface that summary when a similar topic comes up again — avoiding redundant API calls, keeping results consistent, and building on past work rather than repeating it. The RAG pipeline is what makes the ecosystem accumulate intelligence over time rather than remaining a stateless tool.
-
----
-
-## How It Works
-
-**Embedding:** After a task completes and passes evaluation, its output is passed through the embedder (`rag/embedder.py`). The embedder calls the OpenAI `text-embedding-3-small` model (or a local fallback) to produce a 1536-dimension vector.
-
-**Storage:** The vector is stored in ChromaDB alongside the original text, task metadata (agent type, task ID, timestamp, cost), and the collection name. ChromaDB uses HNSW (Hierarchical Navigable Small World) indexing for fast approximate nearest-neighbour search.
-
-**Retrieval:** Before dispatching a task, the Orchestrator calls `rag/client.py` with the task instruction. The client embeds the instruction and queries ChromaDB for the top-5 most similar past records across relevant collections. These records are formatted and injected into the agent's prompt as `[PAST CONTEXT]`.
-
-**Collections:** The RAG store is organised into 9 collections:
-
-| Collection | Contents |
+| Direction | What happens |
 |---|---|
-| `tasks` | Completed task outputs |
-| `corrections` | Human correction records |
-| `system_events` | Significant system events |
-| `obsidian_notes` | Vault notes synced via vault_sync.py |
-| `code_files` | Agent-generated code files |
-| `agent_snapshots` | Agent status snapshots |
-| `digests` | Weekly briefing content |
-| `approvals` | Approval gate decisions |
-| `file_drops` | User-uploaded files for context |
+| Ecosystem RAG | Task completions, failures, DLQ events, corrections, agent snapshots, approvals all auto-embedded |
+| Files RAG | Obsidian vault `.md` files and Ecosystem `.py` files are watched and embedded on save |
+| Inbox RAG | Drop any file into `rag_store/inbox/` — it gets embedded automatically |
+| RAG Agent | Before every task runs, the orchestrator queries for relevant past context and injects it into the agent prompt |
+| RAG Dashboard | `/api/rag/stats`, `/api/rag/query`, `/api/rag/scan` endpoints for manual queries and reindexing |
 
 ---
 
-## Current Status
+## Embedding Model
 
-Built — Embedding, storage, and retrieval are operational. 9 ChromaDB collections active. Cost tracking per embedding call wired into `rag/cost_tracker.py`. File-drop watcher (`rag/watcher.py`) monitors a hot folder and auto-embeds dropped files.
+**Primary: OpenAI `text-embedding-3-small`**
+- Cost: $0.00002 / 1K tokens (~$0.002 per 100 average documents)
+- Budget alerts: configurable daily + monthly limits
+- Alert fires at 80% of budget pushed to dashboard WS + Discord
+
+**Fallback: Local `sentence-transformers` (Task 119)**
+- If `OPENAI_API_KEY` is absent or the OpenAI call fails, embedding falls back to `rag/local_embedder.py`
+- Uses the `all-MiniLM-L6-v2` model (22MB, runs on CPU, zero API cost)
+- Lazy-loaded: the model is only downloaded and initialised on first use
+- Dimensions differ (384 vs 1536) — the pipeline handles dimension detection automatically
+- `provider` field in `/api/rag/stats` shows `"openai"` or `"local"` to indicate which is active
 
 ---
 
-## Key Files
+## Collections (ChromaDB)
 
-- `rag/pipeline.py` — Main RAG pipeline class; `ingest()` and `query()` methods
-- `rag/embedder.py` — Embedding model wrapper (OpenAI + local fallback)
-- `rag/store.py` — ChromaDB client wrapper
-- `rag/client.py` — High-level client used by the Orchestrator
-- `rag/cost_tracker.py` — Tracks embedding costs per collection
+| Collection | What's stored |
+|---|---|
+| `tasks` | Task name, instruction, result, error, cost — every completed/failed task |
+| `corrections` | Agent corrections and feedback loops |
+| `system_events` | Circuit breaker trips, DLQ events, ERROR logs, orchestrator start/stop |
+| `obsidian_notes` | All `.md` files from the Obsidian vault |
+| `code_files` | All `.py` files from the Ecosystem project |
+| `agent_snapshots` | Agent health/state snapshots |
+| `digests` | Weekly/daily auto-generated summaries |
+| `approvals` | Approval gate decisions (approved/rejected + who + reason) |
+| `file_drops` | Files dropped into the inbox folder |
+| `entities` | Named entities (person/company/tool/concept/project/location) from EntityStore (Task 46) |
 
 ---
 
-## Related
+## Events That Trigger Embedding
 
-- Claude-Ecosystem/Components/Intelligence/RAG Pipeline — detailed component spec
-- [Claude-Ecosystem/Integrations/ChromaDB](/notes/chromadb) — the vector database backing the RAG store
-- Claude-Ecosystem/Components/Intelligence/Memory Layer — how vault notes feed into RAG
-- Claude-Ecosystem/Components/Core/Orchestration — injects RAG context before every task dispatch
+| Event | Collection |
+|---|---|
+| Task completed | `tasks` |
+| Task failed / DLQ | `tasks` + `system_events` |
+| Task approved / rejected | `approvals` + `system_events` |
+| Correction created | `corrections` |
+| Circuit breaker opens | `system_events` |
+| Agent registered | `system_events` |
+| Skill activated | `system_events` |
+| API key added | `system_events` |
+| Orchestrator started | `system_events` |
+| RAG cost alert | `system_events` |
+| Obsidian note saved | `obsidian_notes` |
+| Code file saved | `code_files` |
+| File dropped in inbox | `file_drops` |
+
+---
+
+## Files
+
+```
+rag/
+ __init__.py Exports RAGPipeline, RAGClient
+ config.py Settings from .env
+ cost_tracker.py Token counting, SQLite daily/monthly records, alert thresholds
+ embedder.py Async OpenAI client, single + batch embed, alert callbacks
+ store.py ChromaDB persistent client, 9 collections, upsert/query/query_multi
+ pipeline.py Main async interface — all ingest_* and query methods
+ watcher.py Watchdog file observers for Obsidian, code, and inbox
+ client.py Sync fire-and-forget wrapper used by the orchestrator
+ requirements.txt chromadb, openai, tiktoken, watchdog, python-dotenv
+
+rag_store/ (auto-created at runtime)
+ chroma/ ChromaDB persistent storage
+ costs.db SQLite cost tracking database
+ inbox/ Drop files here auto-embedded
+```
+
+---
+
+## Setup
+
+```bash
+cd rag
+pip install -r requirements.txt --break-system-packages
+```
+
+Add to `.env` (already there if using multi-model routing):
+```
+OPENAI_API_KEY=sk-...
+```
+
+The pipeline starts automatically when the dashboard boots if `OPENAI_API_KEY` is present.
+
+---
+
+## Dashboard Endpoints
+
+| Endpoint | Method | What it does |
+|---|---|---|
+| `/api/rag/stats` | GET | Cost + collection counts |
+| `/api/rag/query` | POST | Semantic search `{text, collections?, top_k?}` |
+| `/api/rag/ingest` | POST | Manually ingest a document |
+| `/api/rag/scan` | POST | Full rescan `?target=obsidian\|code\|inbox\|all` |
+
+---
+
+## Cost Estimates
+
+At typical usage (50 tasks/day, 10 file saves/day):
+- ~500 embedding calls/day × avg 200 tokens = 100K tokens/day
+- Cost: $0.002/day = **~$0.06/month**
+- Default budget: $0.50/day, $5.00/month (alerts at 80%)
+
+---
+
+## Privacy Filtering (T-NEW-10 — built 2026-05-17)
+
+`query_for_task()` now accepts a `backend` parameter and applies privacy filtering via `orchestrator/privacy/policy.py` before returning chunks to the LLM.
+
+- `filter_chunks(chunks, backend)` strips any chunk whose collection is mapped to LOCAL_ONLY when `backend == "cloud"`
+- DEFAULT_POLICY: system_events / approvals / agent_snapshots / file_drops / inbox LOCAL_ONLY; tasks / corrections / obsidian_notes / code_files / entities CLOUD_ALLOWED
+- Unknown collections default to LOCAL_ONLY (safe default)
+- Policy is persisted in `logs/privacy_policy.json` and is user-configurable via dashboard: `GET /api/privacy/policy`, `POST /api/privacy/policy`, `POST /api/privacy/policy/reset`
+- `rag/client.py` passes the backend tag through to `query_for_task()`
+
+---
+
+## Open Questions / Known Gaps
+
+- RAG chunks retrieved from ChromaDB are not yet wrapped with injection-safe markers before being inserted into prompts (they go through the trust classifier but not the full sanitizer).
+- The `provider` field in `/api/rag/stats` shows `"openai"` or `"local"` to indicate which embedding model is active.
+
+---
+
+## Related Nodes
+
+- [Memory Layer](/notes/memory-layer) — broader memory architecture (Obsidian + RAG)
+- [Orchestration](/notes/orchestration) — calls `query_for_task()` before every agent execution
+- [Dashboard Architecture](/notes/dashboard-architecture) — hosts the RAG REST endpoints
+- Cost Controls — RAG has its own per-embedding cost tracking
+- [Notification System](/notes/notification-system) — cost alerts pushed to Discord

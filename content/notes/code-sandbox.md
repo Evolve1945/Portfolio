@@ -25,5 +25,5 @@ Two Docker images are pre-built: `Dockerfile.python` for Python code and `Docker
 
 ## Related
 - [Components/Tool Loop](/notes/tool-loop) — uses the Sandbox when the coder agent needs to execute code
-- Components/Agent Mesh — the coder agent is the primary consumer of the Sandbox
+- [Components/Agent Mesh](/notes/agent-mesh) — the coder agent is the primary consumer of the Sandbox
 - Security/Agent Contracts — the coder agent contract defines whether code execution is an allowed tool

@@ -14,7 +14,7 @@ trigger:
  - event: manual
 
 env:
- repo: "C:\\Users\\rudol\\Documents\\Claude\\Projects\\Ecosystem"
+ repo: "~\\Documents\\Claude\\Projects\\Ecosystem"
  notify_on_failure: true
 
 stages:
@@ -146,7 +146,7 @@ Stage B (parallel) Stage C (parallel)
 
 ## Dashboard Pipelines View (`#pipelines`)
 
-The Dashboard Pipelines view is a live DAG visualiser backed by the `tasks` table (stages grouped by `pipeline` field) and `pipeline_event` WebSocket events.
+The [Dashboard](/notes/dashboard) Pipelines view is a live DAG visualiser backed by the `tasks` table (stages grouped by `pipeline` field) and `pipeline_event` WebSocket events.
 
 ### Pipeline List
 
@@ -194,6 +194,6 @@ Arrow connectors (``) separate nodes. Parallel stages are shown side-by-side.
 ## Related Nodes
 
 - Agent Pool — stages dispatch to agent pool
-- Observability — every stage event logged + traced
-- Reliability Patterns — gates, retry, rollback
-- Dashboard — pipeline progress visible in real time
+- [Observability](/notes/observability) — every stage event logged + traced
+- [Reliability Patterns](/notes/reliability-patterns) — gates, retry, rollback
+- [Dashboard](/notes/dashboard) — pipeline progress visible in real time

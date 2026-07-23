@@ -41,6 +41,31 @@ export default async function NotesPage({
       <PageHeader kicker={t("kicker")} title={t("title")} intro={t("intro")} />
 
       <div className="mx-auto max-w-6xl px-5 py-12">
+        <div className="mb-8 grid gap-4 sm:grid-cols-3">
+          {[
+            { title: t("guideWhatTitle"), body: t("guideWhat") },
+            { title: t("guideUseTitle"), body: t("guideUse") },
+            { title: t("guideHowTitle"), body: t("guideHow") },
+          ].map((card, i) => (
+            <div
+              key={i}
+              className="rounded-xl border border-border bg-surface p-5"
+            >
+              <div className="flex items-baseline gap-2">
+                <span className="font-mono text-xs text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className="font-display text-lg tracking-tight">
+                  {card.title}
+                </h2>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                {card.body}
+              </p>
+            </div>
+          ))}
+        </div>
+
         <div className="mb-10 rounded-xl border border-border bg-surface p-4">
           <div className="mb-2 flex items-center justify-between">
             <span className="kicker">

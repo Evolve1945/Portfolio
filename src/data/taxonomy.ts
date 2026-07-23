@@ -33,6 +33,7 @@ export const sourceLabel: Record<SkillSource, Bilingual> = {
 };
 
 export const sectionLabel = {
+  value: { fr: "À quoi ça sert au quotidien", en: "What it's for, day to day" },
   context: { fr: "Contexte & enjeux", en: "Context & stakes" },
   built: { fr: "Ce que j'ai construit", en: "What I built" },
   challenges: { fr: "Problèmes rencontrés", en: "Problems I hit" },

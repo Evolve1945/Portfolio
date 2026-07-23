@@ -100,7 +100,7 @@ status: built
 
 ## Related Nodes
 
-- Multi-Model Router — technical routing implementation
+- [Multi-Model Router](/notes/multi-model-router) — technical routing implementation
 - [Token Optimization](/notes/token-optimization) — cost reduction strategies
 - Cost Controls — hard budget limits
 - Agent Profiles — per-agent capability and task matching

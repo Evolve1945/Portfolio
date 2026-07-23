@@ -21,6 +21,6 @@ Each circuit breaker is attached to a specific agent type. The researcher agent'
 - The failure threshold (5) and recovery interval (60s) are currently hardcoded; these should be configurable via environment variables.
 
 ## Related
-- Components/Orchestrator — uses the Circuit Breaker for every agent dispatch
-- Components/Agent Mesh — the agents being protected against cascading failures
+- [Components/Orchestrator](/notes/orchestrator) — uses the Circuit Breaker for every agent dispatch
+- [Components/Agent Mesh](/notes/agent-mesh) — the agents being protected against cascading failures
 - [Components/Watchdog](/notes/watchdog) — complements the Circuit Breaker by restarting crashed processes

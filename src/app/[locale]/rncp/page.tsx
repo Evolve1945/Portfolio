@@ -51,8 +51,10 @@ export default async function RncpPage({
         <div className="mt-8 space-y-8">
           {rncpBlocks.map((block) => (
             <section key={block.code}>
-              <div className="flex items-baseline gap-3">
-                <span className="font-mono text-sm text-accent">{block.code}</span>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-border pb-2">
+                <span className="font-display text-2xl tracking-tight text-accent">
+                  {block.code}
+                </span>
                 <h2 className="font-display text-2xl tracking-tight">{block.title[l]}</h2>
               </div>
 

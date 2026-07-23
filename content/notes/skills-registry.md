@@ -103,7 +103,7 @@ def on_credential_added(key_name: str, key_value: str):
 
 ## Dashboard Skills View
 
-The Dashboard Skills view (`#skills`) exposes the registry directly in the UI. It uses a `BUILTIN_SKILLS` array seeded in `index.html` (no backend call required for the baseline):
+The [Dashboard](/notes/dashboard) Skills view (`#skills`) exposes the registry directly in the UI. It uses a `BUILTIN_SKILLS` array seeded in `index.html` (no backend call required for the baseline):
 
 ```javascript
 const BUILTIN_SKILLS = [
@@ -198,8 +198,8 @@ Scheduled daily check:
 
 ## Related Nodes
 
-- Orchestration — orchestrator queries capability graph before task planning
+- [Orchestration](/notes/orchestration) — orchestrator queries capability graph before task planning
 - Credential Manager — credentials trigger skill activation
-- Capability Graph — live map of what the system can currently do
-- MCP Layer — skills are implemented as MCP servers
+- [Capability Graph](/notes/capability-graph) — live map of what the system can currently do
+- [MCP Layer](/notes/mcp-layer) — skills are implemented as MCP servers
 - Prompt Library — each skill ships with prompt templates

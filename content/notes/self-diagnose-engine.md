@@ -106,6 +106,6 @@ Reports are appended to `errors/YYYY-MM-DD-{service}-crash.md`. Each diagnostic 
 ## Related Nodes
 
 - Self-Healing System — Watchdog that calls the engine on crash
-- Components/Core/Observability — log files that the engine reads
+- [Components/Core/Observability](/notes/observability) — log files that the engine reads
 - errors/ — vault location where diagnostic reports are written
-- Integrations/Telegram — alert messages include the report summary
+- [Integrations/Telegram](/notes/telegram-integration) — alert messages include the report summary

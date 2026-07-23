@@ -74,12 +74,12 @@ export default async function SkillsPage({
             key={cat.id}
             className="rounded-xl border border-border bg-surface p-5"
           >
-            <div className="flex items-start justify-between gap-3">
-              <h2 className="font-display text-xl tracking-tight">
-                {cat.title[l]}
-              </h2>
-              <span className="mt-1 font-mono text-[0.62rem] uppercase tracking-wider text-faint">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-b border-border pb-3">
+              <h2 className="font-display text-xl tracking-tight text-accent">
                 {cat.rncpBlock ?? rncpPlaceholder[l]}
+              </h2>
+              <span className="font-display text-xl tracking-tight">
+                {cat.title[l]}
               </span>
             </div>
 
