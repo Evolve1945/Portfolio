@@ -218,7 +218,7 @@
   {
     "slug": "dashboard",
     "title": "Dashboard",
-    "summary": "Status: BUILT. Running on http://localhost:8766. See Dashboard Architecture(/notes/dashboard-architecture) for the full technical spec and sessions/session-2026-04-26-tasks-12-13 f…",
+    "summary": "Status: BUILT. Running on http://localhost:8766. See Dashboard Architecture(/notes/dashboard-architecture) for the full technical spec and internal notes for the build log.",
     "group": "Components",
     "tags": [
       "dashboard",
@@ -251,7 +251,7 @@
   {
     "slug": "dashboard-architecture",
     "title": "Dashboard Architecture",
-    "summary": "All core components implemented and running. See sessions/session-2026-04-26-tasks-12-13 for the full build log.",
+    "summary": "All core components implemented and running. See internal notes for the full build log.",
     "group": "Components",
     "tags": [
       "dashboard",

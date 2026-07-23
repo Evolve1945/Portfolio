@@ -4,7 +4,7 @@
 
 ## Status: BUILT 
 
-All core components implemented and running. See sessions/session-2026-04-26-tasks-12-13 for the full build log.
+All core components implemented and running. See internal notes for the full build log.
 
 ---
 
@@ -471,4 +471,4 @@ Also fixed: credential fallback removed hardcoded masked key examples; health ca
 - [Observability](/notes/observability) — events and metrics feed
 - Business Intelligence — analytics panel data
 - [Pipeline Manager](/notes/pipeline-manager) — pipeline visualizer data
-- sessions/session-2026-04-26-tasks-12-13 — build log for Tasks 12 & 13
+- internal notes — build log for Tasks 12 & 13

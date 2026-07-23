@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 import { site } from "@/data/site";
 import { GithubMark, LinkedinMark } from "./brand-icons";
+import { CopyEmail } from "./copy-email";
 
 export function SiteFooter() {
   const t = useTranslations("footer");
@@ -17,13 +18,14 @@ export function SiteFooter() {
           <p className="max-w-md font-display text-xl leading-snug tracking-tight">
             {home("status")}
           </p>
-          <a
-            href={`mailto:${site.email}`}
+          <CopyEmail
+            email={site.email}
+            subject={ui("emailSubject")}
+            label={ui("emailMe")}
+            copiedLabel={ui("emailCopied")}
+            icon={<Mail className="h-4 w-4" aria-hidden />}
             className="inline-flex shrink-0 items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
-          >
-            <Mail className="h-4 w-4" aria-hidden />
-            {ui("emailMe")}
-          </a>
+          />
         </div>
       </div>
 

@@ -16,7 +16,7 @@ When a service crashes, the Watchdog calls the Self-Diagnose Engine before attem
 1. Reads the crashed service's log file (`logs/{service}.log`)
 2. Scans each log line against a library of classification rules (regex patterns with category, severity, and fix hints)
 3. Produces a `DiagnosticReport` — a structured summary of what went wrong, how severe it is, and what to try next
-4. Writes the report into the Obsidian vault as an error note in `errors/YYYY-MM-DD-{service}-crash.md`
+4. Writes the report into the Obsidian vault as an error note in internal notes
 5. Returns the report to the Watchdog for inclusion in the Discord/Telegram alert
 
 ---
@@ -86,7 +86,7 @@ python -m orchestrator.diagnostics.self_diagnose
 
 ## Vault Output Format
 
-Reports are appended to `errors/YYYY-MM-DD-{service}-crash.md`. Each diagnostic entry includes:
+Reports are appended to internal notes. Each diagnostic entry includes:
 - Timestamp
 - Severity badge
 - Matched error categories

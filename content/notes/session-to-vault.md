@@ -4,7 +4,7 @@
 
 ## What It Does
 
-After each working session, `session_to_vault.py` reads the session's conversation transcript, extracts what files were changed, what tasks were completed, and what the user asked for — then writes a formatted `sessions/YYYY-MM-DD.md` entry to the vault. If an Anthropic API key is available, it calls Claude Haiku to generate a short narrative summary of decisions and progress.
+After each working session, `session_to_vault.py` reads the session's conversation transcript, extracts what files were changed, what tasks were completed, and what the user asked for — then writes a formatted internal notes entry to the vault. If an Anthropic API key is available, it calls Claude Haiku to generate a short narrative summary of decisions and progress.
 
 This closes the loop between code work and vault documentation automatically, without requiring manual note-taking.
 
@@ -17,7 +17,7 @@ This closes the loop between code work and vault documentation automatically, wi
 3. Identifies task completions from conversation content
 4. Extracts user messages to capture intent
 5. If `ANTHROPIC_API_KEY` is set: calls Claude Haiku to produce a narrative paragraph
-6. Writes `sessions/YYYY-MM-DD.md` following the format in `_AGENT_RULES.md`
+6. Writes internal notes following the format in `_AGENT_RULES.md`
 7. Calls `vault_sync.py` automatically to update component status tags
 
 ---
@@ -50,7 +50,7 @@ The script resolves the vault path in this order:
 
 Session transcripts are located by scanning Claude's local sessions directory (`AppData/Roaming/Claude/local-agent-mode-sessions/`).
 
-Output notes are named `sessions/YYYY-MM-DD.md`. If that file already exists (same-day second session), it appends `-2`, `-3`, etc.
+Output notes are named internal notes. If that file already exists (same-day second session), it appends `-2`, `-3`, etc.
 
 ---
 

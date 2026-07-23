@@ -85,7 +85,7 @@ Tracked as part of **Task 130** — the broader hardcoding remediation effort.
 
 - `search_notes` does a linear scan of every file on every call. This is fast enough for vaults under a few hundred files but will slow down significantly if the vault grows to thousands of notes.
 - `write_note` does a full overwrite — there is no diff or merge. Concurrent writes from two agents would silently lose one write.
-- `create_session_note` uses a non-standard filename pattern (`sessions/YYYY-MM-DD-session.md`) that differs from the `_AGENT_RULES.md` specification (`sessions/YYYY-MM-DD.md`). This inconsistency should be corrected in the next refactor.
+- `create_session_note` uses a non-standard filename pattern (internal notes) that differs from the `_AGENT_RULES.md` specification (internal notes). This inconsistency should be corrected in the next refactor.
 
 ---
 

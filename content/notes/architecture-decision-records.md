@@ -171,7 +171,7 @@ All three values are configurable via environment variables (`DAILY_CAP`, `MONTH
 
 **Consequences**: In-process mode cannot survive individual agent crashes gracefully (the whole orchestrator must restart). HTTP mesh mode can restart individual agents independently via the watchdog.
 
-**Security note (S1 fix, 2026-04-29)**: When the mesh runs, all agent servers bind to `127.0.0.1` (localhost only), not `0.0.0.0`. This is now the canonical binding. See `errors/S1-host-binding-fix.md` for the incident report.
+**Security note (S1 fix, 2026-04-29)**: When the mesh runs, all agent servers bind to `127.0.0.1` (localhost only), not `0.0.0.0`. This is now the canonical binding. See internal notes for the incident report.
 
 ---
 

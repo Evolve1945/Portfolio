@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Mail } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { GithubMark, LinkedinMark } from "@/components/brand-icons";
+import { CopyEmailCard } from "@/components/copy-email";
 import { site } from "@/data/site";
 
 export default async function ContactPage({
@@ -12,15 +13,9 @@ export default async function ContactPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("pages.contact");
+  const ui = await getTranslations("ui");
 
   const methods = [
-    {
-      label: "Email",
-      value: site.email,
-      href: `mailto:${site.email}`,
-      icon: <Mail className="h-4 w-4" aria-hidden />,
-      external: false,
-    },
     {
       label: "LinkedIn",
       value: "in/rudolf-krylov",
@@ -42,6 +37,13 @@ export default async function ContactPage({
       <PageHeader kicker={t("kicker")} title={t("title")} intro={t("intro")} />
 
       <div className="mx-auto grid max-w-3xl gap-4 px-5 py-12 sm:grid-cols-3">
+        <CopyEmailCard
+          email={site.email}
+          subject={ui("emailSubject")}
+          label="Email"
+          copiedLabel={ui("emailCopied")}
+          icon={<Mail className="h-4 w-4" aria-hidden />}
+        />
         {methods.map((m) => (
           <a
             key={m.label}

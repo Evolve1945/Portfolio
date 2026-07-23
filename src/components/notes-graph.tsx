@@ -15,9 +15,13 @@ export function NotesGraph({ notes }: { notes: GraphNote[] }) {
   const cy = 185;
   const r = 140;
   const idx = new Map(notes.map((note, i) => [note.slug, i]));
+  // Round to a fixed precision: Math.cos/sin can differ in the last ULP between
+  // the server (Node) and the client (browser), which would trip a React
+  // hydration mismatch on these SVG coordinates.
+  const round = (v: number) => Math.round(v * 100) / 100;
   const pos = notes.map((_, i) => {
     const a = (2 * Math.PI * i) / n - Math.PI / 2;
-    return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) };
+    return { x: round(cx + r * Math.cos(a)), y: round(cy + r * Math.sin(a)) };
   });
 
   const edges: [number, number][] = [];

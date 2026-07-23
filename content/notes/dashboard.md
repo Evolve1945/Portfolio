@@ -1,6 +1,6 @@
 > Real-time visibility into **every agent, every task, every error** — the control tower of the ecosystem.
 
-**Status: BUILT.** Running on `http://localhost:8766`. See [Dashboard Architecture](/notes/dashboard-architecture) for the full technical spec and sessions/session-2026-04-26-tasks-12-13 for the build log.
+**Status: BUILT.** Running on `http://localhost:8766`. See [Dashboard Architecture](/notes/dashboard-architecture) for the full technical spec and internal notes for the build log.
 
 ---
 

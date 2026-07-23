@@ -49,6 +49,21 @@ function sanitizePaths(s) {
     .replace(/\/(?:home|Users)\/[^/"\s]+\//g, "~/");
 }
 
+// Neutralise references pointing at private vault folders (incident reports,
+// session logs, audits, security notes) that are never published — they read as
+// broken links and hint at internal material. Conservative: only backticked
+// folder refs and clear session/error-report paths, so legitimate API routes
+// like `/api/errors/{id}/fix` are left untouched.
+function redactInternalRefs(s) {
+  return s
+    .replace(
+      /`(?:errors|sessions|Audits|Security|Income-Plan|Data Pipeline)\/[^`]+`/gi,
+      "internal notes",
+    )
+    .replace(/(?<![/\w])sessions\/session-[\w-]+/gi, "internal notes")
+    .replace(/(?<![/\w])(?:errors|Audits)\/[\w.\-]+\.md\b/gi, "internal notes");
+}
+
 function stripFrontmatter(raw) {
   if (!raw.startsWith("---")) return { body: raw, tags: [] };
   const end = raw.indexOf("\n---", 3);
@@ -133,6 +148,7 @@ function processBody(n) {
     return label;
   });
   body = sanitizePaths(body);
+  body = redactInternalRefs(body);
   body = body.replace(/[ \t]{2,}/g, " ").replace(/\n{3,}/g, "\n\n").trim();
   const firstPara =
     body.split("\n").map((l) => l.trim())

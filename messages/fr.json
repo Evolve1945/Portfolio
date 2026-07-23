@@ -85,6 +85,8 @@
     "downloadCv": "Télécharger le CV (PDF)",
     "cvBuilding": "Le PDF téléchargeable est généré depuis LaTeX en CI (prévu).",
     "emailMe": "M'écrire",
+    "emailCopied": "Adresse copiée",
+    "emailSubject": "Prise de contact — depuis votre portfolio",
     "lastUpdated": "Dernière mise à jour",
     "gardenEmpty": "Le jardin se plante — les notes #public choisies de mon vault d'ingénierie apparaîtront ici.",
     "backToProjects": "Tous les projets",

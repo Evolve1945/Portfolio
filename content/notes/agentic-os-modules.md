@@ -130,7 +130,7 @@ Everything else in the tables below is still dark. Remaining tiers are in Agenti
 | #28 | `policy_engine.py` + `config/policy.yaml` | one declarative policy, dry-run diff | `POLICY_ENGINE_ENABLED` |
 | #29 | `approvals_v2.py` | risk scoring, batch, timeouts, standing rules | `APPROVALS_V2_ENABLED` |
 | #30 | `plugins/supply_chain.py` | quarantine-by-default, scan, hash pinning | — |
-| #31 | `security/pii_pipeline.py` | reversible anonymizecloudrestore, audit | `PII_PIPELINE_ENABLED` |
+| #31 | internal notes | reversible anonymizecloudrestore, audit | `PII_PIPELINE_ENABLED` |
 
 ## F. Observability & self-improvement
 | Rec | Module | What it does | Flag |
