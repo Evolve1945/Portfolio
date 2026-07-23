@@ -76,8 +76,8 @@ export default async function NotesPage({
           <NotesGraph notes={notes} />
           <p className="mt-3 text-center text-xs leading-relaxed text-faint">
             {l === "fr"
-              ? "Survolez un point pour voir ses liens · cliquez pour ouvrir la note"
-              : "Hover a node to see its links · click to open the note"}
+              ? "Survolez un point : les notes reliées se figent pour que vous puissiez les lire · cliquez pour en ouvrir une"
+              : "Hover a node: the connected notes settle so you can read them · click to open one"}
           </p>
         </div>
 
