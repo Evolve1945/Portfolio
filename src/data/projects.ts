@@ -102,16 +102,16 @@ export const projects: Project[] = [
         type: "image",
         src: "/projects/ecosystem/knowledge-graph.png",
         alt: {
-          fr: "Le graphe de connaissances Graphify du code — plus de 3 800 nœuds et 8 000 liens regroupés en 217 communautés détectées.",
-          en: "The Graphify knowledge graph of the codebase — 3,800+ nodes and 8,000+ edges grouped into 217 detected communities.",
+          fr: "Le graphe de connaissances en plein écran — des grappes denses de modules très liés se détachent des bords plus épars.",
+          en: "The knowledge graph full-screen — dense clusters of tightly-linked modules stand out from the sparser edges.",          
         },
       },
       {
         type: "image",
         src: "/projects/ecosystem/knowledge-graph-full.png",
         alt: {
-          fr: "Le graphe de connaissances en plein écran — des grappes denses de modules très liés se détachent des bords plus épars.",
-          en: "The knowledge graph full-screen — dense clusters of tightly-linked modules stand out from the sparser edges.",
+          fr: "Le graphe de connaissances Graphify du code — plus de 3 800 nœuds et 8 000 liens regroupés en 217 communautés détectées.",
+          en: "The Graphify knowledge graph of the codebase — 3,800+ nodes and 8,000+ edges grouped into 217 detected communities.",
         },
       },
     ],
