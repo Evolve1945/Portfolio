@@ -7,7 +7,7 @@
 //   "none"  — solid colour, no decoration
 type Variant = "soft" | "dots" | "grid" | "glow" | "none";
 
-export const BACKGROUND: Variant = "soft";
+export const BACKGROUND: Variant = "dots";
 
 export function SiteBackground({
   variant = BACKGROUND,

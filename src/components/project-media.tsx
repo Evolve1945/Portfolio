@@ -17,8 +17,13 @@ export function ProjectMedia({
 }) {
   const images = media.filter((m) => m.type === "image");
   const [open, setOpen] = useState<number | null>(null); // index into `images`
+  // Cap the on-screen size so a screenshot is never scaled ABOVE its real pixel
+  // resolution for this display's density — upscaling is what makes it look blurry.
+  const [cap, setCap] = useState<React.CSSProperties | undefined>(undefined);
 
   const close = useCallback(() => setOpen(null), []);
+  // Recompute the crisp cap for each newly-shown image.
+  useEffect(() => setCap(undefined), [open]);
   const go = useCallback(
     (dir: number) =>
       setOpen((i) =>
@@ -154,9 +159,19 @@ export function ProjectMedia({
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              key={images[open].src}
               src={images[open].src}
               alt={images[open].alt[locale]}
               onClick={(e) => e.stopPropagation()}
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                const dpr = window.devicePixelRatio || 1;
+                setCap({
+                  maxWidth: `min(100%, ${Math.round(img.naturalWidth / dpr)}px)`,
+                  maxHeight: `min(100%, ${Math.round(img.naturalHeight / dpr)}px)`,
+                });
+              }}
+              style={cap}
               className="max-h-full max-w-full rounded-lg object-contain shadow-2xl"
             />
 

@@ -48,12 +48,9 @@ export default async function HomePage({
         <SiteBackground />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-[1.4fr_1fr] md:py-28">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden />
-              {t("status")}
-            </span>
+            <p className="kicker text-muted">{t("status")}</p>
 
-            <h1 className="mt-6 font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl">
+            <h1 className="mt-5 font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl">
               {t("tagline")}
             </h1>
 
@@ -80,9 +77,8 @@ export default async function HomePage({
 
           {/* Live system-map banner (canvas) — the "systems accent" identity. */}
           <div className="rounded-xl border border-border bg-surface p-4">
-            <div className="mb-3 flex items-center justify-between">
+            <div className="mb-3">
               <span className="kicker">System map</span>
-              <span className="kicker text-signal">live</span>
             </div>
             <SystemCanvas className="h-56 w-full" />
             <p className="mt-2 font-mono text-[0.7rem] leading-relaxed text-faint">
