@@ -188,22 +188,22 @@ export const projects: Project[] = [
     },
     context: {
       fr: [
-        "Projet d'équipe : ce projet m'a été confié comme premier projet de programmation à l'EFREI. Le but était de comparer un corpus de discours présidentiels et permettre d'y poser des questions en français.",
-        "L'enjeu était double — transformer du texte brut en quelque chose d'interrogeable, et le faire proprement à deux en découvrant les outils Git.",
+        "Projet d'équipe de première année, pour le module Programmation en Python de l'EFREI (fin 2023). La consigne des enseignants était volontairement ciblée : classer et répondre à des questions sur un corpus de discours d'investiture de présidents français avec TF-IDF, et se heurter en pratique aux limites de la méthode — un premier regard concret sur le fonctionnement d'un système de recherche, au moment où l'IA devenait un sujet grand public.",
+        "C'était mon premier projet avec Git et la première fois que j'avais à écrire et organiser autant de code à deux. L'algorithme TF-IDF nous a été fourni et expliqué ; il fallait le transcrire en Python pur — sans aucune librairie — et trouver nous-mêmes comment câbler les fonctions entre elles. J'ai surtout piloté les décisions : répartir le travail selon les forces de chacun, garder nos structures de données compatibles, et fusionner nos branches respectives dans la branche principale.",
       ],
       en: [
-        "A team project: this project was given to me as my first programming project at EFREI. The goal was to compare a corpus of presidential speeches and let you ask it questions in French.",
-        "The challenge was twofold — turn raw text into something queryable, and do it cleanly as a pair while discovering Git tools.",
+        "A first-year team project for EFREI's Programming in Python module (late 2023). The teachers set it deliberately: rank and answer questions over a corpus of French presidential inauguration speeches with TF-IDF, and hit the method's limits first-hand — a concrete first look at how a simple retrieval system works, just as AI was becoming a mainstream topic.",
+        "It was my first project with Git and the first time I had to write and organise this much code with someone else. We were handed the TF-IDF algorithm and had to transcribe it to pure Python — no libraries — and work out how to wire the functions together ourselves. I mostly drove the decisions: splitting the work by each person's strengths, keeping our data structures compatible, and merging our separate branches into main.",
       ],
     },
     built: {
       fr: [
-        "Un classement des mots par TF-IDF, la mise en évidence des thèmes communs et distinctifs, et des réponses en texte libre tirées du corpus.",
-        "Le tout construit avec un binôme sur plus de 180 commits — branches, revues, historique partagé.",
+        "Un classement des mots par TF-IDF, la mise en évidence des thèmes communs et distinctifs, et des réponses tirées du corpus — une phrase, un paragraphe ou un score selon l'option choisie dans le menu.",
+        "Le tout construit avec un binôme sur plus de 180 commits — branches séparées et historique partagé.",
       ],
       en: [
-        "Word ranking by TF-IDF, surfacing of shared and distinctive themes, and free-text answers drawn from the corpus.",
-        "All built with a classmate across 180+ commits — branches, reviews, a shared history.",
+        "Word ranking by TF-IDF, surfacing of shared and distinctive themes, and answers drawn from the corpus — a sentence, a paragraph, or a score depending on the menu option.",
+        "All built with a classmate across 180+ commits — separate branches and a shared history.",
       ],
     },
     challenges: {
@@ -220,24 +220,26 @@ export const projects: Project[] = [
     },
     limits: {
       fr: [
-        "Le TF-IDF ne capte pas le sens : synonymes et paraphrases passent à travers, et les réponses restent bornées au corpus et à la pondération choisie.",
-        "La limite des délais de ce projet étant de 1 mois et demi, et le peu de connaissances en NLP, nous avons dû nous concentrer sur la mise en place d'une solution fonctionnelle plutôt que sur l'optimisation de la pertinence des réponses.",
+        "Le TF-IDF capte la fréquence des mots, pas le sens : synonymes et paraphrases passent à travers, et chaque réponse reste bornée au petit corpus fourni et à la pondération choisie. Le temps de calcul croît aussi avec la longueur du texte. Son déterminisme est à la fois une force et une limite : la sortie est entièrement prévisible — précisément ce qu'un LLM abandonne.",
+        "Les délais étaient serrés : nous avons livré la méthode de base et laissé de côté les objectifs bonus (un menu plus riche et une fonctionnalité au-delà du TF-IDF), sans le temps de tester d'autres approches ; même préparer le texte brut pour le rendre exploitable a demandé un vrai travail en amont.",
+        "C'est un projet de début de parcours — l'affichage des résultats en est le point le plus faible, et certaines parties du code, je les écrirais autrement aujourd'hui. Je le garde comme un repère honnête de mes débuts.",
       ],
       en: [
-        "TF-IDF captures no meaning: synonyms and paraphrase slip through, and answers stay bounded to the corpus and the chosen weighting.",
-        "The project deadline was 1.5 months, and our NLP knowledge was limited, so we had to focus on getting a working solution rather than optimizing answer relevance.",
+        "TF-IDF captures word frequency, not meaning: synonyms and paraphrase slip straight through, and every answer stays bounded to the small provided corpus and the weighting we chose. Its runtime also grows with the length of the text. Its determinism is a strength and a limit at once: the output is entirely predictable — exactly what an LLM trades away.",
+        "The deadline was tight: we shipped the core method and set aside the bonus objectives (a richer menu and a feature beyond TF-IDF), with no time to test alternative approaches; even preparing the raw text into a usable form took real work up front.",
+        "It's an early project — the result display is its weakest part, and some of the code I'd write differently today. I keep it as an honest marker of where I started.",
       ],
     },
     learned: {
       fr: [
         "La mécanique de la vectorisation de texte, et surtout ses limites : ce que TF-IDF capte bien, ce qu'il rate, et pourquoi une réponse peut sembler juste sans vraiment l'être.",
         "L'interprétation des boucles pour remonter à la source d'un problème, puis le débogage en binôme avec un historique git propre pour garder une progression lisible.",
-        "Et la discipline d'une vraie collaboration git : branches, revues, arbitrages, et le réflexe de documenter ce qu'on change pour pouvoir l'expliquer ensuite.",
+        "Et la discipline d'une vraie collaboration git : branches, arbitrages, et le réflexe de documenter ce qu'on change pour pouvoir l'expliquer ensuite.",
       ],
       en: [
         "The mechanics of text vectorisation, and especially its limits: what TF-IDF captures well, what it misses, and why an answer can look right without truly being right.",
         "Interpreting loops to trace a problem back to its source, then pair debugging with a clean git history so the work stays readable.",
-        "And the discipline of real git collaboration: branches, reviews, trade-offs, and the habit of documenting changes so they can be explained later.",
+        "And the discipline of real git collaboration: branches, trade-offs, and the habit of documenting changes so they can be explained later.",
       ],
     },
     consolidate: {
@@ -252,55 +254,63 @@ export const projects: Project[] = [
   {
     slug: "cyberpix",
     name: "Cyberpix",
-    year: "2025",
+    year: "2022",
     theme: "creative",
     complexity: "foundational",
     repo: "Cyberpix",
-    tags: ["Python", "Pixel art", "Packaging"],
+    tags: ["Python", "Pygame", "2D game", "Packaging"],
     featured: true,
     tagline: {
-      fr: "Un petit jeu 2D en Python, sprites pixel-art faits main, empaqueté en exécutable.",
-      en: "A small 2D Python game with hand-drawn pixel-art sprites, packaged as an executable.",
+      fr: "Un jeu de plateforme et de tir cyberpunk 2D en Python, inachevé, réalisé pour un cours de NSI — empaqueté et fonctionnel, que je veux encore terminer.",
+      en: "An unfinished 2D cyberpunk platformer-shooter in Python, made for an NSI class — packaged and running, and one I still want to finish.",
     },
     context: {
       fr: [
-        "Un projet que nous avons entamé en terminal avec un camarade à moi : j'ai su apprendre à maitriser les boucles de jeu et l'empaquetage d'application en livrant un vrai petit jeu.",
+        "Un jeu que nous avons commencé en décembre 2022 pour notre cours de NSI en terminale — la consigne était simplement « faire un jeu ». Nous sommes partis sur un univers cyberpunk en 2D (pixel-art, néon, tons bleutés), inspiré de Cyberpunk, de Mario et des jeux de plateforme classiques, que nous avons appelé Cyberpix.",
+        "Le pitch : on incarne un mercenaire qui s'attaque aux mégacorpos — lesquelles lui envoient d'autres mercenaires — tout en cherchant à découvrir ce qui est arrivé à sa famille, avant de rejoindre les rebelles. Mon ami William Miserole a eu l'idée du genre et a écrit la majeure partie du code ; j'étais ravi de faire un jeu mais plus faible en programmation, alors j'ai piloté le design, l'histoire et la direction visuelle, et j'ai repris un peu la partie développement l'année suivante. Le mérite du code lui revient en grande partie.",
       ],
       en: [
-        "A project we started in 12th grade with a friend of mine: teaching myself game loops and app packaging by shipping a real small game.",
+        "A game we started in December 2022 for our NSI class in terminale — the brief was simply 'make a game.' We went for a 2D cyberpunk world (pixel-art, neon, blue-lit), inspired by Cyberpunk, Mario and classic platformers, and named it Cyberpix.",
+        "The premise: you play a mercenary taking on the megacorps that keep sending others after you, while trying to uncover what happened to your family — eventually joining the rebels. My friend William Miserole came up with the genre and wrote most of the code; I was thrilled to be making a game but weaker at coding, so I led the design, the story and the visual direction, and picked up a little of the dev myself the year after. Credit for the build is mostly his.",
       ],
     },
     built: {
       fr: [
-        "Un jeu avec menu et sprites pixel-art dessinés sous Piskel, puis empaqueté en exécutable Windows autonome.",
+        "Un jeu de plateforme et de tir cyberpunk 2D — néon, pixelisé, tons bleutés. Ce qui tourne aujourd'hui, c'est le personnage principal qui se déplace dans la scène (déplacement, saut, dash, coup de pied, frappe) avec des sprites animés, sur pygame et tkinter, avec une boucle de jeu basée sur les images, une animation par feuilles de sprites et une classe par entité.",
+        "Le tout est empaqueté en exécutable Windows autonome qui tourne proprement sur une autre machine. Les sprites pixel-art proviennent d'itch.io, ils ne sont pas de nous. William Miserole a écrit la majeure partie du code et assuré le débogage — dont la synchronisation de l'horloge de jeu, la partie la plus délicate ; j'ai piloté le design, l'histoire et la direction visuelle, et repris un peu le développement l'année suivante.",
       ],
       en: [
-        "A game with a menu and pixel-art sprites drawn in Piskel, then packaged into a standalone Windows executable.",
+        "A 2D cyberpunk platformer-shooter — neon, pixelated, blue-lit. What runs today is the player character moving across the scene (move, jump, dash, kick, hit) with animated sprites, built on pygame and tkinter with a frame-based game loop, sprite-sheet animation, and a class per entity.",
+        "It's bundled into a standalone Windows executable that runs cleanly on another machine. The pixel-art sprites are sourced from itch.io, not made by us. William Miserole wrote most of the code and handled the debugging — including the game-clock timing, the hardest part; I led the design, the story and the visual direction, and picked up a little of the dev the following year.",
       ],
     },
     challenges: {
       fr: [
-        "Obtenir une boucle de jeu stable et une gestion correcte des entrées, gérer le pipeline d'assets (dessin, import, animation), puis empaqueter Python et ses dépendances en un seul exécutable.",
+        "Obtenir une boucle de jeu et un timing d'images corrects — la synchronisation de l'horloge de jeu a été le problème le plus difficile, résolu par William —, gérer les entrées clavier-souris, câbler l'animation par feuilles de sprites, puis empaqueter Python et ses dépendances en un seul exécutable.",
       ],
       en: [
-        "Getting a stable game loop and correct input handling, managing the asset pipeline (drawing, importing, animating), then bundling Python and its dependencies into a single executable.",
+        "Getting the game loop and frame timing right — the game-clock sync was the single hardest problem, which William cracked — handling keyboard-and-mouse input, wiring sprite-sheet animation, then bundling Python and its dependencies into a single executable.",
       ],
     },
     limits: {
       fr: [
-        "Petite envergure — mécaniques simples, peu de contenu — et pas d'architecture formelle : le projet a grandi de façon organique avec notre imagination. La capacité graphique devient assez saturée avec l'ajout de nouvelles entités animées. Le projet reste inachevé, mais j'envisage de le finir pour de bon une fois que j'aurai consolidé mes connaissances en programmation de jeux et en écriture de scénario.",
+        "Il est inachevé — vraiment une première version. Aujourd'hui, on le lance et le personnage principal bouge (déplacement, saut, dash, coup de pied, frappe) avec des sprites animés, mais il n'y a encore ni ennemis, ni niveaux, ni armes, ni plateformes, ni menu, et le jeu démarre dézoomé et brut.",
+        "Le seul vrai mur technique a été la performance : le mouvement aléatoire de chaque asset utilisait un random.randint sur un très grand intervalle à chaque image, à 60 fps ; ajouter des assets faisait exploser les calculs par image, saturant la RAM et faisant chuter le framerate. Le correctif propre — que je ferais lors d'une reprise — est de pré-générer ces nombres dans un fichier et de simplement les lire à l'exécution. Il n'y avait pas non plus d'architecture formelle : une classe par entité, mais beaucoup de code entassé dans un même fichier, développé de façon organique.",
+        "C'était un projet scolaire sans Git (on le partageait via un Drive et on suivait les tâches sur un tableau kanban), tournant sur l'ordinateur de William. Ce qui l'a vraiment arrêté, c'est que le finir ne dépend plus que de moi — et le niveau, le temps, l'expérience et la motivation ont manqué. J'aimerais quand même le terminer correctement un jour.",
       ],
       en: [
-        "Small in scope — simple mechanics, limited content — and no formal architecture: it grew organically. The graphics capacity becomes quite saturated with the addition of new animated entities. The project remains unfinished but I plan to finish it properly once I've consolidated my game programming and story-writing skills.",
+        "It's unfinished — very much a first version. Today you launch it and the main character moves (move, jump, dash, kick, hit) with sprites animating, but there are no enemies, levels, weapons, platforms or menu yet, and it starts un-zoomed and rough.",
+        "The one real technical wall was performance: each asset's random motion used a random.randint over a huge range every frame at 60 fps, so adding assets made the per-frame maths explode, saturating RAM and dropping the frame-rate. The clean fix — which I'd do on a rebuild — is to pre-generate those numbers into a file and just read them at runtime. There was no formal architecture either: a class per entity, but a lot of code piled into one file, grown organically.",
+        "It was a school project with no Git (we shared it over a Drive and tracked tasks on a kanban board) and it ran on William's computer. What really stalled it is that finishing it now rests on me alone — and skill, time, experience and motivation all ran short. I'd still like to finish it properly one day.",
       ],
     },
     learned: {
       fr: [
-        "Comment une boucle de jeu et le rendu s'emboîtent réellement, puis comment synchroniser l'animation à partir de sprites PNG sans casser la logique de mouvement ou de collision.",
+        "Comment une boucle de jeu et le rendu s'emboîtent réellement, puis comment synchroniser l'animation à partir de sprites PNG sans casser la logique de mouvement.",
         "Que livrer un artefact exécutable est une compétence à part entière : empaqueter proprement les dépendances, tester le résultat final et garder une distribution utilisable.",
       ],
       en: [
-        "How a game loop and rendering actually fit together, then how to sync animation from PNG sprites without breaking movement or collision logic.",
+        "How a game loop and rendering actually fit together, then how to sync animation from PNG sprites without breaking the movement logic.",
         "That shipping a runnable artifact is a skill of its own: packaging dependencies cleanly, testing the final result, and keeping the build usable.",
       ],
     },
