@@ -36,6 +36,8 @@ export interface Project {
   media?: { type: "image" | "video"; src: string; alt: Bilingual; poster?: string }[];
   /** Headline at-a-glance facts, shown as a stat strip. */
   metrics?: { value: string; label: Bilingual }[];
+  /** Collaborator credit with an optional profile link (e.g. a school-project teammate). */
+  credit?: { name: string; url?: string };
 }
 
 // NOTE: stakes / problems / limits / next-steps are drafted from the repos, the
@@ -58,10 +60,60 @@ export const projects: Project[] = [
       { file: "model-router.py", lang: "python", label: { fr: "Routeur multi-modèles avec bascule", en: "Multi-model failover router" } },
     ],
     metrics: [
-      { value: "12", label: { fr: "types d'agents", en: "agent types" } },
+      { value: "23", label: { fr: "agents spécialisés", en: "specialised agents" } },
       { value: "3", label: { fr: "modèles, avec bascule", en: "models, with failover" } },
       { value: "9", label: { fr: "collections mémoire (RAG)", en: "RAG memory collections" } },
-      { value: "12", label: { fr: "vues du tableau de bord", en: "dashboard views" } },
+      { value: "35", label: { fr: "vues du tableau de bord", en: "dashboard views" } },
+    ],
+    media: [
+      {
+        type: "image",
+        src: "/projects/ecosystem/dashboard-home.png",
+        alt: {
+          fr: "Le tableau de bord de supervision — santé de la flotte, niveau d'autonomie, coût, et un flux en direct de ce que fait chaque agent.",
+          en: "The supervision dashboard — fleet health, autonomy level, spend, and a live feed of what each agent is doing.",
+        },
+      },
+      {
+        type: "image",
+        src: "/projects/ecosystem/agents-skills.png",
+        alt: {
+          fr: "Le parc d'agents — 23 agents spécialisés, chacun avec son modèle et ses compteurs de tokens, de coût et d'erreurs, ainsi que le registre de compétences.",
+          en: "The agent roster — 23 specialised agents, each with its own model and its own token, cost and error counters, plus the skill registry.",
+        },
+      },
+      {
+        type: "image",
+        src: "/projects/ecosystem/agent-mesh.png",
+        alt: {
+          fr: "Le mesh d'agents — les 23 agents joignables, chacun sur son propre port local avec son modèle, l'état de son disjoncteur et son usage.",
+          en: "The agent mesh — all 23 agents reachable, each on its own local port with its model, circuit-breaker state and usage.",
+        },
+      },
+      {
+        type: "image",
+        src: "/projects/ecosystem/trust-monitor-privacy.png",
+        alt: {
+          fr: "La politique de confidentialité du trust monitor — chaque catégorie de données (notes, code, tâches…) est réglée sur « cloud autorisé » ou « local uniquement ».",
+          en: "The trust monitor's privacy policy — each data category (notes, code, tasks…) is set to cloud-allowed or local-only, so sensitive data can stay on the machine.",
+        },
+      },
+      {
+        type: "image",
+        src: "/projects/ecosystem/knowledge-graph.png",
+        alt: {
+          fr: "Le graphe de connaissances Graphify du code — plus de 3 800 nœuds et 8 000 liens regroupés en 217 communautés détectées.",
+          en: "The Graphify knowledge graph of the codebase — 3,800+ nodes and 8,000+ edges grouped into 217 detected communities.",
+        },
+      },
+      {
+        type: "image",
+        src: "/projects/ecosystem/knowledge-graph-full.png",
+        alt: {
+          fr: "Le graphe de connaissances en plein écran — des grappes denses de modules très liés se détachent des bords plus épars.",
+          en: "The knowledge graph full-screen — dense clusters of tightly-linked modules stand out from the sparser edges.",
+        },
+      },
     ],
     tagline: {
       fr: "Infrastructure d'agents IA auto-réparante : elle tourne, se rétablit et se souvient toute seule.",
@@ -260,6 +312,10 @@ export const projects: Project[] = [
     repo: "Cyberpix",
     tags: ["Python", "Pygame", "2D game", "Packaging"],
     featured: true,
+    credit: {
+      name: "William Miserolle",
+      url: "https://www.linkedin.com/in/william-miserolle/",
+    },
     tagline: {
       fr: "Un jeu de plateforme et de tir cyberpunk 2D en Python, inachevé, réalisé pour un cours de NSI — empaqueté et fonctionnel, que je veux encore terminer.",
       en: "An unfinished 2D cyberpunk platformer-shooter in Python, made for an NSI class — packaged and running, and one I still want to finish.",
@@ -267,21 +323,21 @@ export const projects: Project[] = [
     context: {
       fr: [
         "Un jeu que nous avons commencé en décembre 2022 pour notre cours de NSI en terminale — la consigne était simplement « faire un jeu ». Nous sommes partis sur un univers cyberpunk en 2D (pixel-art, néon, tons bleutés), inspiré de Cyberpunk, de Mario et des jeux de plateforme classiques, que nous avons appelé Cyberpix.",
-        "Le pitch : on incarne un mercenaire qui s'attaque aux mégacorpos — lesquelles lui envoient d'autres mercenaires — tout en cherchant à découvrir ce qui est arrivé à sa famille, avant de rejoindre les rebelles. Mon ami William Miserole a eu l'idée du genre et a écrit la majeure partie du code ; j'étais ravi de faire un jeu mais plus faible en programmation, alors j'ai piloté le design, l'histoire et la direction visuelle, et j'ai repris un peu la partie développement l'année suivante. Le mérite du code lui revient en grande partie.",
+        "Le pitch : on incarne un mercenaire qui s'attaque aux mégacorpos — lesquelles lui envoient d'autres mercenaires — tout en cherchant à découvrir ce qui est arrivé à sa famille, avant de rejoindre les rebelles. Mon ami William Miserolle a eu l'idée du genre et a écrit la majeure partie du code ; j'étais ravi de faire un jeu mais plus faible en programmation, alors j'ai piloté le design, l'histoire et la direction visuelle, et j'ai repris un peu la partie développement l'année suivante. Le mérite du code lui revient en grande partie.",
       ],
       en: [
         "A game we started in December 2022 for our NSI class in terminale — the brief was simply 'make a game.' We went for a 2D cyberpunk world (pixel-art, neon, blue-lit), inspired by Cyberpunk, Mario and classic platformers, and named it Cyberpix.",
-        "The premise: you play a mercenary taking on the megacorps that keep sending others after you, while trying to uncover what happened to your family — eventually joining the rebels. My friend William Miserole came up with the genre and wrote most of the code; I was thrilled to be making a game but weaker at coding, so I led the design, the story and the visual direction, and picked up a little of the dev myself the year after. Credit for the build is mostly his.",
+        "The premise: you play a mercenary taking on the megacorps that keep sending others after you, while trying to uncover what happened to your family — eventually joining the rebels. My friend William Miserolle came up with the genre and wrote most of the code; I was thrilled to be making a game but weaker at coding, so I led the design, the story and the visual direction, and picked up a little of the dev myself the year after. Credit for the build is mostly his.",
       ],
     },
     built: {
       fr: [
         "Un jeu de plateforme et de tir cyberpunk 2D — néon, pixelisé, tons bleutés. Ce qui tourne aujourd'hui, c'est le personnage principal qui se déplace dans la scène (déplacement, saut, dash, coup de pied, frappe) avec des sprites animés, sur pygame et tkinter, avec une boucle de jeu basée sur les images, une animation par feuilles de sprites et une classe par entité.",
-        "Le tout est empaqueté en exécutable Windows autonome qui tourne proprement sur une autre machine. Les sprites pixel-art proviennent d'itch.io, ils ne sont pas de nous. William Miserole a écrit la majeure partie du code et assuré le débogage — dont la synchronisation de l'horloge de jeu, la partie la plus délicate ; j'ai piloté le design, l'histoire et la direction visuelle, et repris un peu le développement l'année suivante.",
+        "Le tout est empaqueté en exécutable Windows autonome qui tourne proprement sur une autre machine. Les sprites pixel-art proviennent d'itch.io, ils ne sont pas de nous. William Miserolle a écrit la majeure partie du code et assuré le débogage — dont la synchronisation de l'horloge de jeu, la partie la plus délicate ; j'ai piloté le design, l'histoire et la direction visuelle, et repris un peu le développement l'année suivante.",
       ],
       en: [
         "A 2D cyberpunk platformer-shooter — neon, pixelated, blue-lit. What runs today is the player character moving across the scene (move, jump, dash, kick, hit) with animated sprites, built on pygame and tkinter with a frame-based game loop, sprite-sheet animation, and a class per entity.",
-        "It's bundled into a standalone Windows executable that runs cleanly on another machine. The pixel-art sprites are sourced from itch.io, not made by us. William Miserole wrote most of the code and handled the debugging — including the game-clock timing, the hardest part; I led the design, the story and the visual direction, and picked up a little of the dev the following year.",
+        "It's bundled into a standalone Windows executable that runs cleanly on another machine. The pixel-art sprites are sourced from itch.io, not made by us. William Miserolle wrote most of the code and handled the debugging — including the game-clock timing, the hardest part; I led the design, the story and the visual direction, and picked up a little of the dev the following year.",
       ],
     },
     challenges: {

@@ -95,6 +95,25 @@ export default async function ProjectPage({
       </h1>
       <p className="mt-3 text-lg leading-relaxed text-muted">{p.tagline[l]}</p>
 
+      {p.credit ? (
+        <p className="mt-3 text-sm text-muted">
+          {l === "fr" ? "En binôme avec " : "With "}
+          {p.credit.url ? (
+            <a
+              href={p.credit.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-accent hover:underline"
+            >
+              {p.credit.name}
+              <ExternalLink className="h-3 w-3" aria-hidden />
+            </a>
+          ) : (
+            <span className="text-foreground">{p.credit.name}</span>
+          )}
+        </p>
+      ) : null}
+
       {p.metrics?.length ? (
         <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
           {p.metrics.map((m, i) => (

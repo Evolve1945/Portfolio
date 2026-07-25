@@ -96,7 +96,7 @@ export default async function HomePage({
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-8">
           <div className="mb-5 flex items-baseline justify-between">
-            <span className="kicker">{t("metricsTitle")}</span>
+            <h2 className="kicker">{t("metricsTitle")}</h2>
             {gh.generatedAt ? (
               <span className="kicker">
                 {(l === "fr" ? "Mis à jour " : "Updated ") +

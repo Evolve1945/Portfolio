@@ -70,6 +70,17 @@ export async function generateMetadata({
     ],
     authors: [{ name: site.name, url: site.url }],
     creator: site.name,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: { fr: "/fr", en: "/en" },
@@ -98,15 +109,14 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const personLd = {
-    "@context": "https://schema.org",
     "@type": "Person",
     name: site.name,
     url: site.url,
     email: site.email,
     jobTitle:
       locale === "fr"
-        ? "Étudiant ingénieur en informatique"
-        : "Computer-engineering student",
+        ? "Développeur Python & étudiant ingénieur en informatique"
+        : "Python developer & computer-engineering student",
     alumniOf: { "@type": "CollegeOrUniversity", name: "EFREI Paris" },
     address: {
       "@type": "PostalAddress",
@@ -128,6 +138,19 @@ export default async function LocaleLayout({
     sameAs: [site.githubUrl, site.linkedin],
   };
 
+  const webSiteLd = {
+    "@type": "WebSite",
+    name: `${site.name} — Portfolio`,
+    url: `${site.url}/${locale}`,
+    inLanguage: locale === "fr" ? "fr-FR" : "en-US",
+    author: { "@type": "Person", name: site.name, url: site.url },
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [personLd, webSiteLd],
+  };
+
   return (
     <html
       lang={locale}
@@ -137,7 +160,7 @@ export default async function LocaleLayout({
       <body className="flex min-h-dvh flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider
           attribute="class"
