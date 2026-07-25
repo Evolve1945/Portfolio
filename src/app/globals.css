@@ -19,6 +19,11 @@
   --accent-fg: #ffffff;
   --signal: #1f9d57;
   --grid: rgba(20, 20, 26, 0.04);
+  /* Digital-garden node colours, one per note group (editorial systems palette). */
+  --node-components: #3b54d1;
+  --node-integrations: #1f9d57;
+  --node-guides: #b07d24;
+  --node-review: #8a53c7;
 }
 
 .dark {
@@ -33,6 +38,10 @@
   --accent-fg: #0a0a0c;
   --signal: #34d27f;
   --grid: rgba(255, 255, 255, 0.05);
+  --node-components: #8b97ff;
+  --node-integrations: #34d27f;
+  --node-guides: #d9ad5c;
+  --node-review: #bd93f0;
 }
 
 @theme inline {
@@ -168,7 +177,11 @@ body {
   margin: 1.5rem 0;
 }
 .note-content table {
-  width: 100%;
+  /* Scroll wide tables inside their own box so they never widen the page on mobile. */
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
   margin: 1rem 0;
   font-size: 0.9rem;

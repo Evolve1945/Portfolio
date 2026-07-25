@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Rudolf Krylov — Software Developer & Computer-Engineering Student, EFREI Paris",
-    "description": "Rudolf Krylov — Python and web developer, computer-engineering student at EFREI Paris, seeking a 2027 developer apprenticeship (alternance) and internships. Projects in Python, React, web, and AI / RAG."
+    "description": "Rudolf Krylov — Python and web developer, computer-engineering student at EFREI Paris, seeking a 2028 developer apprenticeship (alternance) and internships. Projects in Python, React, web, and AI / RAG."
   },
   "nav": {
     "home": "Home",
@@ -12,10 +12,11 @@
     "notes": "Notes",
     "now": "Now",
     "cv": "CV",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu"
   },
   "home": {
-    "status": "Open to a 2027 developer apprenticeship — internships sooner",
+    "status": "Open to a 2028 developer apprenticeship — internships sooner",
     "tagline": "I build systems and learn by shipping them.",
     "intro": "Computer-engineering student at EFREI Paris. I work mainly in Python and on the web, with working knowledge of C, SQL, Git and Linux — and I document how I think as I build.",
     "ctaProjects": "View the work",

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Rudolf Krylov — Développeur & Étudiant ingénieur informatique, EFREI Paris",
-    "description": "Rudolf Krylov — développeur Python & web, étudiant ingénieur à l'EFREI Paris, en recherche d'alternance développeur 2027 et de stage. Projets en Python, React, web et IA / RAG."
+    "description": "Rudolf Krylov — développeur Python & web, étudiant ingénieur à l'EFREI Paris, en recherche d'alternance développeur 2028 et de stage. Projets en Python, React, web et IA / RAG."
   },
   "nav": {
     "home": "Accueil",
@@ -12,10 +12,11 @@
     "notes": "Notes",
     "now": "En ce moment",
     "cv": "CV",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu"
   },
   "home": {
-    "status": "Ouvert à une alternance de développeur en 2027 — stage d'ici là",
+    "status": "Ouvert à une alternance de développeur en 2028 — stage d'ici là",
     "tagline": "Je construis des systèmes et j'apprends en les livrant.",
     "intro": "Étudiant ingénieur en informatique à l'EFREI Paris. Je travaille surtout en Python et sur le web, avec des bases en C, SQL, Git et Linux — et je documente ma façon de penser au fil de la construction.",
     "ctaProjects": "Voir les projets",

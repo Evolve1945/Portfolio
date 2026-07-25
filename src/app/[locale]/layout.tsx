@@ -54,7 +54,7 @@ export async function generateMetadata({
       "React",
       "Next.js",
       "JavaScript",
-      "alternance développeur 2027",
+      "alternance développeur 2028",
       "developer apprenticeship",
       "stage informatique",
       "internship",

@@ -6,12 +6,12 @@ const bio: Record<Locale, string[]> = {
   en: [
     "I'm a computer-engineering student at EFREI Paris, focused on software and web development. I work mainly in Python and on the web, with working knowledge of C, SQL, Git and Linux.",
     "My next steps are React, REST APIs and full-stack deployment — which I practise through my own projects rather than waiting for a course to cover them.",
-    "I'm preparing an international exchange in my third year and looking for a developer apprenticeship for 2027, open to an internship before then.",
+    "I'm preparing an international exchange in my third year and looking for a developer apprenticeship for 2028, open to an internship before then.",
   ],
   fr: [
     "Je suis étudiant en cycle ingénieur informatique à l'EFREI Paris, orienté développement logiciel et web. Je programme surtout en Python et sur le web, avec des bases en C, SQL, Git et Linux.",
     "Mes prochaines étapes : React, les API REST et le déploiement full-stack — que je travaille à travers mes propres projets plutôt qu'en attendant un cours.",
-    "Je prépare un échange international en 3e année et je recherche une alternance de développeur pour 2027, ouvert à un stage d'ici là.",
+    "Je prépare un échange international en 3e année et je recherche une alternance de développeur pour 2028, ouvert à un stage d'ici là.",
   ],
 };
 

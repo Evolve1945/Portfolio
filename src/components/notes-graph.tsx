@@ -4,19 +4,31 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { useRouter } from "@/i18n/navigation";
 
-type GraphNote = { slug: string; title: string; links: string[] };
+type GraphNote = { slug: string; title: string; group: string; links: string[] };
 
-const W = 600;
-const H = 370;
-const CX = 300;
-const CY = 185;
-const R = 140;
-const AMP = 9; // drift radius in SVG units
+const W = 760;
+const H = 400;
+const CX = 380;
+const CY = 200;
+const RX = 342; // horizontal spread radius
+const RY = 168; // vertical spread radius
+const AMP = 7; // drift radius in SVG units
+const GOLDEN = 2.399963229728653; // golden angle (radians)
 
-// Interactive notes map. Nodes gently drift like the home-page graph; hovering a
-// node eases it and everything connected to it to a stop at their anchors and
-// reveals their labels, so the related notes hold still long enough to read and
-// open. Click a node to go to it. Respects prefers-reduced-motion (static frame).
+// Group -> colour token. Exported so the page legend stays in sync.
+export const groupColor: Record<string, string> = {
+  Components: "var(--node-components)",
+  Integrations: "var(--node-integrations)",
+  Guides: "var(--node-guides)",
+  Review: "var(--node-review)",
+};
+const colorFor = (group: string) => groupColor[group] ?? "var(--faint)";
+
+// Interactive notes map. Nodes are spread across the panel with a phyllotaxis
+// (sunflower) layout and coloured by their group; they gently drift like the
+// home-page graph. Hovering a node eases it and everything connected to it to a
+// stop and reveals their labels, while unrelated nodes dim AND stop receiving
+// pointer events — so a drifting node can never steal the hover you're reading.
 export function NotesGraph({ notes }: { notes: GraphNote[] }) {
   const router = useRouter();
   const reduce = useReducedMotion();
@@ -25,13 +37,14 @@ export function NotesGraph({ notes }: { notes: GraphNote[] }) {
 
   const n = notes.length;
 
-  // Deterministic, SSR-safe structures (no Math.random, rounded coordinates so
+  // Deterministic, SSR-safe structures (no Math.random; rounded coordinates so
   // the first paint matches the server render — avoids a hydration mismatch).
   const { anchors, edges, adjacency, motion } = useMemo(() => {
     const round = (v: number) => Math.round(v * 100) / 100;
     const anchors = notes.map((_, i) => {
-      const a = (2 * Math.PI * i) / n - Math.PI / 2;
-      return { x: round(CX + R * Math.cos(a)), y: round(CY + R * Math.sin(a)) };
+      const f = Math.sqrt((i + 0.5) / n); // uniform areal density
+      const a = i * GOLDEN;
+      return { x: round(CX + RX * f * Math.cos(a)), y: round(CY + RY * f * Math.sin(a)) };
     });
     const idx = new Map(notes.map((note, i) => [note.slug, i]));
     const edges: [number, number][] = [];
@@ -41,7 +54,6 @@ export function NotesGraph({ notes }: { notes: GraphNote[] }) {
         if (j !== undefined) edges.push([i, j]);
       }),
     );
-    // For each note, the set of directly connected notes (both directions) + itself.
     const adjacency = new Map<string, Set<string>>();
     notes.forEach((note) => adjacency.set(note.slug, new Set([note.slug])));
     notes.forEach((note) =>
@@ -81,7 +93,6 @@ export function NotesGraph({ notes }: { notes: GraphNote[] }) {
       const active = hoverRef.current ? adjacency.get(hoverRef.current) : null;
       for (let i = 0; i < n; i++) {
         const target = active && active.has(notes[i].slug) ? 0 : 1;
-        // Ease the settle factor so nodes glide to rest / resume, never snap.
         settleRef.current[i] += (target - settleRef.current[i]) * 0.12;
         const s = settleRef.current[i];
         const m = motion[i];
@@ -99,7 +110,12 @@ export function NotesGraph({ notes }: { notes: GraphNote[] }) {
   const pos = posRef.current;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Notes map">
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      className="w-full"
+      role="img"
+      aria-label="Notes map"
+    >
       <g>
         {edges.map(([a, b], i) => {
           const on = active
@@ -114,7 +130,7 @@ export function NotesGraph({ notes }: { notes: GraphNote[] }) {
               y2={pos[b].y}
               stroke={on ? "var(--accent)" : "var(--border)"}
               strokeWidth={on ? 1.5 : 1}
-              opacity={active && !on ? 0.2 : 1}
+              opacity={active && !on ? 0.15 : 1}
             />
           );
         })}
@@ -123,30 +139,27 @@ export function NotesGraph({ notes }: { notes: GraphNote[] }) {
         const inActive = active ? active.has(note.slug) : false;
         const dim = active ? !inActive : false;
         const isHover = hover === note.slug;
-        const lit = isHover || inActive;
         const showLabel = active ? inActive : isHover;
+        const fill = colorFor(note.group);
         return (
           <g
             key={note.slug}
             className="cursor-pointer"
-            opacity={dim ? 0.25 : 1}
+            opacity={dim ? 0.2 : 1}
+            // Dimmed (still-drifting) nodes stop receiving pointer events so they
+            // can't intercept the hover while you're reading the active cluster.
+            style={{ pointerEvents: dim ? "none" : "auto" }}
             onMouseEnter={() => setHover(note.slug)}
             onMouseLeave={() => setHover(null)}
             onClick={() => router.push(`/notes/${note.slug}`)}
           >
             {/* Invisible larger hit area so a moving node is easy to catch. */}
+            <circle cx={pos[i].x} cy={pos[i].y} r={11} fill="transparent" />
             <circle
               cx={pos[i].x}
               cy={pos[i].y}
-              r={10}
-              fill="transparent"
-              style={{ pointerEvents: "all" }}
-            />
-            <circle
-              cx={pos[i].x}
-              cy={pos[i].y}
-              r={isHover ? 7 : 4.5}
-              fill={lit ? "var(--accent)" : "var(--faint)"}
+              r={isHover ? 7 : inActive ? 5.5 : 4.5}
+              fill={fill}
             />
             {showLabel ? (
               <text

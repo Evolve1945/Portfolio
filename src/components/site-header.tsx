@@ -3,6 +3,7 @@ import { site } from "@/data/site";
 import { ThemeToggle } from "./theme-toggle";
 import { LocaleSwitch } from "./locale-switch";
 import { NavLinks } from "./nav-links";
+import { MobileNav } from "./mobile-nav";
 
 export function SiteHeader() {
   return (
@@ -22,6 +23,7 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center gap-2">
           <LocaleSwitch />
           <ThemeToggle />
+          <MobileNav />
         </div>
       </div>
     </header>

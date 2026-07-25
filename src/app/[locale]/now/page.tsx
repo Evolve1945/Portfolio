@@ -3,7 +3,7 @@ import type { Locale } from "@/i18n/routing";
 import { PageHeader } from "@/components/page-header";
 
 // Update this date whenever the page changes.
-const updated = "2026-06-22";
+const updated = "2026-07-25";
 
 const blocks: Record<Locale, { h: string; items: string[] }[]> = {
   en: [
@@ -11,16 +11,22 @@ const blocks: Record<Locale, { h: string; items: string[] }[]> = {
       h: "Learning",
       items: [
         "React & Next.js — by building this site",
-        "REST APIs with FastAPI",
-        "Full-stack deployment",
+        "TypeScript — typing this codebase end to end",
+        "REST APIs with FastAPI and WebSockets",
+        "Retrieval-augmented generation & vector search",
+        "Distributed-systems patterns: retries, circuit breakers, idempotency",
+        "CI/CD and full-stack deployment (GitHub Actions, Vercel)",
       ],
     },
     {
       h: "Building",
       items: [
-        "Ecosystem: task-dependency DAG",
-        "Error tracking & categorisation",
-        "Always-on remote access",
+        "This portfolio — bilingual, self-updating from GitHub",
+        "Ecosystem: a task-dependency DAG for branching pipelines",
+        "Ecosystem dashboard V2 — a 35-view supervision UI",
+        "An evaluation loop to score and improve agent output",
+        "Error tracking & categorisation across the agent mesh",
+        "Always-on remote access and alerting",
       ],
     },
     {
@@ -45,16 +51,22 @@ const blocks: Record<Locale, { h: string; items: string[] }[]> = {
       h: "J'apprends",
       items: [
         "React & Next.js — en construisant ce site",
-        "Les API REST avec FastAPI",
-        "Le déploiement full-stack",
+        "TypeScript — en typant ce projet de bout en bout",
+        "Les API REST avec FastAPI et les WebSockets",
+        "La génération augmentée par récupération (RAG) & la recherche vectorielle",
+        "Les patterns des systèmes distribués : reprises, disjoncteurs, idempotence",
+        "Le CI/CD et le déploiement full-stack (GitHub Actions, Vercel)",
       ],
     },
     {
       h: "Je construis",
       items: [
-        "Ecosystem : DAG de dépendances de tâches",
-        "Suivi et catégorisation des erreurs",
-        "Accès distant permanent",
+        "Ce portfolio — bilingue, mis à jour automatiquement depuis GitHub",
+        "Ecosystem : un DAG de dépendances de tâches pour des pipelines branchés",
+        "Le dashboard V2 de l'Ecosystem — une interface de supervision à 35 vues",
+        "Une boucle d'évaluation pour noter et améliorer les sorties des agents",
+        "Le suivi et la catégorisation des erreurs sur le mesh d'agents",
+        "L'accès distant permanent et les alertes",
       ],
     },
     {

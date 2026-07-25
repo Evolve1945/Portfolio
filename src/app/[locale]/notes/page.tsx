@@ -3,7 +3,7 @@ import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/page-header";
 import { NodeField } from "@/components/systems/node-field";
-import { NotesGraph } from "@/components/notes-graph";
+import { NotesGraph, groupColor } from "@/components/notes-graph";
 import { getNotes } from "@/lib/notes";
 
 export default async function NotesPage({
@@ -41,7 +41,7 @@ export default async function NotesPage({
       <PageHeader kicker={t("kicker")} title={t("title")} intro={t("intro")} />
 
       <div className="mx-auto max-w-6xl px-5 py-12">
-        <div className="mb-8 grid gap-4 sm:grid-cols-3">
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { title: t("guideWhatTitle"), body: t("guideWhat") },
             { title: t("guideUseTitle"), body: t("guideUse") },
@@ -74,7 +74,24 @@ export default async function NotesPage({
             <span className="kicker text-faint">{notes.length} notes</span>
           </div>
           <NotesGraph notes={notes} />
-          <p className="mt-3 text-center text-xs leading-relaxed text-faint">
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5">
+            {Object.keys(groupColor)
+              .filter((g) => groups.includes(g))
+              .map((g) => (
+                <span
+                  key={g}
+                  className="inline-flex items-center gap-1.5 text-[0.7rem] text-muted"
+                >
+                  <span
+                    className="h-2 w-2 rounded-full"
+                    style={{ background: groupColor[g] }}
+                    aria-hidden
+                  />
+                  {g}
+                </span>
+              ))}
+          </div>
+          <p className="mt-2 text-center text-xs leading-relaxed text-faint">
             {l === "fr"
               ? "Survolez un point : les notes reliées se figent pour que vous puissiez les lire · cliquez pour en ouvrir une"
               : "Hover a node: the connected notes settle so you can read them · click to open one"}
@@ -85,19 +102,19 @@ export default async function NotesPage({
           {groups.map((g) => (
             <section key={g}>
               <h2 className="kicker mb-4">{g}</h2>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {notes
                   .filter((note) => note.group === g)
                   .map((note) => (
                     <Link
                       key={note.slug}
                       href={`/notes/${note.slug}`}
-                      className="group rounded-xl border border-border bg-surface p-5 transition-colors hover:border-foreground/30"
+                      className="group min-w-0 rounded-xl border border-border bg-surface p-5 transition-colors hover:border-foreground/30"
                     >
-                      <h3 className="font-display text-lg tracking-tight">
+                      <h3 className="break-words font-display text-lg tracking-tight">
                         {note.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">
+                      <p className="mt-2 break-words text-sm leading-relaxed text-muted">
                         {note.summary}
                       </p>
                       {note.backlinks.length > 0 ? (

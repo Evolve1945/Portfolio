@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 
-const NAV = [
+export const NAV = [
   { href: "/about", key: "about" },
   { href: "/projects", key: "projects" },
   { href: "/skills", key: "skills" },
