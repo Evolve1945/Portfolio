@@ -36,10 +36,10 @@ export const skillCategories: SkillCategory[] = [
     rncpBlock: "BC03 · Mise en œuvre",
     subskills: [
       { name: { fr: "HTML sémantique & CSS", en: "Semantic HTML & CSS" }, level: "practiced", source: "both", evidence: ["web-ti402"] },
-      { name: { fr: "Design responsive", en: "Responsive design" }, level: "practiced", source: "both", evidence: ["web-ti402"] },
-      { name: { fr: "React / Next.js", en: "React / Next.js" }, level: "learning", source: "self", evidence: ["ecosystem"] },
+      { name: { fr: "Design responsive", en: "Responsive design" }, level: "practiced", source: "both", evidence: ["web-ti402", "portfolio"] },
+      { name: { fr: "React / Next.js", en: "React / Next.js" }, level: "learning", source: "self", evidence: ["portfolio", "ecosystem"] },
       { name: { fr: "API REST (FastAPI)", en: "REST APIs (FastAPI)" }, level: "learning", source: "self", evidence: ["ecosystem"] },
-      { name: { fr: "Tailwind CSS", en: "Tailwind CSS" }, level: "practiced", source: "self" },
+      { name: { fr: "Tailwind CSS", en: "Tailwind CSS" }, level: "practiced", source: "self", evidence: ["portfolio"] },
     ],
   },
   {
@@ -67,7 +67,7 @@ export const skillCategories: SkillCategory[] = [
       { name: { fr: "Concurrence & threads", en: "Concurrency & threading" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
       { name: { fr: "FastAPI & WebSocket", en: "FastAPI & WebSocket" }, level: "learning", source: "self", evidence: ["ecosystem"] },
       { name: { fr: "SQLite", en: "SQLite" }, level: "practiced", source: "both", evidence: ["ecosystem"] },
-      { name: { fr: "CI/CD (GitHub Actions)", en: "CI/CD (GitHub Actions)" }, level: "practiced", source: "self", evidence: ["ecosystem"] },
+      { name: { fr: "CI/CD (GitHub Actions)", en: "CI/CD (GitHub Actions)" }, level: "practiced", source: "self", evidence: ["ecosystem", "portfolio"] },
     ],
   },
   {

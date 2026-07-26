@@ -221,6 +221,91 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "portfolio",
+    name: "Portfolio",
+    year: "2026",
+    theme: "web",
+    complexity: "advanced",
+    repo: "Portfolio",
+    tags: ["Next.js", "TypeScript", "Tailwind", "i18n", "CI/CD"],
+    featured: true,
+    aiAssisted: true,
+    metrics: [
+      { value: "2", label: { fr: "langues (FR/EN)", en: "languages (FR/EN)" } },
+      { value: "10", label: { fr: "pages", en: "pages" } },
+      { value: "64", label: { fr: "notes du jardin", en: "garden notes" } },
+      { value: "3", label: { fr: "sources de données auto", en: "self-updating data sources" } },
+    ],
+    tagline: {
+      fr: "Le site que vous lisez — un portfolio bilingue et auto-actualisé, construit comme ma porte d'entrée dans le développement web moderne.",
+      en: "The site you're reading — a bilingual, self-updating portfolio built as my way into modern web development.",
+    },
+    context: {
+      fr: [
+        "Je voulais un portfolio qui reflète vraiment ma façon de penser et de travailler — pas une grille de cartes, mais un endroit qui montre qui je suis, ce que j'ai construit et ce que j'ai appris, et qui reste à jour tout seul à mesure que je livre.",
+        "Il avait aussi un second but : être ma vraie entrée dans le développement web moderne. J'apprends React et Next.js, alors j'ai tout construit comme un projet réel plutôt qu'en suivant un cours — le site est lui-même la preuve que je peux prendre en main une stack et livrer avec.",
+      ],
+      en: [
+        "I wanted a portfolio that actually reflects how I think and work — not a grid of cards, but a place that shows who I am, what I built and what I learnt, and that stays current on its own as I ship.",
+        "It also had a second purpose: to be my real entry into modern web development. I'm learning React and Next.js, so I built the whole thing as a working project rather than following a course — the site is itself the proof that I can pick up a stack and ship with it.",
+      ],
+    },
+    built: {
+      fr: [
+        "Une application Next.js 16 bilingue (FR/EN) : dix pages, dont des études de cas complètes, une cartographie des compétences RNCP, une chronologie de progression et un jardin numérique de notes d'ingénierie — en thème clair/sombre avec un design system éditorial sur mesure.",
+        "Les parties intéressantes sont les pipelines : une tâche quotidienne qui injecte mon activité GitHub dans le site (les dépôts privés étant câblés depuis un clone local), et une synchronisation qui publie des notes choisies depuis mon vault Obsidian tout en filtrant le moindre élément sensible.",
+      ],
+      en: [
+        "A bilingual (FR/EN) Next.js 16 app: ten pages including full project case studies, a skills/RNCP competency map, a growth timeline, and a digital garden of engineering notes — themed light/dark with a custom editorial design system.",
+        "The interesting parts are the pipelines: a daily job that pulls my GitHub activity into the site (private repos wired from a local clone), and a sync that publishes curated notes from my Obsidian vault while scrubbing anything sensitive.",
+      ],
+    },
+    challenges: {
+      fr: [
+        "L'essentiel de la stack était nouveau pour moi — l'App Router de Next.js, la distinction composants serveur/client, le routage internationalisé, les tokens CSS-first de Tailwind v4 — donc une bonne part du travail a été de comprendre pourquoi les choses sont structurées ainsi, pas seulement de les faire marcher.",
+        "Les vrais problèmes ont été concrets : faire que le site se mette à jour sans exposer un dépôt privé, empêcher la synchro du vault de publier la moindre donnée personnelle, et faire tourner les animations et un graphe de notes lourd sans erreur d'hydratation ni casse sur mobile.",
+      ],
+      en: [
+        "Most of the stack was new to me — the Next.js App Router, server vs client components, internationalized routing, Tailwind v4's CSS-first tokens — so a lot of the work was understanding why things are structured the way they are, not just making them work.",
+        "The trickier problems were real ones: making the site update itself without leaking a private repo, keeping the vault sync from ever publishing personal data, and getting animations and a heavy notes graph to render without hydration mismatches or breaking on mobile.",
+      ],
+    },
+    limits: {
+      fr: [
+        "L'IA m'a servi surtout de guide et d'aide au débogage pendant que j'apprends la stack — pour décortiquer des notions nouvelles ou débloquer un point précis — mais j'ai dirigé l'architecture, le contenu et le design, et je comprends comment les pièces s'emboîtent.",
+        "C'est un projet solo et vivant : certaines parties sont en v1 et je les affine en continu, plutôt qu'un objet figé et « terminé ».",
+      ],
+      en: [
+        "AI mostly acted as a guide and a debugging aid while I learn the stack — to break unfamiliar concepts down or get unstuck on a specific point — but I directed the architecture, the content and the design, and I understand how the pieces fit.",
+        "It's a solo, living project: some parts are v1 and I keep refining them, rather than a finished, frozen artifact.",
+      ],
+    },
+    learned: {
+      fr: [
+        "Le modèle mental d'un framework React moderne — l'App Router, la séparation serveur/client, le chargement des données, et comment un design system en variables CSS garde tout un site cohérent.",
+        "Comment construire de petites automatisations honnêtes : un pipeline de données auto-actualisé et une synchro de contenu sûre, avec la discipline de ne jamais laisser des données privées ou personnelles atteindre un build public.",
+        "Et que livrer et documenter un vrai projet apprend bien plus qu'un tutoriel : le mettre devant des gens force chaque défaut à se révéler.",
+      ],
+      en: [
+        "The mental model of a modern React framework — the App Router, the server/client split, data loading, and how a design system in CSS variables keeps a whole site consistent.",
+        "How to build small, honest automation: a self-updating data pipeline and a safe content sync, including the discipline of never letting private or personal data reach a public build.",
+        "And that shipping and documenting a real project teaches far more than a tutorial — putting it in front of people forces every rough edge into the open.",
+      ],
+    },
+    consolidate: {
+      fr: [
+        "Approfondir React et TypeScript jusqu'à pouvoir écrire ces composants à partir des principes plutôt qu'avec beaucoup d'aide, ajouter des tests, et resserrer la performance et l'accessibilité.",
+      ],
+      en: [
+        "Go deeper on React and TypeScript until I can build these components from first principles rather than with heavy assistance, add tests, and tighten performance and accessibility.",
+      ],
+    },
+    defend: {
+      fr: "Je sais expliquer l'architecture — le routage App Router internationalisé, le modèle de données, les pipelines GitHub et vault, et le thème — et j'ai pris chaque décision de contenu et de design du site.",
+      en: "I can explain the architecture — the internationalized App Router, the data model, the GitHub and vault pipelines, and the theming — and I made every content and design decision on the site.",
+    },
+  },
+  {
     slug: "chatbot",
     name: "Chatbot",
     year: "2025",

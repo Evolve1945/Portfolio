@@ -15,7 +15,7 @@ import { dirname, join, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const OWNER = "Evolve1945";
-const PUBLIC_REPOS = ["Chatbot", "Cyberpix", "web-done"];
+const PUBLIC_REPOS = ["Portfolio", "Chatbot", "Cyberpix", "web-done"];
 const LOCAL_REPOS = [
   {
     name: "Ecosystem",
