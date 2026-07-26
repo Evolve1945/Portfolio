@@ -42,13 +42,20 @@ export function CopyEmail({
   copiedLabel,
   className,
   icon,
+  copiedIcon,
+  ariaLabel,
 }: {
   email: string;
   subject?: string;
-  label: string;
+  /** Visible text label. Omit for an icon-only button (then set `ariaLabel`). */
+  label?: string;
   copiedLabel: string;
   className?: string;
   icon?: ReactNode;
+  /** Icon shown briefly after a copy (icon-only mode) — e.g. a check mark. */
+  copiedIcon?: ReactNode;
+  /** Accessible name for an icon-only button. */
+  ariaLabel?: string;
 }) {
   const [copied, setCopied] = useState(false);
   const href = `mailto:${email}${subject ? `?subject=${encodeURIComponent(subject)}` : ""}`;
@@ -57,6 +64,7 @@ export function CopyEmail({
     <a
       href={href}
       className={className}
+      aria-label={ariaLabel}
       onClick={() => {
         copyToClipboard(email).then((ok) => {
           if (!ok) return;
@@ -65,8 +73,8 @@ export function CopyEmail({
         });
       }}
     >
-      {icon}
-      <span>{copied ? copiedLabel : label}</span>
+      {copied && copiedIcon ? copiedIcon : icon}
+      {label ? <span>{copied ? copiedLabel : label}</span> : null}
     </a>
   );
 }

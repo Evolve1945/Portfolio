@@ -17,8 +17,8 @@
   },
   "home": {
     "status": "Ouvert à une alternance de développeur en 2028 — stage d'ici là",
-    "tagline": "Je construis des systèmes et j'apprends en les livrant.",
-    "intro": "Étudiant ingénieur en informatique à l'EFREI Paris. Je travaille surtout en Python et sur le web, avec des bases en C, SQL, Git et Linux — et je documente ma façon de penser au fil de la construction.",
+    "tagline": "Je construis des systèmes, et j'apprends en les livrant.",
+    "intro": "Étudiant ingénieur en informatique à l'EFREI Paris. Je travaille surtout en Python et sur le web, avec des connaissances pratiques en C, SQL, Git et Linux. Je documente aussi ma façon de résoudre les problèmes au fil de mes projets.",
     "ctaProjects": "Voir les projets",
     "ctaNotes": "Lire les notes",
     "metricsTitle": "En direct de GitHub",
@@ -58,7 +58,7 @@
       "guideWhatTitle": "Ce que c'est",
       "guideWhat": "Un jardin numérique : les notes que je tiens en construisant l'Ecosystem. Pas un blog — des notes courtes et reliées, chacune sur une seule idée, décision ou composant.",
       "guideUseTitle": "À quoi ça sert",
-      "guideUse": "Ça montre comment je pense et je conçois — les choix, les compromis et les briques derrière les projets. Ces mêmes notes donnent aussi à mes agents IA le contexte et les contraintes dont ils ont besoin avant de générer du code.",
+      "guideUse": "Ça montre comment je pense et je conçois — les choix, les compromis et les briques derrière les projets. Ces mêmes notes donnent aussi à mes outils d'IA le contexte dont ils ont besoin avant de m'aider à écrire du code.",
       "guideHowTitle": "Comment le lire",
       "guideHow": "Chaque note tient sur une idée et renvoie vers les notes liées. La carte ci-dessous trace ces liens — survolez un point pour voir ses connexions, cliquez pour ouvrir la note."
     },

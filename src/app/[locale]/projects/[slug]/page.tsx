@@ -219,7 +219,9 @@ export default async function ProjectPage({
       {p.repo ? (
         <div className="mt-10 rounded-xl border border-border bg-surface p-5">
           <div className="flex items-center justify-between">
-            <span className="kicker">Git trace</span>
+            <span className="kicker">
+              {l === "fr" ? "Activité GitHub" : "GitHub activity"}
+            </span>
             {isPrivate ? (
               <span className="kicker text-faint">
                 {l === "fr" ? "dépôt privé" : "private"}
