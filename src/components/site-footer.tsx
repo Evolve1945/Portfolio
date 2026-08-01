@@ -53,6 +53,12 @@ export function SiteFooter() {
             {nav(key)}
           </Link>
         ))}
+        <Link
+          href="/privacy"
+          className="transition-colors hover:text-foreground"
+        >
+          {t("privacy")}
+        </Link>
       </nav>
 
       <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 pb-9 pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">

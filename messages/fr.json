@@ -96,7 +96,8 @@
   "footer": {
     "built": "Construit avec Next.js et TypeScript.",
     "source": "Code source",
-    "rights": "Rudolf Krylov"
+    "rights": "Rudolf Krylov",
+    "privacy": "Confidentialité"
   },
   "theme": {
     "toggle": "Changer de thème",
