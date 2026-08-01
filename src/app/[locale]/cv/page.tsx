@@ -55,6 +55,17 @@ const cv: Record<
 
 const coreSkills = ["Python", "JavaScript", "HTML/CSS", "C", "SQL", "Git", "Linux"];
 
+// Section heading with a clear anchor — an accent bar + serif title + bottom rule —
+// so the eye lands somewhere on both the light (paper) and dark backgrounds.
+function CvHeading({ children }: { children: string }) {
+  return (
+    <h2 className="flex items-center gap-2 border-b border-border pb-2 font-display text-lg tracking-tight">
+      <span className="h-4 w-1 rounded-full bg-accent" aria-hidden />
+      {children}
+    </h2>
+  );
+}
+
 export default async function CvPage({
   params,
 }: {
@@ -101,23 +112,23 @@ export default async function CvPage({
         <div className="mt-10 grid gap-10 sm:grid-cols-2">
           <div className="space-y-8">
             <section>
-              <h2 className="kicker">{c.educationTitle}</h2>
-              <ul className="mt-3 space-y-3">
+              <CvHeading>{c.educationTitle}</CvHeading>
+              <ul className="mt-4 space-y-3">
                 {c.education.map((e) => (
                   <li key={e.h}>
-                    <p className="font-medium">{e.h}</p>
-                    <p className="text-sm text-muted">{e.d}</p>
+                    <p className="font-semibold">{e.h}</p>
+                    <p className="mt-0.5 text-sm text-muted">{e.d}</p>
                   </li>
                 ))}
               </ul>
             </section>
             <section>
-              <h2 className="kicker">{c.experienceTitle}</h2>
-              <ul className="mt-3 space-y-3">
+              <CvHeading>{c.experienceTitle}</CvHeading>
+              <ul className="mt-4 space-y-3">
                 {c.experience.map((e) => (
                   <li key={e.h}>
-                    <p className="font-medium">{e.h}</p>
-                    <p className="text-sm text-muted">{e.d}</p>
+                    <p className="font-semibold">{e.h}</p>
+                    <p className="mt-0.5 text-sm text-muted">{e.d}</p>
                   </li>
                 ))}
               </ul>
@@ -126,8 +137,8 @@ export default async function CvPage({
 
           <div className="space-y-8">
             <section>
-              <h2 className="kicker">{c.skillsTitle}</h2>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <CvHeading>{c.skillsTitle}</CvHeading>
+              <div className="mt-4 flex flex-wrap gap-2">
                 {coreSkills.map((s) => (
                   <span
                     key={s}
@@ -139,19 +150,19 @@ export default async function CvPage({
               </div>
             </section>
             <section>
-              <h2 className="kicker">{c.languagesTitle}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
+              <CvHeading>{c.languagesTitle}</CvHeading>
+              <p className="mt-4 text-sm leading-relaxed text-muted">
                 {c.languages}
               </p>
             </section>
             <section>
-              <h2 className="kicker">{c.projectsTitle}</h2>
-              <ul className="mt-3 space-y-1.5">
+              <CvHeading>{c.projectsTitle}</CvHeading>
+              <ul className="mt-4 space-y-1.5">
                 {featuredProjects.map((p) => (
                   <li key={p.slug}>
                     <Link
                       href={`/projects/${p.slug}`}
-                      className="text-sm text-accent hover:underline"
+                      className="text-sm font-medium text-accent hover:underline"
                     >
                       {p.name}
                     </Link>

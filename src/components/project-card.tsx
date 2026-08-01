@@ -30,6 +30,7 @@ export function ProjectCard({
         <span className="rounded border border-border px-1.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-accent">
           {complexityLabel[project.complexity][locale]}
         </span>
+        <span className="font-mono text-[0.7rem] text-faint">{project.year}</span>
         {project.tags.slice(0, 3).map((t) => (
           <span key={t} className="font-mono text-[0.7rem] text-faint">
             {t}

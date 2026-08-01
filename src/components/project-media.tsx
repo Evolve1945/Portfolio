@@ -20,10 +20,17 @@ export function ProjectMedia({
   // Cap the on-screen size so a screenshot is never scaled ABOVE its real pixel
   // resolution for this display's density — upscaling is what makes it look blurry.
   const [cap, setCap] = useState<React.CSSProperties | undefined>(undefined);
+  // Click-to-zoom: when on, show the image at its full natural width (scroll/pan
+  // to inspect detail) instead of the crisp-fit cap.
+  const [zoomed, setZoomed] = useState(false);
+  const [nat, setNat] = useState<{ w: number; h: number } | null>(null);
 
   const close = useCallback(() => setOpen(null), []);
-  // Recompute the crisp cap for each newly-shown image.
-  useEffect(() => setCap(undefined), [open]);
+  // Recompute the crisp cap and reset zoom for each newly-shown image.
+  useEffect(() => {
+    setCap(undefined);
+    setZoomed(false);
+  }, [open]);
   const go = useCallback(
     (dir: number) =>
       setOpen((i) =>
@@ -63,6 +70,9 @@ export function ProjectMedia({
   };
 
   const zoomLabel = locale === "fr" ? "Agrandir" : "Enlarge";
+  const zoomInHint =
+    locale === "fr" ? "Cliquez sur l'image pour agrandir" : "Click image to zoom";
+  const zoomFitHint = locale === "fr" ? "Cliquez pour ajuster" : "Click to fit";
 
   return (
     <>
@@ -128,9 +138,12 @@ export function ProjectMedia({
           onTouchEnd={onTouchEnd}
           className="fixed inset-0 z-[70] flex flex-col bg-background/95 backdrop-blur"
         >
-          <div className="flex items-center justify-between px-4 py-3">
+          <div className="flex items-center justify-between gap-3 px-4 py-3">
             <span className="font-mono text-xs text-faint">
               {open + 1} / {images.length}
+            </span>
+            <span className="hidden font-mono text-[0.7rem] text-faint sm:inline">
+              {zoomed ? zoomFitHint : zoomInHint}
             </span>
             <button
               type="button"
@@ -142,7 +155,7 @@ export function ProjectMedia({
             </button>
           </div>
 
-          <div className="relative flex flex-1 items-center justify-center overflow-hidden px-3 pb-3">
+          <div className="relative flex flex-1 overflow-hidden px-3 pb-3">
             {images.length > 1 ? (
               <button
                 type="button"
@@ -151,29 +164,50 @@ export function ProjectMedia({
                   go(-1);
                 }}
                 aria-label={locale === "fr" ? "Image précédente" : "Previous image"}
-                className="absolute left-2 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface/80 text-foreground backdrop-blur transition-colors hover:border-accent hover:text-accent sm:left-4"
+                className="absolute left-2 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface/80 text-foreground backdrop-blur transition-colors hover:border-accent hover:text-accent sm:left-4"
               >
                 <ChevronLeft className="h-5 w-5" aria-hidden />
               </button>
             ) : null}
 
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              key={images[open].src}
-              src={images[open].src}
-              alt={images[open].alt[locale]}
+            <div
               onClick={(e) => e.stopPropagation()}
-              onLoad={(e) => {
-                const img = e.currentTarget;
-                const dpr = window.devicePixelRatio || 1;
-                setCap({
-                  maxWidth: `min(100%, ${Math.round(img.naturalWidth / dpr)}px)`,
-                  maxHeight: `min(100%, ${Math.round(img.naturalHeight / dpr)}px)`,
-                });
-              }}
-              style={cap}
-              className="max-h-full max-w-full rounded-lg object-contain shadow-2xl"
-            />
+              className={
+                zoomed
+                  ? "h-full w-full overflow-auto"
+                  : "flex h-full w-full items-center justify-center overflow-hidden"
+              }
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                key={images[open].src}
+                src={images[open].src}
+                alt={images[open].alt[locale]}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setZoomed((z) => !z);
+                }}
+                onLoad={(e) => {
+                  const img = e.currentTarget;
+                  const dpr = window.devicePixelRatio || 1;
+                  setNat({ w: img.naturalWidth, h: img.naturalHeight });
+                  setCap({
+                    maxWidth: `min(100%, ${Math.round(img.naturalWidth / dpr)}px)`,
+                    maxHeight: `min(100%, ${Math.round(img.naturalHeight / dpr)}px)`,
+                  });
+                }}
+                style={
+                  zoomed && nat
+                    ? { width: `${nat.w}px`, maxWidth: "none", maxHeight: "none" }
+                    : cap
+                }
+                className={`rounded-lg shadow-2xl ${
+                  zoomed
+                    ? "block max-w-none cursor-zoom-out"
+                    : "mx-auto max-h-full max-w-full cursor-zoom-in object-contain"
+                }`}
+              />
+            </div>
 
             {images.length > 1 ? (
               <button
@@ -183,7 +217,7 @@ export function ProjectMedia({
                   go(1);
                 }}
                 aria-label={locale === "fr" ? "Image suivante" : "Next image"}
-                className="absolute right-2 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface/80 text-foreground backdrop-blur transition-colors hover:border-accent hover:text-accent sm:right-4"
+                className="absolute right-2 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface/80 text-foreground backdrop-blur transition-colors hover:border-accent hover:text-accent sm:right-4"
               >
                 <ChevronRight className="h-5 w-5" aria-hidden />
               </button>

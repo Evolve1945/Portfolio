@@ -13,10 +13,14 @@ const rank: Record<SkillLevel, number> = {
   confident: 3,
 };
 
-function Pips({ level }: { level: SkillLevel }) {
+function Pips({ level, label }: { level: SkillLevel; label?: string }) {
   const n = rank[level];
   return (
-    <span className="inline-flex gap-0.5" aria-hidden>
+    <span
+      className="inline-flex gap-0.5"
+      aria-hidden
+      title={label ? `${label} (${n}/3)` : undefined}
+    >
       {[1, 2, 3].map((i) => (
         <span
           key={i}
@@ -68,6 +72,19 @@ export default async function SkillsPage({
         </Link>
       </div>
 
+      {/* Legend — spells out that the dots are a proficiency scale, not difficulty. */}
+      <div className="mx-auto mt-5 flex max-w-6xl flex-wrap items-center gap-x-5 gap-y-2 px-5 text-[0.72rem]">
+        <span className="font-mono uppercase tracking-wider text-faint">
+          {l === "fr" ? "Niveau de maîtrise" : "Proficiency"}
+        </span>
+        {(["learning", "practiced", "confident"] as SkillLevel[]).map((lv) => (
+          <span key={lv} className="inline-flex items-center gap-1.5 text-muted">
+            <Pips level={lv} />
+            {levelLabel[lv][l]}
+          </span>
+        ))}
+      </div>
+
       <Reveal className="mx-auto grid max-w-6xl gap-5 px-5 pb-12 pt-6 md:grid-cols-2">
         {skillCategories.map((cat) => (
           <section
@@ -91,7 +108,7 @@ export default async function SkillsPage({
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-sm">{s.name[l]}</span>
-                    <Pips level={s.level} />
+                    <Pips level={s.level} label={levelLabel[s.level][l]} />
                   </div>
                   <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.72rem]">
                     <span className="font-mono uppercase tracking-wider text-faint">

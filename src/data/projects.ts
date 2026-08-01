@@ -535,7 +535,24 @@ export const projects: Project[] = [
   },
 ];
 
-export const featuredProjects = projects.filter((p) => p.featured);
+// Newest first, tie-broken by complexity (advanced before applied before
+// foundational) then stable array order. Used to order the project lists so the
+// latest work is what a visitor sees first.
+const recencyRank: Record<Complexity, number> = {
+  foundational: 0,
+  applied: 1,
+  advanced: 2,
+};
+export function byRecency(a: Project, b: Project) {
+  return (
+    b.year.localeCompare(a.year) ||
+    recencyRank[b.complexity] - recencyRank[a.complexity]
+  );
+}
+
+export const featuredProjects = projects
+  .filter((p) => p.featured)
+  .sort(byRecency);
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

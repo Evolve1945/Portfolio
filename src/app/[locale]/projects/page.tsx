@@ -3,7 +3,7 @@ import type { Locale } from "@/i18n/routing";
 import { PageHeader } from "@/components/page-header";
 import { ProjectCard } from "@/components/project-card";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
-import { projects } from "@/data/projects";
+import { projects, byRecency } from "@/data/projects";
 import { themeLabel, type Theme } from "@/data/taxonomy";
 
 const themeOrder: Theme[] = ["ai", "web", "academic", "creative"];
@@ -34,7 +34,7 @@ export default async function ProjectsPage({
 
       <div className="mx-auto max-w-6xl space-y-12 px-5 py-12">
         {themeOrder.map((theme) => {
-          const items = projects.filter((p) => p.theme === theme);
+          const items = projects.filter((p) => p.theme === theme).sort(byRecency);
           if (items.length === 0) return null;
           return (
             <section key={theme}>
