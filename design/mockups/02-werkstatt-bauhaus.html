@@ -1,0 +1,344 @@
+<title>Home — Werkstatt Mockup · Rudolf Krylov</title>
+<style>
+  :root {
+    /* ——— Light: cool drafting paper (not warm cream) ——— */
+    --paper: #e9e9e3;
+    --surface: #f2f2ec;
+    --ink: #17181b;
+    --muted: #56565a;
+    --faint: #8a8a86;
+    --line: #c6c6bf;
+    --line-2: #a4a49d;
+    --red: #db2b1c;      /* Bauhaus red — the one signature */
+    --blue: #1f45c9;     /* functional only */
+    --yellow: #e7b100;   /* functional only */
+    --grid: rgba(23,24,27,.035);
+    --on-red: #f4f2ec;
+
+    --display: "Futura", "Century Gothic", "URW Geometric", "Avant Garde", "Twentieth Century", system-ui, sans-serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0f141c; --surface: #151c26; --ink: #e9ebee;
+      --muted: #99a2ac; --faint: #5d6a77; --line: #263140; --line-2: #3a4a5c;
+      --red: #ff4a38; --blue: #5b9bd6; --yellow: #e6c14a;
+      --grid: rgba(91,155,214,.06); --on-red: #0f141c;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper:#e9e9e3;--surface:#f2f2ec;--ink:#17181b;--muted:#56565a;--faint:#8a8a86;
+    --line:#c6c6bf;--line-2:#a4a49d;--red:#db2b1c;--blue:#1f45c9;--yellow:#e7b100;
+    --grid:rgba(23,24,27,.035);--on-red:#f4f2ec;
+  }
+  :root[data-theme="dark"] {
+    --paper:#0f141c;--surface:#151c26;--ink:#e9ebee;--muted:#99a2ac;--faint:#5d6a77;
+    --line:#263140;--line-2:#3a4a5c;--red:#ff4a38;--blue:#5b9bd6;--yellow:#e6c14a;
+    --grid:rgba(91,155,214,.06);--on-red:#0f141c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 44px 44px;
+    transition: background-color .25s, color .25s;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  ::selection { background: var(--red); color: var(--on-red); }
+
+  .mono { font-family: var(--mono); }
+  .tag { font-family: var(--mono); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+
+  /* ——— title-block header (blueprint) ——— */
+  header { border-bottom: 1.5px solid var(--ink); position: sticky; top: 0; z-index: 30; background: var(--paper); }
+  .titleblock { display: flex; align-items: stretch; height: 58px; }
+  .tb-mark { display: flex; align-items: center; gap: 10px; padding-right: 22px; border-right: 1px solid var(--line); }
+  .tb-mark .glyph { width: 18px; height: 18px; border-radius: 50%; background: var(--red); }
+  .tb-mark b { font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: .02em; }
+  nav { display: flex; align-items: center; gap: 20px; padding: 0 22px; flex: 1; }
+  nav a { font-family: var(--mono); font-size: .74rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  nav a.active { color: var(--ink); border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+  nav a:hover { color: var(--ink); }
+  .tb-fields { display: flex; }
+  .tb-fields .f { border-left: 1px solid var(--line); padding: 8px 14px; display: flex; flex-direction: column; justify-content: center; min-width: 74px; }
+  .tb-fields .f .k { font-family: var(--mono); font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .tb-fields .f .v { font-family: var(--mono); font-size: .8rem; color: var(--ink); }
+  .ctrls { display: flex; align-items: center; gap: 8px; padding-left: 16px; border-left: 1px solid var(--line); }
+  .seg { display: inline-flex; border: 1px solid var(--line-2); }
+  .seg button { font-family: var(--mono); font-size: .68rem; padding: 6px 9px; background: transparent; color: var(--muted); border: 0; cursor: pointer; letter-spacing: .06em; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .sq-btn { width: 32px; height: 32px; border: 1px solid var(--line-2); background: transparent; color: var(--muted); cursor: pointer; font-family: var(--mono); font-size: .8rem; }
+  .sq-btn:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ——— hero ——— */
+  .hero { display: grid; grid-template-columns: 1.25fr .85fr; gap: 40px; padding: 64px 0 30px; align-items: center; }
+  .status { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+  .status .sqm { width: 9px; height: 9px; background: var(--red); }
+  h1 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(2.35rem, 5.4vw, 4.6rem); line-height: .98; letter-spacing: -.01em;
+    margin: 0; text-wrap: balance;
+  }
+  h1 .u { color: var(--red); }
+  .dim { display: flex; align-items: center; gap: 0; margin: 26px 0 24px; height: 14px; max-width: 320px; }
+  .dim .bar { flex: 1; height: 1px; background: var(--line-2); position: relative; }
+  .dim .bar::before, .dim .bar::after { content: ""; position: absolute; top: -4px; width: 1px; height: 9px; background: var(--line-2); }
+  .dim .bar::before { left: 0; } .dim .bar::after { right: 0; }
+  .dim .lbl { font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; color: var(--faint); padding: 0 10px; text-transform: uppercase; }
+  p.lede { font-size: 1.06rem; color: var(--muted); max-width: 40ch; margin: 0 0 30px; }
+  .cta { display: flex; gap: 0; flex-wrap: wrap; }
+  .btn { font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; padding: 13px 22px; cursor: pointer; text-decoration: none; border: 1.5px solid var(--ink); display: inline-flex; align-items: center; gap: 8px; }
+  .btn.solid { background: var(--red); border-color: var(--red); color: var(--on-red); }
+  .btn.solid:hover { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn.ghost { background: transparent; color: var(--ink); border-left: 0; }
+  .btn.ghost:hover { background: var(--ink); color: var(--paper); }
+
+  /* geometric construction (Bauhaus + blueprint) */
+  .construction { border: 1.5px solid var(--ink); background: var(--surface); aspect-ratio: 1 / 1.02; position: relative; }
+  .construction .corner { position: absolute; width: 12px; height: 12px; border: 1.5px solid var(--red); }
+  .construction .corner.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+  .construction .corner.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+  .construction svg { width: 100%; height: 100%; display: block; }
+  .cap { position: absolute; bottom: 8px; left: 10px; font-family: var(--mono); font-size: .58rem; letter-spacing: .14em; color: var(--faint); text-transform: uppercase; }
+  .s-red { fill: var(--red); } .s-ink { fill: var(--ink); } .s-blue { fill: var(--blue); } .s-yel { fill: var(--yellow); }
+  .l-ink { stroke: var(--line-2); } .l-red { stroke: var(--red); }
+  .o-ink { fill: none; stroke: var(--ink); }
+
+  /* ——— schedule (GitHub stats as a blueprint schedule) ——— */
+  section { padding: 0; }
+  .schedule { border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); margin-top: 22px; }
+  .sch-head { display: flex; justify-content: space-between; padding: 10px 0; }
+  .sch-rows { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .sch-rows .cell { border-left: 1px solid var(--line); padding: 16px 16px 18px; }
+  .sch-rows .cell:first-child { border-left: 0; padding-left: 0; }
+  .sch-rows .k { font-family: var(--mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .sch-rows .v { font-family: var(--display); font-weight: 800; font-size: 1.7rem; margin-top: 8px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .sch-rows .v small { color: var(--red); }
+
+  /* ——— drawing set (selected work) ——— */
+  .set { padding: 60px 0; }
+  .set-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 0; }
+  .set-head h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 1.5rem; letter-spacing: -.01em; margin: 0; }
+  .set-head a { font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .set-head a:hover { color: var(--ink); }
+  .sheets { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .sheet { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 20px 24px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 14px; min-height: 210px; position: relative; transition: background .16s; }
+  .sheet:last-child { border-right: 0; }
+  .sheet:hover { background: var(--surface); }
+  .sheet .snum { font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; color: var(--faint); display: flex; justify-content: space-between; align-items: center; }
+  .sheet .mk { width: 16px; height: 16px; }
+  .mk.circle { border-radius: 50%; background: var(--red); }
+  .mk.square { background: var(--blue); }
+  .mk.tri { width: 0; height: 0; background: transparent; border-left: 9px solid transparent; border-right: 9px solid transparent; border-bottom: 16px solid var(--yellow); }
+  .sheet h3 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: 1.5rem; margin: 0; letter-spacing: -.01em; line-height: 1; }
+  .sheet p { font-size: .9rem; color: var(--muted); margin: 0; flex: 1; }
+  .spec { display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--line); padding-top: 12px; }
+  .spec .r { display: flex; justify-content: space-between; font-family: var(--mono); font-size: .68rem; }
+  .spec .r .k { color: var(--faint); letter-spacing: .06em; text-transform: uppercase; }
+  .spec .r .v { color: var(--ink); }
+  .set-frame { border-top: 1px solid var(--line); }
+
+  /* ——— footer title block ——— */
+  footer { border-top: 1.5px solid var(--ink); }
+  .foot { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .foot .f { border-left: 1px solid var(--line); padding: 16px; }
+  .foot .f:first-child { border-left: 0; }
+  .foot .f .k { font-family: var(--mono); font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .foot .f .v { font-family: var(--mono); font-size: .82rem; margin-top: 6px; color: var(--ink); }
+  .note { font-family: var(--mono); font-size: .62rem; color: var(--faint); padding: 14px 0 26px; }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .tb-fields .f:nth-child(2) { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 30px; padding: 44px 0 24px; }
+    .construction { max-width: 340px; }
+    .sch-rows { grid-template-columns: 1fr 1fr; }
+    .sch-rows .cell:nth-child(3) { border-left: 0; padding-left: 0; }
+    .sheets { grid-template-columns: 1fr; }
+    .sheet { border-right: 0; }
+    .foot { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header>
+  <div class="wrap titleblock">
+    <div class="tb-mark"><span class="glyph"></span><b>RK</b></div>
+    <nav>
+      <a href="#" class="active">Home</a><a href="#">About</a><a href="#">Projects</a>
+      <a href="#">Skills</a><a href="#">Journey</a><a href="#">Notes</a><a href="#">CV</a><a href="#">Contact</a>
+    </nav>
+    <div class="tb-fields">
+      <div class="f"><span class="k">Sheet</span><span class="v">HOME</span></div>
+      <div class="f"><span class="k">Rev</span><span class="v">2026</span></div>
+    </div>
+    <div class="ctrls">
+      <div class="seg" id="lang">
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="fr" aria-pressed="false">FR</button>
+      </div>
+      <button class="sq-btn" id="theme" title="Toggle theme" aria-label="Toggle theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="status">
+          <span class="sqm"></span>
+          <span class="tag" data-i18n="status">Open to a 2028 alternance — internships sooner</span>
+        </div>
+        <h1 data-i18n="tagline">I build systems, <span class="u">and learn</span> by deploying them.</h1>
+        <div class="dim"><span class="bar"></span><span class="lbl">Scale 1:1</span><span class="bar"></span></div>
+        <p class="lede" data-i18n="lede">Computer-engineering student at EFREI Paris. Python and the web, mainly. I learn by building — and I document how I solve problems as I go.</p>
+        <div class="cta">
+          <a class="btn solid" href="#" data-i18n="cta1">View the work</a>
+          <a class="btn ghost" href="#" data-i18n="cta2">Read the notes</a>
+        </div>
+      </div>
+
+      <div class="construction">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <svg viewBox="0 0 300 306" aria-hidden="true">
+          <!-- construction lines -->
+          <line x1="40" y1="0" x2="40" y2="306" class="l-ink" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="0" y1="120" x2="300" y2="120" class="l-ink" stroke-width="1" stroke-dasharray="3 4"/>
+          <!-- primary square (ink outline) -->
+          <rect x="40" y="120" width="150" height="150" class="o-ink" stroke-width="1.5"/>
+          <!-- primary circle (Bauhaus red) -->
+          <circle cx="190" cy="120" r="72" class="s-red"/>
+          <!-- triangle (functional yellow) -->
+          <path d="M96 270 L136 196 L176 270 Z" class="s-yel"/>
+          <!-- small blue square node -->
+          <rect x="182" y="236" width="26" height="26" class="s-blue"/>
+          <!-- dimension marker -->
+          <line x1="40" y1="288" x2="190" y2="288" class="l-red" stroke-width="1"/>
+          <line x1="40" y1="283" x2="40" y2="293" class="l-red" stroke-width="1"/>
+          <line x1="190" y1="283" x2="190" y2="293" class="l-red" stroke-width="1"/>
+        </svg>
+        <span class="cap">Fig. 01 — Construction</span>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section>
+      <div class="schedule">
+        <div class="sch-head">
+          <span class="tag" data-i18n="schT">Schedule — live from GitHub</span>
+          <span class="tag" data-i18n="schS">Auto-updated daily</span>
+        </div>
+        <div class="sch-rows" style="border-top:1px solid var(--line)">
+          <div class="cell"><div class="k" data-i18n="s1">Repositories</div><div class="v">05</div></div>
+          <div class="cell"><div class="k" data-i18n="s2">Commits</div><div class="v">480<small>+</small></div></div>
+          <div class="cell"><div class="k" data-i18n="s3">Primary language</div><div class="v">Python</div></div>
+          <div class="cell"><div class="k" data-i18n="s4">Last build</div><div class="v">07·31</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DRAWING SET -->
+    <section class="set">
+      <div class="set-head">
+        <h2 data-i18n="setH">Drawing set — selected work</h2>
+        <a href="#" data-i18n="setAll">All projects →</a>
+      </div>
+      <div class="sheets set-frame" style="border-top:1px solid var(--line)">
+        <a class="sheet" href="#">
+          <span class="snum"><span>A-01</span><span class="mk circle"></span></span>
+          <h3>Ecosystem</h3>
+          <p data-i18n="c1">Self-healing AI-agent infrastructure that runs, recovers, and remembers on its own.</p>
+          <div class="spec">
+            <div class="r"><span class="k">Complexity</span><span class="v">Advanced</span></div>
+            <div class="r"><span class="k">Year</span><span class="v">2026</span></div>
+            <div class="r"><span class="k">Stack</span><span class="v">Python · FastAPI</span></div>
+          </div>
+        </a>
+        <a class="sheet" href="#">
+          <span class="snum"><span>A-02</span><span class="mk square"></span></span>
+          <h3>Portfolio</h3>
+          <p data-i18n="c2">This site — bilingual, self-updating from GitHub, built as my way into modern web.</p>
+          <div class="spec">
+            <div class="r"><span class="k">Complexity</span><span class="v">Advanced</span></div>
+            <div class="r"><span class="k">Year</span><span class="v">2026</span></div>
+            <div class="r"><span class="k">Stack</span><span class="v">Next.js · TS</span></div>
+          </div>
+        </a>
+        <a class="sheet" href="#">
+          <span class="snum"><span>A-03</span><span class="mk tri"></span></span>
+          <h3>Chatbot</h3>
+          <p data-i18n="c3">TF-IDF analysis of six French presidents' inaugural speeches — my first team Git project.</p>
+          <div class="spec">
+            <div class="r"><span class="k">Complexity</span><span class="v">Applied</span></div>
+            <div class="r"><span class="k">Year</span><span class="v">2025</span></div>
+            <div class="r"><span class="k">Stack</span><span class="v">Python · NLP</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="f"><div class="k">Drawn by</div><div class="v">R. Krylov</div></div>
+    <div class="f"><div class="k">School</div><div class="v">EFREI Paris</div></div>
+    <div class="f"><div class="k">Sheet</div><div class="v">Home · Portfolio</div></div>
+    <div class="f"><div class="k">Rev</div><div class="v">2026</div></div>
+    <div class="f"><div class="k">Rights</div><div class="v">© 2026</div></div>
+  </div>
+  <div class="wrap note" data-i18n="note">Mockup — direction: Werkstatt (Bauhaus) + Dan restraint + Blueprint rigor. Final would use a geometric grotesque display face; GitHub figures are samples.</div>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  const startDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  root.setAttribute('data-theme', startDark ? 'dark' : 'light');
+  document.getElementById('theme').addEventListener('click', () => {
+    root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  const i18n = {
+    en: {
+      status: "Open to a 2028 alternance — internships sooner",
+      tagline: 'I build systems, <span class="u">and learn</span> by deploying them.',
+      lede: "Computer-engineering student at EFREI Paris. Python and the web, mainly. I learn by building — and I document how I solve problems as I go.",
+      cta1: "View the work", cta2: "Read the notes",
+      schT: "Schedule — live from GitHub", schS: "Auto-updated daily",
+      s1: "Repositories", s2: "Commits", s3: "Primary language", s4: "Last build",
+      setH: "Drawing set — selected work", setAll: "All projects →",
+      c1: "Self-healing AI-agent infrastructure that runs, recovers, and remembers on its own.",
+      c2: "This site — bilingual, self-updating from GitHub, built as my way into modern web.",
+      c3: "TF-IDF analysis of six French presidents' inaugural speeches — my first team Git project.",
+      note: "Mockup — direction: Werkstatt (Bauhaus) + Dan restraint + Blueprint rigor. Final would use a geometric grotesque display face; GitHub figures are samples."
+    },
+    fr: {
+      status: "Ouvert à une alternance 2028 — stage d'ici là",
+      tagline: 'Je construis des systèmes, <span class="u">et j\'apprends</span> en les déployant.',
+      lede: "Étudiant ingénieur en informatique à l'EFREI Paris. Python et le web, surtout. J'apprends en construisant — et je documente comment je résous les problèmes.",
+      cta1: "Voir les projets", cta2: "Lire les notes",
+      schT: "Tableau — en direct de GitHub", schS: "Mis à jour chaque jour",
+      s1: "Dépôts", s2: "Commits", s3: "Langage principal", s4: "Dernier build",
+      setH: "Jeu de plans — travaux choisis", setAll: "Tous les projets →",
+      c1: "Infrastructure d'agents IA auto-réparante : elle tourne, se rétablit et se souvient toute seule.",
+      c2: "Ce site — bilingue, mis à jour depuis GitHub, mon entrée dans le web moderne.",
+      c3: "Analyse TF-IDF de six discours d'investiture de présidents français — mon premier projet Git en équipe.",
+      note: "Maquette — direction : Werkstatt (Bauhaus) + retenue Dan + rigueur Blueprint. La version finale utiliserait une grotesque géométrique ; chiffres GitHub indicatifs."
+    }
+  };
+  function setLang(l){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k=el.getAttribute('data-i18n'); if(i18n[l][k]!=null) el.innerHTML=i18n[l][k];
+    });
+    document.querySelectorAll('#lang button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.lang===l?'true':'false'));
+    document.documentElement.lang=l;
+  }
+  document.querySelectorAll('#lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+</script>

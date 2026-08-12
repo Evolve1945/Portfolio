@@ -14,5 +14,5 @@ export const site = {
   // Portfolio repo URL — update once the repo is pushed.
   repoUrl: "https://github.com/Evolve1945",
   // Public site URL — change to your custom domain when you have one.
-  url: "https://portfolio-evolve1945s-projects.vercel.app",
+  url: "https://rudolf-krylov.vercel.app",
 } as const;

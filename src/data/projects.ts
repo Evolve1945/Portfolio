@@ -32,8 +32,17 @@ export interface Project {
   featured?: boolean;
   /** Sanitised public code excerpts (files under content/excerpts/). */
   excerpts?: { file: string; lang: string; label: Bilingual }[];
-  /** Visual media (screenshots, GIFs, videos) under public/projects/<slug>/. */
-  media?: { type: "image" | "video"; src: string; alt: Bilingual; poster?: string }[];
+  /** Visual media (screenshots, GIFs, videos) under public/projects/<slug>/.
+   *  width/height are the image's intrinsic pixels — required by next/image to
+   *  reserve space (no layout shift) and serve a right-sized, optimised version. */
+  media?: {
+    type: "image" | "video";
+    src: string;
+    alt: Bilingual;
+    poster?: string;
+    width?: number;
+    height?: number;
+  }[];
   /** Headline at-a-glance facts, shown as a stat strip. */
   metrics?: { value: string; label: Bilingual }[];
   /** Collaborator credit with an optional profile link (e.g. a school-project teammate). */
@@ -69,6 +78,8 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/ecosystem/dashboard-home.png",
+        width: 2515,
+        height: 1331,
         alt: {
           fr: "Le tableau de bord de supervision — santé de la flotte, niveau d'autonomie, coût, et un flux en direct de ce que fait chaque agent.",
           en: "The supervision dashboard — fleet health, autonomy level, spend, and a live feed of what each agent is doing.",
@@ -77,6 +88,8 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/ecosystem/agents-skills.png",
+        width: 2515,
+        height: 1331,
         alt: {
           fr: "Le parc d'agents — 23 agents spécialisés, chacun avec son modèle et ses compteurs de tokens, de coût et d'erreurs, ainsi que le registre de compétences.",
           en: "The agent roster — 23 specialised agents, each with its own model and its own token, cost and error counters, plus the skill registry.",
@@ -85,6 +98,8 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/ecosystem/agent-mesh.png",
+        width: 2515,
+        height: 1331,
         alt: {
           fr: "Le mesh d'agents — les 23 agents joignables, chacun sur son propre port local avec son modèle, l'état de son disjoncteur et son usage.",
           en: "The agent mesh — all 23 agents reachable, each on its own local port with its model, circuit-breaker state and usage.",
@@ -93,6 +108,8 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/ecosystem/trust-monitor-privacy.png",
+        width: 2515,
+        height: 1331,
         alt: {
           fr: "La politique de confidentialité du trust monitor — chaque catégorie de données (notes, code, tâches…) est réglée sur « cloud autorisé » ou « local uniquement ».",
           en: "The trust monitor's privacy policy — each data category (notes, code, tasks…) is set to cloud-allowed or local-only, so sensitive data can stay on the machine.",
@@ -101,6 +118,8 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/ecosystem/knowledge-graph.png",
+        width: 2216,
+        height: 1440,
         alt: {
           fr: "Le graphe de connaissances en plein écran — des grappes denses de modules très liés se détachent des bords plus épars.",
           en: "The knowledge graph full-screen — dense clusters of tightly-linked modules stand out from the sparser edges.",          
@@ -109,6 +128,8 @@ export const projects: Project[] = [
       {
         type: "image",
         src: "/projects/ecosystem/knowledge-graph-full.png",
+        width: 2515,
+        height: 1331,
         alt: {
           fr: "Le graphe de connaissances Graphify du code — plus de 3 800 nœuds et 8 000 liens regroupés en 217 communautés détectées.",
           en: "The Graphify knowledge graph of the codebase — 3,800+ nodes and 8,000+ edges grouped into 217 detected communities.",
@@ -473,8 +494,8 @@ export const projects: Project[] = [
     repo: "web-done",
     tags: ["HTML", "CSS", "JavaScript", "Responsive"],
     media: [
-      { type: "image", src: "/projects/web-ti402/mockup.png", alt: { fr: "Maquette du site", en: "Site mockup" } },
-      { type: "image", src: "/projects/web-ti402/campus.png", alt: { fr: "Page campus du site", en: "Campus page" } },
+      { type: "image", src: "/projects/web-ti402/mockup.png", width: 3000, height: 1745, alt: { fr: "Maquette du site", en: "Site mockup" } },
+      { type: "image", src: "/projects/web-ti402/campus.png", width: 1620, height: 1080, alt: { fr: "Page campus du site", en: "Campus page" } },
     ],
     tagline: {
       fr: "Site multi-pages responsive réalisé pour le module web TI402 de l'EFREI.",

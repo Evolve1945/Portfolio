@@ -1,0 +1,207 @@
+<title>Home — Nocturne / Plum · Rudolf Krylov</title>
+<style>
+  :root {
+    /* dark-first (default) — violet-charcoal, muted plum family */
+    --bg: #14121a; --surface: #1d1a26; --surface-2: #241f31;
+    --ink: #eceaf2; --muted: #a29cb4; --faint: #6b6580; --line: #2a2636;
+    --accent: #9e86d6;      /* muted amethyst — primary */
+    --accent-2: #6d5a9c;    /* plum — secondary */
+    --on-accent: #14121a;
+    --dots: rgba(158,134,214,.10);
+    --display: "Futura","Century Gothic","URW Geometric","Avant Garde",system-ui,sans-serif;
+    --mono: ui-monospace,"Cascadia Code","SFMono-Regular",Consolas,monospace;
+    --sans: system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  :root[data-theme="light"] {
+    --bg: #eceaf0; --surface: #f5f3f8; --surface-2: #e6e2ee;
+    --ink: #1b1822; --muted: #5a5568; --faint: #8b86a0; --line: #d8d4e2;
+    --accent: #6b4fb0; --accent-2: #8a78b8; --on-accent: #ffffff;
+    --dots: rgba(107,79,176,.10);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+      --bg:#eceaf0;--surface:#f5f3f8;--surface-2:#e6e2ee;--ink:#1b1822;--muted:#5a5568;
+      --faint:#8b86a0;--line:#d8d4e2;--accent:#6b4fb0;--accent-2:#8a78b8;--on-accent:#fff;--dots:rgba(107,79,176,.10);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased; transition:background-color .25s,color .25s; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 30px; }
+  ::selection { background:var(--accent); color:var(--on-accent); }
+  .mono { font-family:var(--mono); }
+  .eyebrow { font-family:var(--mono); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }
+
+  header { position:sticky; top:0; z-index:30; background:color-mix(in srgb,var(--bg) 88%,transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .bar { display:flex; align-items:center; justify-content:space-between; height:60px; gap:16px; }
+  .mark { font-family:var(--display); font-weight:800; font-size:1.3rem; letter-spacing:.02em; }
+  .mark .p { color:var(--accent); }
+  nav { display:flex; gap:20px; }
+  nav a { font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  nav a.active { color:var(--ink); }
+  nav a.active { border-bottom:2px solid var(--accent); padding-bottom:3px; }
+  nav a:hover { color:var(--ink); }
+  .ctrls { display:flex; align-items:center; gap:8px; }
+  .seg { display:inline-flex; border:1px solid var(--line); }
+  .seg button { font-family:var(--mono); font-size:.68rem; padding:6px 9px; background:transparent; color:var(--muted); border:0; cursor:pointer; }
+  .seg button[aria-pressed="true"] { background:var(--accent); color:var(--on-accent); }
+  .sqbtn { width:32px; height:32px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; font-family:var(--mono); }
+  .sqbtn:hover { color:var(--ink); border-color:var(--ink); }
+
+  .hero { display:grid; grid-template-columns:1.5fr .9fr; gap:44px; padding:80px 0 56px; align-items:center; }
+  .status { display:inline-flex; align-items:center; gap:10px; margin-bottom:26px; }
+  .status .tick { width:10px; height:2px; background:var(--accent); }
+  h1 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:clamp(2.4rem,5.6vw,4.9rem); line-height:.97; letter-spacing:-.015em; margin:0; text-wrap:balance; }
+  h1 .u { color:var(--accent); }
+  p.lede { font-size:1.08rem; color:var(--muted); max-width:42ch; margin:26px 0 30px; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn { font-family:var(--mono); font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; padding:13px 22px; cursor:pointer; text-decoration:none; border:1.5px solid var(--accent); display:inline-flex; align-items:center; gap:8px; }
+  .btn.solid { background:var(--accent); color:var(--on-accent); }
+  .btn.solid:hover { background:transparent; color:var(--ink); }
+  .btn.ghost { border-color:var(--line); color:var(--ink); }
+  .btn.ghost:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* spec panel (technical, no shapes) */
+  .spec { border:1px solid var(--line); background:var(--surface); }
+  .spec .sh { font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); padding:12px 16px; border-bottom:1px solid var(--line); }
+  .spec .row { display:flex; justify-content:space-between; gap:16px; padding:12px 16px; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:.8rem; }
+  .spec .row:last-child { border-bottom:0; }
+  .spec .row .k { color:var(--faint); }
+  .spec .row .v { color:var(--ink); text-align:right; }
+  .spec .row .v .dot { color:var(--accent); }
+
+  /* stats — the ONE section with a subtle dot texture */
+  .stats { border-top:1px solid var(--line); border-bottom:1px solid var(--line); background-image:radial-gradient(var(--dots) 1px,transparent 1px); background-size:16px 16px; }
+  .stats-inner { display:flex; gap:0; }
+  .stat { flex:1; padding:26px 0; border-left:1px solid var(--line); padding-left:24px; }
+  .stat:first-child { border-left:0; padding-left:0; }
+  .stat .k { font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); }
+  .stat .v { font-family:var(--display); font-weight:800; font-size:1.9rem; margin-top:8px; letter-spacing:-.01em; font-variant-numeric:tabular-nums; }
+  .stat .v small { color:var(--accent); }
+
+  /* selected work — indexed rows, no shapes */
+  .work { padding:64px 0; }
+  .work-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; }
+  .work-head h2 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:1.5rem; letter-spacing:-.01em; margin:0; }
+  .work-head a { font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); text-decoration:none; }
+  .row-link { display:grid; grid-template-columns:52px 1.1fr 1.5fr auto; gap:20px; align-items:center; padding:22px 8px; border-top:1px solid var(--line); text-decoration:none; color:inherit; transition:background .16s,padding .16s; }
+  .row-link:last-child { border-bottom:1px solid var(--line); }
+  .row-link:hover { background:var(--surface); padding-left:16px; }
+  .row-link .idx { font-family:var(--mono); font-size:.78rem; color:var(--accent); }
+  .row-link h3 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:1.5rem; margin:0; letter-spacing:-.01em; }
+  .row-link .desc { color:var(--muted); font-size:.92rem; }
+  .row-link .sp { font-family:var(--mono); font-size:.7rem; color:var(--faint); text-align:right; letter-spacing:.03em; }
+  .row-link .sp b { color:var(--ink); font-weight:400; }
+  .row-link .arr { font-family:var(--mono); color:var(--faint); transition:transform .16s,color .16s; }
+  .row-link:hover .arr { color:var(--accent); transform:translateX(4px); }
+
+  footer { border-top:1px solid var(--line); }
+  .foot { display:flex; justify-content:space-between; align-items:center; padding:26px 0; gap:16px; flex-wrap:wrap; }
+  .foot .l { font-family:var(--mono); font-size:.74rem; color:var(--muted); }
+  .foot .r { font-family:var(--mono); font-size:.66rem; color:var(--faint); }
+
+  @media (max-width:900px){
+    nav { display:none; }
+    .hero { grid-template-columns:1fr; gap:30px; padding:52px 0 30px; }
+    .stats-inner { flex-wrap:wrap; }
+    .stat { flex:1 1 45%; border-left:0; padding-left:0; }
+    .row-link { grid-template-columns:36px 1fr; gap:8px; }
+    .row-link .desc, .row-link .sp, .row-link .arr { grid-column:2; text-align:left; }
+  }
+  @media (prefers-reduced-motion:reduce){ * { transition:none !important; } }
+</style>
+
+<header>
+  <div class="wrap bar">
+    <div class="mark">RK<span class="p">.</span></div>
+    <nav>
+      <a href="#" class="active">Home</a><a href="#">About</a><a href="#">Projects</a>
+      <a href="#">Skills</a><a href="#">Journey</a><a href="#">Notes</a><a href="#">CV</a><a href="#">Contact</a>
+    </nav>
+    <div class="ctrls">
+      <div class="seg" id="lang"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="fr" aria-pressed="false">FR</button></div>
+      <button class="sqbtn" id="theme" title="Toggle theme" aria-label="Toggle theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <div class="status"><span class="tick"></span><span class="eyebrow" data-i18n="status">Open to a 2028 alternance — internships sooner</span></div>
+        <h1 data-i18n="tagline">I build systems, <span class="u">and learn</span> by deploying them.</h1>
+        <p class="lede" data-i18n="lede">Computer-engineering student at EFREI Paris. Python and the web, mainly. I learn by building — and I document how I solve problems as I go.</p>
+        <div class="cta">
+          <a class="btn solid" href="#" data-i18n="cta1">View the work</a>
+          <a class="btn ghost" href="#" data-i18n="cta2">Read the notes</a>
+        </div>
+      </div>
+      <div class="spec">
+        <div class="sh" data-i18n="specTitle">Specification</div>
+        <div class="row"><span class="k" data-i18n="k1">Focus</span><span class="v">Python · Web</span></div>
+        <div class="row"><span class="k" data-i18n="k2">Learning</span><span class="v">React · Next.js</span></div>
+        <div class="row"><span class="k" data-i18n="k3">Based in</span><span class="v">Paris, FR</span></div>
+        <div class="row"><span class="k" data-i18n="k4">Seeking</span><span class="v">Alternance 2028</span></div>
+        <div class="row"><span class="k" data-i18n="k5">Status</span><span class="v"><span class="dot">●</span> <span data-i18n="k5v">Available</span></span></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="stats">
+    <div class="wrap stats-inner">
+      <div class="stat"><div class="k" data-i18n="s1">Repositories</div><div class="v">05</div></div>
+      <div class="stat"><div class="k" data-i18n="s2">Commits</div><div class="v">480<small>+</small></div></div>
+      <div class="stat"><div class="k" data-i18n="s3">Primary language</div><div class="v">Python</div></div>
+      <div class="stat"><div class="k" data-i18n="s4">Last build</div><div class="v">07·31</div></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="work">
+      <div class="work-head">
+        <h2 data-i18n="workH">Selected work</h2>
+        <a href="#" data-i18n="workAll">All projects →</a>
+      </div>
+      <a class="row-link" href="#">
+        <span class="idx">01</span>
+        <h3>Ecosystem</h3>
+        <span class="desc" data-i18n="c1">Self-healing AI-agent infrastructure that runs, recovers, and remembers on its own.</span>
+        <span class="sp"><b>Advanced</b> · 2026<br>Python · FastAPI</span>
+        <span class="arr">→</span>
+      </a>
+      <a class="row-link" href="#">
+        <span class="idx">02</span>
+        <h3>Portfolio</h3>
+        <span class="desc" data-i18n="c2">This site — bilingual, self-updating from GitHub, built as my way into modern web.</span>
+        <span class="sp"><b>Advanced</b> · 2026<br>Next.js · TS</span>
+        <span class="arr">→</span>
+      </a>
+      <a class="row-link" href="#">
+        <span class="idx">03</span>
+        <h3>Chatbot</h3>
+        <span class="desc" data-i18n="c3">TF-IDF analysis of six French presidents' inaugural speeches — my first team Git project.</span>
+        <span class="sp"><b>Applied</b> · 2025<br>Python · NLP</span>
+        <span class="arr">→</span>
+      </a>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="l">Rudolf Krylov — EFREI Paris</span>
+    <span class="r" data-i18n="note">Mockup A · Nocturne / Plum — dark, muted purple. Display face is a stand-in for a geometric grotesque. Sample figures.</span>
+  </div>
+</footer>
+
+<script>
+  const root=document.documentElement;
+  root.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'dark'); // default dark
+  document.getElementById('theme').addEventListener('click',()=>root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark'));
+  const i18n={
+    en:{status:"Open to a 2028 alternance — internships sooner",tagline:'I build systems, <span class="u">and learn</span> by deploying them.',lede:"Computer-engineering student at EFREI Paris. Python and the web, mainly. I learn by building — and I document how I solve problems as I go.",cta1:"View the work",cta2:"Read the notes",specTitle:"Specification",k1:"Focus",k2:"Learning",k3:"Based in",k4:"Seeking",k5:"Status",k5v:"Available",s1:"Repositories",s2:"Commits",s3:"Primary language",s4:"Last build",workH:"Selected work",workAll:"All projects →",c1:"Self-healing AI-agent infrastructure that runs, recovers, and remembers on its own.",c2:"This site — bilingual, self-updating from GitHub, built as my way into modern web.",c3:"TF-IDF analysis of six French presidents' inaugural speeches — my first team Git project.",note:"Mockup A · Nocturne / Plum — dark, muted purple. Display face is a stand-in for a geometric grotesque. Sample figures."},
+    fr:{status:"Ouvert à une alternance 2028 — stage d'ici là",tagline:'Je construis des systèmes, <span class="u">et j\'apprends</span> en les déployant.',lede:"Étudiant ingénieur en informatique à l'EFREI Paris. Python et le web, surtout. J'apprends en construisant — et je documente comment je résous les problèmes.",cta1:"Voir les projets",cta2:"Lire les notes",specTitle:"Spécification",k1:"Domaine",k2:"En cours",k3:"Basé à",k4:"Recherche",k5:"Statut",k5v:"Disponible",s1:"Dépôts",s2:"Commits",s3:"Langage principal",s4:"Dernier build",workH:"Travaux choisis",workAll:"Tous les projets →",c1:"Infrastructure d'agents IA auto-réparante : elle tourne, se rétablit et se souvient toute seule.",c2:"Ce site — bilingue, mis à jour depuis GitHub, mon entrée dans le web moderne.",c3:"Analyse TF-IDF de six discours d'investiture de présidents français — mon premier projet Git en équipe.",note:"Maquette A · Nocturne / Plum — sombre, violet feutré. Police d'affichage indicative. Chiffres indicatifs."}
+  };
+  function setLang(l){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(i18n[l][k]!=null)el.innerHTML=i18n[l][k];});document.querySelectorAll('#lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false'));document.documentElement.lang=l;}
+  document.querySelectorAll('#lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+</script>

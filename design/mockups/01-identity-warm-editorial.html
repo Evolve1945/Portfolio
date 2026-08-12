@@ -1,0 +1,506 @@
+<title>Home — Identity Mockup · Rudolf Krylov</title>
+<style>
+  :root {
+    /* ——— Light (warm paper + ink), from the site's own tokens ——— */
+    --ground: #f1efe8;
+    --surface: #f9f7f1;
+    --surface-2: #eae7dd;
+    --ink: #272630;
+    --muted: #64626c;
+    --faint: #98969e;
+    --border: #e2dfd5;
+    --accent: #2f43e6;
+    --accent-fg: #ffffff;
+    --signal: #1f9d57;
+    --grid: rgba(20, 20, 26, 0.045);
+    --shadow: 0 1px 2px rgba(20,20,26,.04), 0 12px 32px -12px rgba(20,20,26,.14);
+    --receipt: #f4f1e8;
+
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0a0a0c; --surface: #131316; --surface-2: #1b1b1f;
+      --ink: #ececee; --muted: #a0a0a8; --faint: #6c6c74; --border: #262629;
+      --accent: #7f8dff; --accent-fg: #0a0a0c; --signal: #34d27f;
+      --grid: rgba(255,255,255,0.05);
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 16px 40px -16px rgba(0,0,0,.6);
+      --receipt: #101014;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f1efe8; --surface: #f9f7f1; --surface-2: #eae7dd;
+    --ink: #272630; --muted: #64626c; --faint: #98969e; --border: #e2dfd5;
+    --accent: #2f43e6; --accent-fg: #ffffff; --signal: #1f9d57;
+    --grid: rgba(20,20,26,0.045);
+    --shadow: 0 1px 2px rgba(20,20,26,.04), 0 12px 32px -12px rgba(20,20,26,.14);
+    --receipt: #f4f1e8;
+  }
+  :root[data-theme="dark"] {
+    --ground: #0a0a0c; --surface: #131316; --surface-2: #1b1b1f;
+    --ink: #ececee; --muted: #a0a0a8; --faint: #6c6c74; --border: #262629;
+    --accent: #7f8dff; --accent-fg: #0a0a0c; --signal: #34d27f;
+    --grid: rgba(255,255,255,0.05);
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 16px 40px -16px rgba(0,0,0,.6);
+    --receipt: #101014;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* Move 1 — engineer's-notebook dot grid on warm paper */
+    background-image: radial-gradient(var(--grid) 1px, transparent 1px);
+    background-size: 22px 22px;
+    transition: background-color .3s, color .3s;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ——— utility label (mono eyebrow), Move 4 ——— */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  /* Move 3 — the "." system-node motif */
+  .dot { color: var(--accent); }
+  .node-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block; flex: none;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex: none;
+    background: var(--signal);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 60%, transparent);
+    animation: pulse 2.6s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 55%, transparent); }
+    70% { box-shadow: 0 0 0 7px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+
+  /* ——— header ——— */
+  header {
+    position: sticky; top: 0; z-index: 40;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--ground) 82%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .mark { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; letter-spacing: -.02em; }
+  nav.main { display: flex; gap: 22px; }
+  nav.main a {
+    font-size: .9rem; color: var(--muted); text-decoration: none;
+    position: relative; padding: 4px 0;
+  }
+  nav.main a.active { color: var(--ink); }
+  nav.main a.active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--accent);
+  }
+  nav.main a:not(.active):hover { color: var(--ink); }
+  .controls { display: flex; align-items: center; gap: 8px; }
+  /* Move 10 — bilingual as a first-class segmented control */
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .06em;
+    padding: 6px 10px; background: transparent; color: var(--muted);
+    border: 0; cursor: pointer;
+  }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+  .icon-btn {
+    width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px;
+    background: transparent; color: var(--muted); cursor: pointer; font-size: .95rem;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .icon-btn:hover { color: var(--ink); border-color: color-mix(in srgb, var(--ink) 30%, var(--border)); }
+  nav.main a:hidden { display: none; }
+
+  /* ——— hero ——— */
+  .hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: center; padding: 84px 0 64px; }
+  .avail { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 26px; }
+  .avail span.txt { font-family: var(--mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  /* Move 4 + 8 — big serif thesis, confident restraint */
+  h1.thesis {
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(2.6rem, 5.2vw, 4.25rem);
+    line-height: 1.04; letter-spacing: -.02em; margin: 0;
+    text-wrap: balance;
+  }
+  /* Move 2 — one decisive accent: a rule under the thesis */
+  .thesis-rule { width: 56px; height: 3px; background: var(--accent); border-radius: 2px; margin: 26px 0 22px; }
+  p.lede { font-size: 1.12rem; color: var(--muted); max-width: 34ch; margin: 0 0 30px; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--sans); font-size: .92rem; font-weight: 500;
+    padding: 11px 18px; border-radius: 9px; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: .5rem; border: 1px solid transparent;
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-fg); }
+  .btn.primary:hover { filter: brightness(1.06); }
+  .btn.ghost { border-color: var(--border); color: var(--ink); background: transparent; }
+  .btn.ghost:hover { border-color: color-mix(in srgb, var(--ink) 32%, var(--border)); }
+
+  /* system-map card (Move 3 + 7 flavour) */
+  .map-card {
+    position: relative; border: 1px solid var(--border); border-radius: 16px;
+    background: var(--surface); box-shadow: var(--shadow); padding: 16px; overflow: hidden;
+  }
+  .map-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .map-head .eyebrow { gap: .5rem; }
+  .map-card svg { width: 100%; height: 232px; display: block; }
+
+  /* ——— metrics strip (Move 6 — oversized mono numerals + ascending line) ——— */
+  section.metrics { padding: 30px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
+  .metric { position: relative; padding-top: 8px; }
+  .metric .num {
+    font-family: var(--mono); font-weight: 600; letter-spacing: -.03em;
+    font-size: clamp(2.6rem, 6vw, 3.9rem); line-height: 1; color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .metric .num .u { color: var(--accent); }
+  .metric .lbl { font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin-top: 10px; }
+  .metrics-line { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .metrics-grid > .metric { z-index: 1; }
+
+  /* ——— section header shared ——— */
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  h2.sec { font-family: var(--serif); font-weight: 600; font-size: 1.9rem; letter-spacing: -.01em; margin: 0; }
+  .sec-eyebrow { display: flex; align-items: center; gap: .5rem; }
+  .link-more { font-size: .9rem; color: var(--muted); text-decoration: none; display: inline-flex; gap: .4rem; align-items: center; }
+  .link-more:hover { color: var(--ink); }
+
+  /* ——— receipts (Move 7 — honesty as verifiable receipts) ——— */
+  section.pad { padding: 56px 0; }
+  .receipt-card {
+    border: 1px solid var(--border); border-left: 3px solid var(--accent);
+    border-radius: 12px; background: var(--receipt); box-shadow: var(--shadow);
+    font-family: var(--mono); overflow: hidden;
+  }
+  .receipt-top { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px dashed var(--border); }
+  .receipt-top .who { font-size: .8rem; color: var(--muted); letter-spacing: .04em; }
+  .receipt-body { padding: 14px 16px; display: grid; gap: 8px; }
+  .rrow { display: flex; justify-content: space-between; gap: 16px; font-size: .82rem; }
+  .rrow .k { color: var(--faint); }
+  .rrow .v { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .defend { padding: 12px 16px; border-top: 1px dashed var(--border); font-size: .82rem; color: var(--muted); line-height: 1.55; }
+  .defend b { color: var(--ink); font-weight: 600; }
+
+  /* ——— selected work (Move 5 — strict grid) ——— */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card {
+    position: relative; border: 1px solid var(--border); border-radius: 14px; background: var(--surface);
+    padding: 20px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 10px;
+    transition: transform .18s, border-color .18s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--ink) 26%, var(--border)); }
+  .card .top { display: flex; align-items: center; gap: .55rem; }
+  .card h3 { font-family: var(--serif); font-size: 1.32rem; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+  .card p { color: var(--muted); font-size: .92rem; margin: 0; flex: 1; }
+  .card .meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  .badge { font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; }
+  .year { font-family: var(--mono); font-size: .72rem; color: var(--faint); }
+  .tag { font-family: var(--mono); font-size: .72rem; color: var(--faint); }
+
+  /* ——— identity legend ——— */
+  .legend { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); padding: 24px; }
+  .legend h3 { font-family: var(--serif); font-size: 1.3rem; margin: 0 0 4px; }
+  .legend p.sub { color: var(--muted); font-size: .9rem; margin: 0 0 18px; }
+  .legend ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+  .legend li { display: flex; gap: 12px; font-size: .9rem; }
+  .legend .n { font-family: var(--mono); font-size: .8rem; color: var(--accent); border: 1px solid var(--border); border-radius: 6px; width: 26px; height: 26px; flex: none; display: inline-flex; align-items: center; justify-content: center; }
+  .legend .t { color: var(--ink); }
+  .legend .t small { display: block; color: var(--muted); font-size: .82rem; margin-top: 2px; }
+
+  footer { border-top: 1px solid var(--border); margin-top: 8px; }
+  .foot { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: .85rem; }
+  .foot .fnote { font-family: var(--mono); font-size: .72rem; color: var(--faint); }
+
+  /* annotations (Move badges) */
+  .anno {
+    position: absolute; top: -10px; left: -10px; z-index: 30;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-fg);
+    font-family: var(--mono); font-size: .74rem; font-weight: 600;
+    display: none; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.28); border: 2px solid var(--ground);
+  }
+  body.anno-on .anno { display: inline-flex; }
+  body.anno-on [data-anchor] { outline: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 6px; border-radius: 4px; }
+  [data-anchor] { position: relative; }
+
+  @media (max-width: 860px) {
+    nav.main { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 32px; padding: 56px 0 44px; }
+    .metrics-grid, .cards, .legend ol { grid-template-columns: 1fr; }
+    .cards { gap: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<header>
+  <div class="wrap bar">
+    <div class="mark" data-anchor>RK<span class="dot">.</span><span class="anno">3</span></div>
+    <nav class="main">
+      <a href="#" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#">Projects</a>
+      <a href="#">Skills</a>
+      <a href="#">Journey</a>
+      <a href="#">Notes</a>
+      <a href="#">CV</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="controls">
+      <div class="seg" id="lang" data-anchor>
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="fr" aria-pressed="false">FR</button>
+        <span class="anno">10</span>
+      </div>
+      <button class="icon-btn" id="theme" title="Toggle theme" aria-label="Toggle theme">◐</button>
+      <button class="icon-btn" id="annob" title="Toggle identity annotations" aria-label="Toggle annotations">①</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="avail" data-anchor>
+          <span class="live-dot"></span>
+          <span class="txt" data-i18n="status">Open to a 2028 developer apprenticeship — internships sooner</span>
+          <span class="anno">9</span>
+        </div>
+        <div data-anchor>
+          <h1 class="thesis" data-i18n="tagline">I build systems and learn by deploying them.</h1>
+          <span class="anno">4</span>
+        </div>
+        <div class="thesis-rule" data-anchor><span class="anno">2</span></div>
+        <p class="lede" data-i18n="lede">Computer-engineering student at EFREI Paris. I work mainly in Python and on the web, and I document how I solve problems as I build.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#" data-i18n="cta1">View the work →</a>
+          <a class="btn ghost" href="#" data-i18n="cta2">Read the notes</a>
+        </div>
+      </div>
+
+      <div class="map-card" data-anchor>
+        <span class="anno">3</span>
+        <div class="map-head">
+          <span class="eyebrow"><span class="node-dot"></span>&nbsp;System map</span>
+          <span class="eyebrow" style="gap:.4rem"><span class="live-dot"></span> live</span>
+        </div>
+        <svg viewBox="0 0 320 232" id="mapsvg" aria-hidden="true"></svg>
+      </div>
+    </section>
+  </div>
+
+  <!-- METRICS -->
+  <section class="metrics">
+    <div class="wrap">
+      <div class="sec-head" style="margin-bottom:18px">
+        <span class="sec-eyebrow eyebrow"><span class="node-dot"></span>&nbsp;<span data-i18n="liveGh">Live from GitHub</span></span>
+      </div>
+      <div class="metrics-grid" data-anchor>
+        <span class="anno" style="top:-22px">6</span>
+        <svg class="metrics-line" viewBox="0 0 900 120" preserveAspectRatio="none" aria-hidden="true">
+          <polyline points="60,96 450,60 840,26" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+          <circle cx="60" cy="96" r="4" fill="var(--accent)"/>
+          <circle cx="450" cy="60" r="4" fill="var(--accent)"/>
+          <circle cx="840" cy="26" r="4" fill="var(--accent)"/>
+        </svg>
+        <div class="metric"><div class="num">5</div><div class="lbl" data-i18n="mRepos">Repositories</div></div>
+        <div class="metric"><div class="num">480<span class="u">+</span></div><div class="lbl" data-i18n="mCommits">Commits</div></div>
+        <div class="metric"><div class="num">Python</div><div class="lbl" data-i18n="mLang">Primary language</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECEIPTS -->
+  <section class="pad">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow eyebrow"><span class="node-dot"></span>&nbsp;<span data-i18n="proofE">Proof, not claims</span></span>
+          <h2 class="sec" data-i18n="proofH" style="margin-top:8px">The receipts</h2>
+        </div>
+      </div>
+      <div class="receipt-card" data-anchor>
+        <span class="anno">7</span>
+        <div class="receipt-top">
+          <span class="who">git · Evolve1945/Ecosystem</span>
+          <span class="eyebrow" style="gap:.4rem"><span class="live-dot"></span> <span data-i18n="private">private · stats only</span></span>
+        </div>
+        <div class="receipt-body">
+          <div class="rrow"><span class="k">commits</span><span class="v">1,240</span></div>
+          <div class="rrow"><span class="k">last active</span><span class="v">2026-07-31</span></div>
+          <div class="rrow"><span class="k">primary language</span><span class="v">Python</span></div>
+          <div class="rrow"><span class="k">agents · dashboard views</span><span class="v">23 · 35</span></div>
+        </div>
+        <div class="defend">
+          <b data-i18n="defendK">What I can defend:</b>
+          <span data-i18n="defendV">the task-dependency DAG, the retry/circuit-breaker logic, and the privacy trust-monitor — I designed them and can walk through the trade-offs.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow eyebrow"><span class="node-dot"></span>&nbsp;<span data-i18n="workE">Selected work</span></span>
+          <h2 class="sec" data-i18n="workH" style="margin-top:8px">Built in context<span class="dot">.</span></h2>
+        </div>
+        <a class="link-more" href="#" data-i18n="workAll">All projects →</a>
+      </div>
+      <div class="cards" data-anchor>
+        <span class="anno">5</span>
+        <a class="card" href="#">
+          <div class="top"><span class="node-dot"></span><h3>Ecosystem</h3></div>
+          <p data-i18n="c1">Self-healing AI-agent infrastructure that runs, recovers, and remembers on its own.</p>
+          <div class="meta"><span class="badge">Advanced</span><span class="year">2026</span><span class="tag">Python</span><span class="tag">FastAPI</span></div>
+        </a>
+        <a class="card" href="#">
+          <div class="top"><span class="node-dot"></span><h3>Portfolio</h3></div>
+          <p data-i18n="c2">The site you're reading — bilingual, self-updating from GitHub, built as my way into modern web.</p>
+          <div class="meta"><span class="badge">Advanced</span><span class="year">2026</span><span class="tag">Next.js</span><span class="tag">TypeScript</span></div>
+        </a>
+        <a class="card" href="#">
+          <div class="top"><span class="node-dot"></span><h3>Chatbot</h3></div>
+          <p data-i18n="c3">TF-IDF analysis of six French presidents' inaugural speeches — my first team Git project.</p>
+          <div class="meta"><span class="badge">Applied</span><span class="year">2025</span><span class="tag">Python</span><span class="tag">NLP</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGEND -->
+  <section class="pad" style="padding-top:0">
+    <div class="wrap">
+      <div class="legend">
+        <h3>The 10 identity moves, applied</h3>
+        <p class="sub">Toggle <b>①</b> in the header to pin each move to where it lives on the page.</p>
+        <ol>
+          <li><span class="n">1</span><span class="t">Engineer's-notebook ground<small>Warm paper + ink + a faint dot grid — the whole page background.</small></span></li>
+          <li><span class="n">2</span><span class="t">One decisive accent<small>Indigo only on rules, markers, the CTA and active states — never decoration.</small></span></li>
+          <li><span class="n">3</span><span class="t">The "." system-node motif<small>The wordmark period, section dots, card bullets, and the map's core node.</small></span></li>
+          <li><span class="n">4</span><span class="t">Serif voice · mono proof<small>Serif headlines carry the message; mono carries every label and number.</small></span></li>
+          <li><span class="n">5</span><span class="t">Strict grid + rhythm<small>Aligned columns and one spacing scale across every section.</small></span></li>
+          <li><span class="n">6</span><span class="t">Oversized numerals + rising line<small>Live GitHub stats as big mono figures on an ascending accent line.</small></span></li>
+          <li><span class="n">7</span><span class="t">Honesty as receipts<small>Git-trace + "what I can defend" styled as a verifiable terminal receipt.</small></span></li>
+          <li><span class="n">8</span><span class="t">Confident restraint<small>One big thesis, generous space, short decisive copy, high contrast.</small></span></li>
+          <li><span class="n">9</span><span class="t">A single warm signal<small>Green used only for human/positive beats — availability, "live".</small></span></li>
+          <li><span class="n">10</span><span class="t">Bilingual as a feature<small>EN/FR is a first-class segmented control — try it in the header.</small></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Rudolf Krylov</span>
+    <span class="fnote">Mockup — final site uses Fraunces (serif) + IBM Plex Sans/Mono. Sample GitHub figures.</span>
+  </div>
+</footer>
+
+<script>
+  // ——— theme toggle (overrides prefers-color-scheme) ———
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme');
+  const startDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  root.setAttribute('data-theme', startDark ? 'dark' : 'light');
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    drawMap();
+  });
+
+  // ——— annotations ———
+  document.getElementById('annob').addEventListener('click', () => {
+    document.body.classList.toggle('anno-on');
+  });
+
+  // ——— language toggle (Move 10) ———
+  const i18n = {
+    en: {
+      status: "Open to a 2028 developer apprenticeship — internships sooner",
+      tagline: "I build systems and learn by deploying them.",
+      lede: "Computer-engineering student at EFREI Paris. I work mainly in Python and on the web, and I document how I solve problems as I build.",
+      cta1: "View the work →", cta2: "Read the notes",
+      liveGh: "Live from GitHub", mRepos: "Repositories", mCommits: "Commits", mLang: "Primary language",
+      proofE: "Proof, not claims", proofH: "The receipts", private: "private · stats only",
+      defendK: "What I can defend:", defendV: "the task-dependency DAG, the retry/circuit-breaker logic, and the privacy trust-monitor — I designed them and can walk through the trade-offs.",
+      workE: "Selected work", workH: "Built in context.", workAll: "All projects →",
+      c1: "Self-healing AI-agent infrastructure that runs, recovers, and remembers on its own.",
+      c2: "The site you're reading — bilingual, self-updating from GitHub, built as my way into modern web.",
+      c3: "TF-IDF analysis of six French presidents' inaugural speeches — my first team Git project."
+    },
+    fr: {
+      status: "Ouvert à une alternance de développeur en 2028 — stage d'ici là",
+      tagline: "Je construis des systèmes et j'apprends en les déployant.",
+      lede: "Étudiant ingénieur en informatique à l'EFREI Paris. Je travaille surtout en Python et sur le web, et je documente ma façon de résoudre les problèmes au fil de mes projets.",
+      cta1: "Voir les projets →", cta2: "Lire les notes",
+      liveGh: "En direct de GitHub", mRepos: "Dépôts", mCommits: "Commits", mLang: "Langage principal",
+      proofE: "Des preuves, pas des promesses", proofH: "Les preuves", private: "privé · stats seules",
+      defendK: "Ce que je sais défendre :", defendV: "le DAG de dépendances, la logique de reprise/disjoncteur et le trust-monitor de confidentialité — je les ai conçus et je peux en expliquer les compromis.",
+      workE: "Travaux sélectionnés", workH: "Remis en contexte.", workAll: "Tous les projets →",
+      c1: "Infrastructure d'agents IA auto-réparante : elle tourne, se rétablit et se souvient toute seule.",
+      c2: "Le site que vous lisez — bilingue, mis à jour depuis GitHub, mon entrée dans le web moderne.",
+      c3: "Analyse TF-IDF de six discours d'investiture de présidents français — mon premier projet Git en équipe."
+    }
+  };
+  function setLang(l) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n'); if (i18n[l][k]) el.textContent = i18n[l][k];
+    });
+    document.querySelectorAll('#lang button').forEach(b =>
+      b.setAttribute('aria-pressed', b.dataset.lang === l ? 'true' : 'false'));
+    document.documentElement.lang = l;
+  }
+  document.querySelectorAll('#lang button').forEach(b =>
+    b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  // ——— system-map node graph (Move 3) ———
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function drawMap() {
+    const svg = document.getElementById('mapsvg');
+    const W = 320, H = 232;
+    const accent = css('--accent'), faint = css('--faint'), signal = css('--signal'), border = css('--border');
+    const nodes = [
+      {x:60,y:70},{x:135,y:40},{x:210,y:64},{x:265,y:120},
+      {x:210,y:176},{x:120,y:196},{x:52,y:150},{x:160,y:118}
+    ];
+    const core = 7, liveNode = 2;
+    const edges = [[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,0]];
+    let s = '';
+    edges.forEach(([a,b]) => {
+      s += `<line x1="${nodes[a].x}" y1="${nodes[a].y}" x2="${nodes[b].x}" y2="${nodes[b].y}" stroke="${border}" stroke-width="1"/>`;
+    });
+    nodes.forEach((n,i) => {
+      if (i === core) s += `<circle cx="${n.x}" cy="${n.y}" r="7" fill="${accent}"/>`;
+      else if (i === liveNode) s += `<circle cx="${n.x}" cy="${n.y}" r="5" fill="${signal}"/>`;
+      else s += `<circle cx="${n.x}" cy="${n.y}" r="4" fill="${faint}"/>`;
+    });
+    svg.innerHTML = s;
+  }
+  drawMap();
+  setLang('en');
+</script>

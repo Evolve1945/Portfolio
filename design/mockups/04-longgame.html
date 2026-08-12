@@ -1,0 +1,218 @@
+<title>Home — The Long Game · Rudolf Krylov</title>
+<style>
+  :root {
+    /* dark-first — near-black, one controlled iris accent */
+    --bg:#0c0c10; --surface:#131318; --surface-2:#191921;
+    --ink:#f0f0f3; --muted:#9797a2; --faint:#565660; --line:#20202a;
+    --accent:#7c6be0;       /* controlled iris-violet, not neon */
+    --accent-dim:rgba(124,107,224,.14);
+    --on-accent:#0c0c10;
+    --display:"Futura","Century Gothic","URW Geometric","Avant Garde",system-ui,sans-serif;
+    --mono:ui-monospace,"Cascadia Code","SFMono-Regular",Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  :root[data-theme="light"] {
+    --bg:#ededf0; --surface:#f6f6f9; --surface-2:#e7e7ee;
+    --ink:#101015; --muted:#55555f; --faint:#8a8a94; --line:#dddde4;
+    --accent:#4c3cb0; --accent-dim:rgba(76,60,176,.10); --on-accent:#fff;
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme]){--bg:#ededf0;--surface:#f6f6f9;--surface-2:#e7e7ee;--ink:#101015;--muted:#55555f;--faint:#8a8a94;--line:#dddde4;--accent:#4c3cb0;--accent-dim:rgba(76,60,176,.10);--on-accent:#fff;}
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased; transition:background-color .25s,color .25s; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 30px; }
+  ::selection { background:var(--accent); color:var(--on-accent); }
+  .eyebrow { font-family:var(--mono); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }
+  .rule { height:1px; background:var(--line); }
+
+  header { position:sticky; top:0; z-index:30; background:color-mix(in srgb,var(--bg) 86%,transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .bar { display:flex; align-items:center; justify-content:space-between; height:60px; gap:16px; }
+  .mark { font-family:var(--display); font-weight:800; font-size:1.3rem; letter-spacing:.02em; }
+  .mark .p { color:var(--accent); }
+  nav { display:flex; gap:20px; }
+  nav a { font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+  nav a.active { color:var(--ink); border-bottom:2px solid var(--accent); padding-bottom:3px; }
+  nav a:hover { color:var(--ink); }
+  .ctrls { display:flex; align-items:center; gap:8px; }
+  .seg { display:inline-flex; border:1px solid var(--line); }
+  .seg button { font-family:var(--mono); font-size:.68rem; padding:6px 9px; background:transparent; color:var(--muted); border:0; cursor:pointer; }
+  .seg button[aria-pressed="true"] { background:var(--accent); color:var(--on-accent); }
+  .sqbtn { width:32px; height:32px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; font-family:var(--mono); }
+  .sqbtn:hover { color:var(--ink); border-color:var(--ink); }
+
+  /* hero — a commanding thesis, heavy restraint */
+  .hero { padding:96px 0 40px; }
+  .coords { display:flex; gap:18px; align-items:center; margin-bottom:34px; flex-wrap:wrap; }
+  .coords .dotlive { width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-dim); }
+  h1 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:clamp(2.6rem,7vw,6rem); line-height:.94; letter-spacing:-.02em; margin:0; max-width:16ch; text-wrap:balance; }
+  h1 .u { color:var(--accent); }
+  .manifesto { display:grid; grid-template-columns:1fr 1fr; gap:44px; margin-top:40px; align-items:end; }
+  .manifesto p { font-size:1.06rem; color:var(--muted); margin:0; max-width:46ch; }
+  .manifesto p b { color:var(--ink); font-weight:600; }
+  .cta { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn { font-family:var(--mono); font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; padding:13px 22px; cursor:pointer; text-decoration:none; border:1.5px solid var(--accent); display:inline-flex; gap:8px; align-items:center; }
+  .btn.solid { background:var(--accent); color:var(--on-accent); }
+  .btn.solid:hover { background:transparent; color:var(--ink); }
+  .btn.ghost { border-color:var(--line); color:var(--ink); }
+  .btn.ghost:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* the long game — a personal, strategic phase strip */
+  .phases { border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-top:70px; }
+  .phases-head { padding:16px 0; }
+  .phase-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+  .phase { padding:28px 24px 30px; border-left:1px solid var(--line); }
+  .phase:first-child { border-left:0; padding-left:0; }
+  .phase.now { border-top:2px solid var(--accent); }
+  .phase .pn { font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); }
+  .phase.now .pn { color:var(--accent); }
+  .phase h3 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:1.35rem; margin:12px 0 8px; letter-spacing:-.01em; }
+  .phase p { font-size:.9rem; color:var(--muted); margin:0; }
+
+  /* work — one flagship + tight list */
+  .work { padding:70px 0 20px; }
+  .work-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:24px; }
+  .work-head h2 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:1.5rem; letter-spacing:-.01em; margin:0; }
+  .work-head a { font-family:var(--mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); text-decoration:none; }
+  .flagship { display:grid; grid-template-columns:1.4fr 1fr; gap:30px; border:1px solid var(--line); background:var(--surface); padding:30px; align-items:center; text-decoration:none; color:inherit; transition:border-color .16s; }
+  .flagship:hover { border-color:var(--accent); }
+  .flagship .tagline { font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .flagship h3 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:clamp(2rem,4vw,3rem); margin:14px 0; line-height:.95; letter-spacing:-.02em; }
+  .flagship p { color:var(--muted); font-size:.98rem; margin:0; max-width:42ch; }
+  .flagship .sp { font-family:var(--mono); font-size:.72rem; color:var(--faint); display:flex; flex-direction:column; gap:10px; }
+  .flagship .sp .r { display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  .flagship .sp .r b { color:var(--ink); font-weight:400; }
+  .list { margin-top:0; }
+  .li { display:grid; grid-template-columns:44px 1fr auto; gap:18px; align-items:center; padding:20px 6px; border-bottom:1px solid var(--line); text-decoration:none; color:inherit; transition:background .16s,padding .16s; }
+  .li:hover { background:var(--surface); padding-left:14px; }
+  .li .idx { font-family:var(--mono); font-size:.76rem; color:var(--accent); }
+  .li h4 { font-family:var(--display); font-weight:800; text-transform:uppercase; font-size:1.25rem; margin:0; letter-spacing:-.01em; }
+  .li .m { font-family:var(--mono); font-size:.7rem; color:var(--faint); text-align:right; }
+
+  /* operator footer — quiet personal marks */
+  footer { border-top:1px solid var(--line); margin-top:60px; }
+  .foot { display:grid; grid-template-columns:repeat(4,1fr); }
+  .foot .f { border-left:1px solid var(--line); padding:20px 16px; }
+  .foot .f:first-child { border-left:0; }
+  .foot .f .k { font-family:var(--mono); font-size:.56rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); }
+  .foot .f .v { font-family:var(--mono); font-size:.8rem; margin-top:7px; color:var(--ink); }
+  .foot .f .v .a { color:var(--accent); }
+  .note { font-family:var(--mono); font-size:.62rem; color:var(--faint); padding:14px 0 26px; }
+
+  @media (max-width:900px){
+    nav { display:none; }
+    .hero { padding:56px 0 24px; }
+    .manifesto { grid-template-columns:1fr; gap:26px; }
+    .phase-grid { grid-template-columns:1fr; }
+    .phase { border-left:0; border-top:1px solid var(--line); padding-left:0; }
+    .phase.now { border-top:2px solid var(--accent); }
+    .phase:first-child { border-top:0; }
+    .flagship { grid-template-columns:1fr; }
+    .foot { grid-template-columns:1fr 1fr; }
+    .foot .f:nth-child(3){ border-left:0; }
+  }
+  @media (prefers-reduced-motion:reduce){ * { transition:none !important; } }
+</style>
+
+<header>
+  <div class="wrap bar">
+    <div class="mark">RK<span class="p">.</span></div>
+    <nav>
+      <a href="#" class="active">Home</a><a href="#">About</a><a href="#">Projects</a>
+      <a href="#">Skills</a><a href="#">Journey</a><a href="#">Notes</a><a href="#">CV</a><a href="#">Contact</a>
+    </nav>
+    <div class="ctrls">
+      <div class="seg" id="lang"><button data-lang="en" aria-pressed="true">EN</button><button data-lang="fr" aria-pressed="false">FR</button></div>
+      <button class="sqbtn" id="theme" title="Toggle theme" aria-label="Toggle theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <div class="coords">
+        <span class="dotlive"></span>
+        <span class="eyebrow" data-i18n="loc">48.8566° N, 2.3522° E · Paris</span>
+        <span class="eyebrow" data-i18n="status">Open to a 2028 alternance</span>
+      </div>
+      <h1 data-i18n="tagline">I build systems, <span class="u">and learn</span> by deploying them.</h1>
+      <div class="manifesto">
+        <p data-i18n="m1">Computer-engineering student at EFREI Paris. I think like an architect: give me a goal and I find a path to build it — <b>then I ship it, and document the trade-offs I can defend.</b></p>
+        <div class="cta">
+          <a class="btn solid" href="#" data-i18n="cta1">View the work</a>
+          <a class="btn ghost" href="#" data-i18n="cta2">Read the notes</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="phases">
+    <div class="wrap phases-head"><span class="eyebrow" data-i18n="lgT">The long game</span></div>
+    <div class="wrap phase-grid">
+      <div class="phase now">
+        <div class="pn" data-i18n="p1n">Phase 01 · Now</div>
+        <h3 data-i18n="p1h">Learn by building</h3>
+        <p data-i18n="p1p">Ship real projects, document the process, sharpen the fundamentals.</p>
+      </div>
+      <div class="phase">
+        <div class="pn" data-i18n="p2n">Phase 02 · 2028</div>
+        <h3 data-i18n="p2h">Alternance</h3>
+        <p data-i18n="p2p">Inside a strong, ambitious team — people sharper than me — to contribute and grow.</p>
+      </div>
+      <div class="phase">
+        <div class="pn" data-i18n="p3n">Phase 03 · Later</div>
+        <h3 data-i18n="p3h">Build my own</h3>
+        <p data-i18n="p3p">Take what I've learned and build something that's mine.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="work">
+      <div class="work-head">
+        <h2 data-i18n="workH">Selected work</h2>
+        <a href="#" data-i18n="workAll">All projects →</a>
+      </div>
+      <a class="flagship" href="#">
+        <div>
+          <span class="tagline" data-i18n="flagT">Flagship · self-healing infrastructure</span>
+          <h3>Ecosystem</h3>
+          <p data-i18n="c1">A mesh of AI agents that runs, recovers, and remembers on its own — orchestration, retries, circuit breakers, a privacy trust-monitor.</p>
+        </div>
+        <div class="sp">
+          <div class="r"><span>Complexity</span><b>Advanced</b></div>
+          <div class="r"><span>Year</span><b>2026</b></div>
+          <div class="r"><span>Stack</span><b>Python · FastAPI</b></div>
+          <div class="r" style="border-bottom:0"><span>Repo</span><b data-i18n="priv">private · stats only</b></div>
+        </div>
+      </a>
+      <div class="list">
+        <a class="li" href="#"><span class="idx">02</span><h4>Portfolio</h4><span class="m">Advanced · 2026 · Next.js/TS</span></a>
+        <a class="li" href="#"><span class="idx">03</span><h4>Chatbot</h4><span class="m">Applied · 2025 · Python/NLP</span></a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="f"><div class="k" data-i18n="fk1">Drawn by</div><div class="v">R. Krylov</div></div>
+    <div class="f"><div class="k" data-i18n="fk2">Discipline</div><div class="v">1st-dan black belt</div></div>
+    <div class="f"><div class="k" data-i18n="fk3">Languages</div><div class="v">FR · EN · DE</div></div>
+    <div class="f"><div class="k" data-i18n="fk4">Status</div><div class="v"><span class="a">●</span> <span data-i18n="fk4v">Available for 2028</span></div></div>
+  </div>
+  <div class="wrap note" data-i18n="note">Mockup B · The Long Game — my read of you: controlled intensity, one iris accent, strategic framing, quiet personal marks. Display face is a stand-in. Sample figures.</div>
+</footer>
+
+<script>
+  const root=document.documentElement;
+  root.setAttribute('data-theme','dark'); // default dark
+  document.getElementById('theme').addEventListener('click',()=>root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark'));
+  const i18n={
+    en:{loc:"48.8566° N, 2.3522° E · Paris",status:"Open to a 2028 alternance",tagline:'I build systems, <span class="u">and learn</span> by deploying them.',m1:"Computer-engineering student at EFREI Paris. I think like an architect: give me a goal and I find a path to build it — <b>then I ship it, and document the trade-offs I can defend.</b>",cta1:"View the work",cta2:"Read the notes",lgT:"The long game",p1n:"Phase 01 · Now",p1h:"Learn by building",p1p:"Ship real projects, document the process, sharpen the fundamentals.",p2n:"Phase 02 · 2028",p2h:"Alternance",p2p:"Inside a strong, ambitious team — people sharper than me — to contribute and grow.",p3n:"Phase 03 · Later",p3h:"Build my own",p3p:"Take what I've learned and build something that's mine.",workH:"Selected work",workAll:"All projects →",flagT:"Flagship · self-healing infrastructure",c1:"A mesh of AI agents that runs, recovers, and remembers on its own — orchestration, retries, circuit breakers, a privacy trust-monitor.",priv:"private · stats only",fk1:"Drawn by",fk2:"Discipline",fk3:"Languages",fk4:"Status",fk4v:"Available for 2028",note:"Mockup B · The Long Game — my read of you: controlled intensity, one iris accent, strategic framing, quiet personal marks. Display face is a stand-in. Sample figures."},
+    fr:{loc:"48.8566° N, 2.3522° E · Paris",status:"Ouvert à une alternance 2028",tagline:'Je construis des systèmes, <span class="u">et j\'apprends</span> en les déployant.',m1:"Étudiant ingénieur en informatique à l'EFREI Paris. Je raisonne comme un architecte : donnez-moi un objectif et je trouve un chemin pour le construire — <b>puis je le livre, et je documente les compromis que je sais défendre.</b>",cta1:"Voir les projets",cta2:"Lire les notes",lgT:"Le jeu long",p1n:"Phase 01 · Maintenant",p1h:"Apprendre en construisant",p1p:"Livrer de vrais projets, documenter le processus, affûter les fondamentaux.",p2n:"Phase 02 · 2028",p2h:"Alternance",p2p:"Dans une équipe solide et ambitieuse — des gens plus affûtés que moi — pour contribuer et grandir.",p3n:"Phase 03 · Plus tard",p3h:"Bâtir la mienne",p3p:"Prendre ce que j'ai appris et construire quelque chose à moi.",workH:"Travaux choisis",workAll:"Tous les projets →",flagT:"Vaisseau amiral · infrastructure auto-réparante",c1:"Un maillage d'agents IA qui tourne, se rétablit et se souvient tout seul — orchestration, reprises, disjoncteurs, trust-monitor de confidentialité.",priv:"privé · stats seules",fk1:"Réalisé par",fk2:"Discipline",fk3:"Langues",fk4:"Statut",fk4v:"Disponible pour 2028",note:"Maquette B · Le Jeu Long — mon interprétation : intensité maîtrisée, un accent iris, cadrage stratégique, touches personnelles discrètes. Police indicative. Chiffres indicatifs."}
+  };
+  function setLang(l){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(i18n[l][k]!=null)el.innerHTML=i18n[l][k];});document.querySelectorAll('#lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false'));document.documentElement.lang=l;}
+  document.querySelectorAll('#lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+</script>

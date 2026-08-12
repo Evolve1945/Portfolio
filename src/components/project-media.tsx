@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import type { Project } from "@/data/projects";
@@ -109,13 +110,24 @@ export function ProjectMedia({
                 aria-label={`${zoomLabel} — ${m.alt[locale]}`}
                 className="group relative block w-full cursor-zoom-in"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={m.src}
-                  alt={m.alt[locale]}
-                  loading="lazy"
-                  className="w-full transition-opacity group-hover:opacity-90"
-                />
+                {m.width && m.height ? (
+                  <Image
+                    src={m.src}
+                    alt={m.alt[locale]}
+                    width={m.width}
+                    height={m.height}
+                    sizes="(max-width: 640px) 100vw, 384px"
+                    className="h-auto w-full transition-opacity group-hover:opacity-90"
+                  />
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={m.src}
+                    alt={m.alt[locale]}
+                    loading="lazy"
+                    className="w-full transition-opacity group-hover:opacity-90"
+                  />
+                )}
                 <span className="pointer-events-none absolute right-2 top-2 rounded-md bg-background/70 px-2 py-1 text-[0.65rem] text-muted opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
                   {zoomLabel}
                 </span>
