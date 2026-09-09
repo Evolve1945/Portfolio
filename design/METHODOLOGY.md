@@ -36,3 +36,13 @@ content or feels salesy, cut it. Subtle > loud.
 ## 6. Always
 Dark + light themes (tokenised); bilingual FR/EN; geometric-grotesque display + technical mono;
 deep negative space; one accent; palettes saved to `design/palettes/` every round.
+
+## 7. Palette Atlas  ← added 2026-08-02
+The color decision is isolated in `design/palettes/palettes-50.md` — 50 palettes
+(cool-dominant, dark+light variants each, 10 bold, concept-tagged, sources credited),
+visualized in-use in the "Palette Atlas" artifact. Pick palette → apply to chosen concept.
+
+## 8. Exploration Atlas  ← added 2026-08-02
+Counter-round on request: `design/palettes/palettes-50-explore.md` — 50 palettes deliberately
+outside stated tastes (warm/pastel/pop/retro/luxe/gourmand), typography customized per palette
+(35 researched display faces). Purpose: test the boundaries of the "no" list before locking.
